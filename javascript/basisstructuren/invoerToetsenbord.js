@@ -13,6 +13,9 @@ var voornaam = toetsenbord.question('Tik je voornaam in:  ');
 var naam = toetsenbord.question('Tik je familienaam in:  ');
 
 console.log('Welkom, %s %s!' , voornaam, naam);
+console.log('Welkom,' + voornaam + ' ' + naam + '!');
+console.log('Welkom, ', voornaam, naam, '!'); // ',' gat ook als '+' maar ALLEEN in .log()
+
 // opm:  console.log:  eerste param = formatstring met plaatshouders, 
 // params waarvoor geen plaatshouder voorzien is, worden geconcateneerd met formatstring;
 // console.log voegt achteraan \n toe
