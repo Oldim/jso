@@ -11,5 +11,5 @@ console.log(smurf);   // undefined
 
 // we mogen (sleutelwoord) null toekennen aan een var
 // om aan te geven dat die var momenteel geen bruikbare waarde bevat
-smurf = null;
+smurf = null; //special ingezet, momenteel geen bruikbare waarde (nullreference)
 console.log(smurf); // null
