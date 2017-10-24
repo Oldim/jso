@@ -1,13 +1,11 @@
 'use strict';
 
-var punten;
 var toetsenbord = require('readline-sync');
 
-punten = toetsenbord.question('Geef punten:  ');
+var punten = parseInt(toetsenbord.question('Geef punten:  '), 10); 
 
-punten = parseInt(punten);
 if (punten >= 0 && punten <= 20) {
-    switch (punten) {
+    switch (true) {
         case (punten < 10):
             console.log("%s is onvoldoende", punten);
             break;
@@ -24,5 +22,5 @@ if (punten >= 0 && punten <= 20) {
             console.log("%s is grootste onderscheiding", punten);
     }
 } else {
-    console.log("Punten mogen tussen '0' en '20' zijn.")
+    console.log("Punten mogen tussen '0' en '20' zijn. Het is ongeldige score")
 }
