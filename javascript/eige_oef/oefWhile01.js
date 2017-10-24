@@ -9,7 +9,7 @@ while (getal >= 0) {
     i++;
     getal = parseFloat(toetsenbord.question("Geef geheel getal (<0 om te stoppen): "), 10);
 }
-if(getal <0){
+if(i <0){
     console.log("U stopt het programma");
 }else{
 console.log("Het gem is %d",  som/i);

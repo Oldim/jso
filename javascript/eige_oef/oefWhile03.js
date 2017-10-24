@@ -1,6 +1,7 @@
 'use strict';
 
 var toetsenbord = require('readline-sync');
+var result;
 var mj = 0;
 var mo = 0;
 var vj = 0;
@@ -29,5 +30,9 @@ console.log("mannen " + mj + ' ' + mo);
 console.log("vrouwen " + vj + ' ' + vo);
 
 
+result = "\t<25\t>=25\nmannen\t"+mj+"\t"+mo+"\nvrouwen\t"+vj+"\t"+vo; 
+console.log(result);
+// "\t" alsof je op tab-toets gedrukt hebt.
+// "\n" nieuwe lijn
 
 
