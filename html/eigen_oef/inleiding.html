@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <base href="subdir"/> <!-- alleen met relatieve links -->
     <style>
         body{
             font-size: 27px;
@@ -17,7 +18,13 @@
              border-bottom: 3px double; 
         }
         em{border-bottom: 3px double;}
+        a[href^="https://"]::after{
+            content: url(http://upload.wikimedia.org/wikipedia/commons/6/64/Icon_External_Link.png);
+             margin: 0 0 0 5px;
+        }
     </style>
+    
+    
 </head>
 <body>
         https://docs.emmet.io/cheat-sheet/
@@ -33,6 +40,7 @@
     <p class="eerste" id="eerste" >sdfsf</p> <!-- id heeft voorang van class: id=1 class=2 -->
     <p class="eerste">sdfsf</p> 
     <a href="https://docs.emmet.io/cheat-sheet/" target="_blank">emmet doc</a>
+    <img src="test.png" alt="sdfsf">
     
     
 </body>

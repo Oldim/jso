@@ -1,0 +1,25 @@
+body{padding: 50px 20px 0 20px ;}
+
+
+
+header>img{width: 250px; position: absolute; top: 1em; left: 2em;}
+h1,h2{color: rgb(194, 10, 10); font-family: 'Sedgwick Ave Display', cursive; font-size: 3rem; text-align: right;}
+.summary{text-align: right;}
+h3{text-align: center; color: rgb(194, 10, 10); font-family: 'Covered By Your Grace', cursive; font-size: 2rem;}
+.preamble p, .explanation p, .supporting p, .participation p, .requirements p{text-align: center;}
+
+
+.sidebar a[href^="http://"]::after{
+    content: url(http://upload.wikimedia.org/wikipedia/commons/6/64/Icon_External_Link.png);
+    margin: 0 0 0 5px;
+    position: relative;
+    top: 2px;
+}
+
+
+
+
+@media (min-width:960px) {
+    .page-wrapper{max-width: 960px; display: block; margin: 0 auto;}
+}
+
