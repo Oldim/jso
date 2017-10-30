@@ -1,47 +1,215 @@
+<!-- <!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            width: 960px;
+        }
+
+        span {
+            border: 3px solid #000;
+            display: inline-block;
+            text-align: center;
+            width: 200px;
+            height: 40px;
+            padding: 2px;
+            margin: 15px 5px;
+        }
+        .leerkracht :first-child, .leerkracht :last-child { border: none; height: 0px;}
+        .leerkracht :nth-child(2){margin-left: 8px;}
+        .leerkracht :nth-child(2)::after{content: "Ann"}
+        .leerkracht :nth-child(2):hover:after{content: "Jeff"}
+    </style>
+</head>
+
+<body>
+    <div>
+        <span>PC112</span>
+        <span>PC111 </span>
+        <span>Derde</span>
+    </div>
+    <div>
+        <span>PC109</span>
+        <span>PC108</span>
+        <span>PC107</span>
+    </div>
+    <div>
+        <span>PC106</span>
+        <span>PC105</span>
+        <span>PC104</span>
+    </div>
+    <div>
+        <span>PC103</span>
+        <span>PC102</span>
+        <span>PC101</span>
+    </div>
+    <div class="leerkracht">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</body>
+
+</html> -->
 <!DOCTYPE html>
 <html lang="nl">
 
 <head>
+    <title></title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-        .zwart{background-color: black; content: "";}
-        .geel{background-color: yellow; content: "";}
-        .rood{background-color: red; content: "";}
-        .flagen{ display: block;}
-        .flagBE{height: 200px;margin-top: 100px;}
-        .flagBE div{     float: left;
-            
-    padding: 130px 30px;
-    margin: 0 auto;
-    display: block;
-    position: relative;
-    top: 10px;
-    /* right: 0; */
-    left: 50%;}
-    .clear{clear: both;}
-    .flagDE{margin-top: 100px;}
-        .flagDE div{  padding: 30px 100px; width: 100px;margin: 0 auto;}
-    </style>
+        body {
+            width: 960px;
+        }
 
+        span {
+            border: 3px solid #000;
+            display: inline-grid;
+            text-align: center;
+            width: 200px;
+            height: 40px;
+            padding: 2px;
+            margin: 15px 5px;
+        }
+        .leerkracht :first-child, .leerkracht :last-child { border: none; height: 0px;}
+        .leerkracht :nth-child(2){margin-left: 8px;}
+        .leerkracht :nth-child(2)::after{content: "Ann"}
+        .leerkracht :nth-child(2):hover:after{content: "Jef"}
+    </style>
 </head>
 
 <body>
-    <div class="flagen">
-    <div class="flagBE">
-        <div class="zwart"></div>
-        <div class="geel"></div>
-        <div class="rood"></div>
+    <div>
+        <span>PC112</span>
+        <span>PC111 </span>
+        <span>Derde<br>Belkin</span>
     </div>
-    <div class="flagDE clear">
-            <div class="zwart"></div>
-            <div class="rood"></div>
-            <div class="geel"></div>                        
+    <div>
+        <span>PC109<br>Wout</span>
+        <span>PC108<br>Tom</span>
+        <span>PC107<br>Erwin</span>
     </div>
-</div>
+    <div>
+        <span>PC106<br>Joris</span>
+        <span>PC105<br>Frederik</span>
+        <span>PC104<br>Chloé</span>
+    </div>
+    <div>
+        <span>PC103</span>
+        <span>PC102<br>Irina</span>
+        <span>PC101<br>Dmitryi</span>
+    </div>
+    <div class="leerkracht">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
 </body>
 
-</html>
+<!-- laatste_versie
+    
+    </html>
+<!DOCTYPE html>
+<html lang="nl">
+    <head>
+        <title>Klasindeling</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+        body{
+            width:960px;
+        }
+        .center{
+            text-align: center;
+        }
+        .pc{
+            float:left;
+            box-sizing: border-box;
+            width:300px;
+            border:solid;
+            margin: 0px 10px 50px 10px;
+            padding: 10px;
+        }
+        .pcnaam{
+            display: block;
+            text-align: center;
+        }
+        .cursist{
+            display: block;
+            text-align: center;
+        }
+        .lesgever::before{
+            content:"Ann";
+        }
+        .lesgever:hover:before{
+            content: "Jef";
+        }
+        .pc__lesgever{
+            margin: 50px auto;
+            float:none;
+            clear:both;
+        }
+
+        </style>
+    </head>
+    <body>
+        <h1 class="center">Klasindeling</h1>
+        <div class="pc">
+            <span class="pcnaam">PC112</span>
+            <span class="cursist">Maxime</span>
+        </div>
+        <div class="pc">
+            <span class="pcnaam">PC111</span>
+            <span class="cursist">Reda</span>
+        </div>
+        <div class="pc">
+            <span class="pcnaam">PC110</span>
+            <span class="cursist">Benjamin</span>
+        </div>
+        <div class="pc">
+            <span class="pcnaam">PC109</span>
+            <span class="cursist">Olivier</span>
+        </div>
+        <div class="pc">
+            <span class="pcnaam">PC108</span>
+            <span class="cursist">Wim</span>
+        </div>
+        <div class="pc">
+            <span class="pcnaam">PC107</span>
+            <span class="cursist">Wim</span>
+        </div>
+        <div class="pc">
+            <span class="pcnaam">PC106</span>
+            <span class="cursist">Simon</span>
+        </div>
+        <div class="pc">
+            <span class="pcnaam">PC105</span>
+            <span class="cursist">Kristof</span>
+        </div>
+        <div class="pc">
+            <span class="pcnaam">PC104</span>
+            <span class="cursist">Nikolay</span>
+        </div>
+        <div class="pc">
+            <span class="pcnaam">PC103</span>
+            <span class="cursist">Zeljka</span>
+        </div>
+        <div class="pc">
+            <span class="pcnaam">PC102</span>
+            <span class="cursist">Mireille</span>
+        </div>
+        <div class="pc">
+            <span class="pcnaam">PC101</span>
+            <span class="cursist">Ingeborg</span>
+        </div>
+        <div class="pc pc__lesgever">
+            <span class="pcnaam">PC100</span>
+            <span class="cursist lesgever"></span>
+        </div>
+    </body>
+</html> -->
