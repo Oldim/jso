@@ -10,6 +10,7 @@ function geefGetal(bovengrens) {
 
 function evalueerProduct(getal1, getal2, uitkomst) {
 	return getal1 * getal2 == uitkomst;
+	
 }
 
 function toonMeldingBijUitkomst(juist) {
