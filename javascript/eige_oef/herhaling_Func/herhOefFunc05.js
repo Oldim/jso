@@ -1,30 +1,32 @@
 'use strict';
 
 var toetsenbord = require('readline-sync');
+var trap = parseFloat(toetsenbord.question("Geef huidige bonus-malus: "), 10);
+var ongeval = parseFloat(toetsenbord.question("Geef aantal ongevallen: "), 10);
 
-var jaar = parseFloat(toetsenbord.question("Geef een gegeven jaar: "), 10);
-
-function schrikkeljaar(schrikkel) {
-    // var schrikkel = "";
-    // if (((jaar % 4) == 0) && ((jaar % 100) != 0)) {
-    //     console.log("schrik");
-    // } else {
-    //     console.log("Notschrik");
-    // }
-    // return schrikkel;
-
-
-
-    return schrikkel%4 == 0 && schrikkel%100 != 0 ;
-
+function malustrap(trap) {
+    switch (true) {
+        case ongeval == 0:
+            trap-=1;
+            break;
+        case ongeval == 1:
+            trap +=2;
+            break;
+        default:
+            trap+=3*ongeval-1;
+    }
+    return trap;
 }
 
-var schrikkeljaar = schrikkeljaar(jaar) ? "ja" : "nee";
-
-//var schrikkeljaar = schrikkeljaar();
-
-
-
 console.log(" ");
-var result = "\tJaar\tSchrikkeljaar?\n\t" + jaar + "\t" + schrikkeljaar;
-console.log(result);
+var result ="bonus-malustrap: "+ malustrap(trap);
+if(malustrap(trap)>=18){
+    console.log(result);
+    console.log("Je moet andere verzekeringsmaatschappij zoeken")
+}else{
+    console.log(result);
+}
+
+
+
+
