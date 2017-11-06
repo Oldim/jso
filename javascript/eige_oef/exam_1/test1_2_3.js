@@ -30,9 +30,11 @@ var toetsenbord = require('readline-sync');
 function geefGewicht() {   
     var result1=null;
     for (var i = 1; i < examens; i++) {
-        var gewicht = parseFloat(toetsenbord.question("Geef je gewicht: "), 10);     
+        var gewicht = parseFloat(toetsenbord.question("Geef je gewicht: "), 10); 
+             
     }
-    return gewicht 
+    return gewicht;
+    
 }
 function geefScore() {    
     for (var i = 1; i < examens; i++) {
@@ -40,9 +42,11 @@ function geefScore() {
     }
     return score
 }
-
+function berekenGem(){
+    var gem= geefGewicht()*geefScore();
+    return gem;
+}
 
 console.log(" ");
-var result = "\tstudiepunten\tscore\n\t" + geefGewicht() + "\t" + geefScore();
+var result = berekenGem();
 console.log(result);
-
