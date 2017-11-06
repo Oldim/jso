@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        'use strict';
+        const WISSELKOERS = 40.3399;
+
+        
+
+        function BEFNaarEuro() {
+            var bedrag =parseFloat(frm.value1.value);
+            frm.value2.value = bedrag / WISSELKOERS;           
+        }
+
+        function EuroNaarBEF() {
+            var bedrag =parseFloat(frm.value2.value);
+            frm.value1.value = bedrag * WISSELKOERS;
+        }
+
+        function init() {
+            var btn = document.getElementById("btnEuro");
+            btn.addEventListener("click", BEFNaarEuro);
+            var btn = document.getElementById("btnBEF");
+            btn.addEventListener("click", EuroNaarBEF);
+        }
+        window.onload = init;
+    </script>
+</head>
+
+<body>
+    <form name="frm">
+        <input type="text" name="value1" />
+        <input type="text" name="value2" />
+        <input type="button" value="naar Euro" id="btnEuro" />
+        <input type="button" value="naar BEF" id="btnBEF" />
+    </form>
+</body>
+
+</html>

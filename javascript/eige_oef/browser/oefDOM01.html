@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        'use strict';
+        function kopieerVeld() {
+            var veld1 = frm.naamVeld1.value;
+            frm.naamVeld2.value = veld1;        
+        }
+
+        function init() {
+            var btn = document.getElementById("btn");
+            btn.addEventListener("click", kopieerVeld);
+        }
+        window.onload = init;
+    </script>
+</head>
+
+<body>
+    <form name="frm">
+        <input type="text" name="naamVeld1" />
+        <input type="button" value="Kopieer" id="btn" />
+        <input type="text" name="naamVeld2" />
+    </form>
+</body>
+
+</html>

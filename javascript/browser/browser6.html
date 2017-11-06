@@ -3,14 +3,24 @@
 <head>
     <title>Zesde voorbeeld</title>
 <script type="text/javascript">
-	var naam = prompt("Geef naam","je naam");
+'use strict';
+function toonNaamZonderParams() {
+    var naam = prompt("Geef naam","je naam");
+    
+}
+function init(){
+    var btn = frm.btn;
+    btn.addEventListener("click", toonNaamZonderParams);
+}
+window.onload = init;
 </script>
 </head>
 
 <body>
 <h1>VB 6</h1>
-<script type="text/javascript">
-	document.write("Dag " + naam);
-</script>
+<form name="frm">
+Naam: <input type="text" name="naamVeld" />
+<input type="button" value="klik" name="btn"/>
+</form>
 </body>
 </html>

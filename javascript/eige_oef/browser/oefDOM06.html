@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        'use strict';
+        function berekenSom() {
+            var getal1 = frm.getal1.value;
+            var getal2 = frm.getal2.value;
+            frm.uitkomst.value =parseFloat(getal1)  + parseFloat(getal2);       
+        }
+
+        function init() {
+            var btn = document.getElementById("btn");
+            btn.addEventListener("click", kopieerVeld);
+        }
+        window.onload = init;
+    </script>
+</head>
+
+<body>
+    <form name="frm">
+        <input type="number" name="getal1" value="0" />
+        <input type="number" name="getal2" value="0" />
+        <input type="text" name="uitkomst" readonly />
+        <input type="button" value="+" id="btn1" />
+        <input type="button" value="-" id="btn2" />
+        <input type="button" value="x" id="btn3" />
+        <input type="button" value="/" id="btn4" />
+    </form>
+</body>
+
+</html>
