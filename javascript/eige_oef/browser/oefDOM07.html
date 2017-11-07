@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        'use strict';
+        function controleEmail() {
+            var veld1 = frm.naamVeld1.value;
+            if(veld1.indexOf("@") == -1){
+                alert("geen geldig e-mail adres")
+            }else{
+                alert("email: "+veld1);
+            }       
+        }
+
+        function init() {
+            var btn = document.getElementById("btn");
+            btn.addEventListener("click", controleEmail);
+        }
+        window.onload = init;
+    </script>
+</head>
+
+<body>
+    <form name="frm">
+        <input type="text" name="VeldRandom" />
+        <input type="text" name="naamVeld1" />
+        <input type="button" value="Controle" id="btn" />
+    </form>
+</body>
+
+</html>
