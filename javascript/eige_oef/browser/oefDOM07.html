@@ -9,19 +9,33 @@
     <script>
         'use strict';
         function controleEmail() {
-            var veld1 = frm.naamVeld1.value;
-            if(veld1.indexOf("@") == -1){
-                alert("geen geldig e-mail adres")
-            }else{
-                alert("email: "+veld1);
-            }       
+            var invoerGetal = parseInt(frm.naamVeld1.value);
+            var getalWil = maakWilGetal();            
+            switch (true) {
+                case getalWil > invoerGetal:
+                    alert("hoger");
+                    break;
+                case getalWil < invoerGetal:
+                    alert("lager");
+                    break;
+                default: alert("juist");
+            }
+
+        }
+        function maakWilGetal() {
+            var getalWil = Math.floor((Math.random() * 100) + 1);
+            frm.VeldRandom.value = getalWil;
+            return getalWil;
         }
 
         function init() {
             var btn = document.getElementById("btn");
-            btn.addEventListener("click", controleEmail);
+            btn.onclick = controleEmail;
         }
-        window.onload = init;
+        window.onload = function () {
+            maakWilGetal();
+            init();
+        };
     </script>
 </head>
 
