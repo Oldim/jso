@@ -2,63 +2,11 @@
 <html>
 
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Sollicitatie</title>
     <link rel="stylesheet" href="grid.css">
     <!--<link rel="stylesheet" href="flex.css">-->
     <!--<link rel="stylesheet" href="float.css">-->
-    <style>
-        /* --------------------Grid_Layout_Start-------------------- */
-
-        /* .formcontainer {
-            display: grid;
-            width: 400px;
-            grid-template-columns: 190px 1fr;
-        }
-
-        .formlabel {
-            padding-right: 10px;
-            text-align: right;
-        }
-
-        .forminput {
-            margin: 0 0 5px;
-        }
-
-        .form-radiogroup label {
-            display: block;
-        }
-
-        .formbutton {
-            grid-column-start: 2;
-        } */
-
-        /* ------------------------Grid_Layout_END------------------------- */
-
-        /* --------------------Flex_Layout_Start----------------------------- */
-
-        .formcontainer {
-            display: flex;
-            flex-flow: row wrap;
-        }
-
-        .formlabel,
-        .forminput {
-            box-sizing: border-box;
-            -webkit-flex: 0 1 50%;
-            flex: 0 1 50%;
-            margin-bottom: 5px;
-        }
-
-        .form-radiogroup label {
-            display: block;
-        }
-
-        .formlabel {text-align: right; padding-right: 5px;}
-
-        .forminput {}
-        .formbutton {margin-left: 50%;}
-        /* -----------------------Flex_Layout_Eind----------------------- */
-    </style>
 </head>
 
 <body>
@@ -71,7 +19,7 @@
         <label class="forminput">
             <input type="checkbox" name="rijbewijs">Ik heb een rijbewijs B</label>
         <label class="formlabel">Hoe goed is je Nederlands?</label>
-        <div class="form-radiogroup">
+        <div class="forminput form-radiogroup">
             <label>
                 <input type="radio" name="nederlands" value="goed" checked>Goed</label>
             <label>
