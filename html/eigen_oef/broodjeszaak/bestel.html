@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="border">
+    <nav id="page_nav">
+            <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a class="active" href="#">Bestellen</a></li>                    
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                  </ul>
+    </nav>
+    <header id="page-header" class="content-padding header">
+           <h1>Lekkerste broodjes<br><small>kan je bij ons eten!</small></h1>
+    </header>
+    <aside id="right-sidebar" class="content-padding sidebar_css">
+            <h3>Broodje van de dag</h3>
+            <div><img src="img/brd_dag.jpg" alt=""></div>
+            <p>Smoos gerookte ham<br>prijs: 4.5 EUR</p>
+            
+    </aside>
+    <main id="main" class="content-padding">
+            <form class="formcontainer" action="bestel.php" method="POST">
+                    <label class="formlabel" for="txtKies">Kies:</label>
+                    <select name="txtKies">
+                            <option value="di_mare">Di Mare</option>
+                            <option value="di_mare_pikant">Di Mare Pikant</option>
+                            <option value="neptunus" selected>Neptunus</option>
+                            <option value="ger_ham" selected>Gerookte ham</option>
+                        </select>                    
+                    <label class="formlabel">Soort brood</label>
+                    <div class="form-radiogroup">
+                        <label>
+                            <input type="radio" name="nederlands" value="goed" checked>Wit</label>
+                        <label>
+                            <input type="radio" name="nederlands" value="middelmatig">Bruin</label>
+                    </div>
+                    <label class="forminput">
+                            <input type="checkbox" name="rijbewijs">Smoos?</label>
+                    <input class="formbutton" type="submit" name="btn" value="Bestel">
+                </form>
+                <div class="bestel_tabel">
+                        <table style="width:100%">
+                                <tr>
+                                  <th>Aantal</th>
+                                  <th>Broodje</th> 
+                                  <th>Soort</th>
+                                  <th>Smoos</th>
+                                </tr>
+                                <tr>
+                                  <td>1</td>
+                                  <td>Di Mare</td> 
+                                  <td>Wit</td>
+                                  <td>Ja</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Neptunus</td> 
+                                    <td>Bruin</td>
+                                    <td>Nee</td>
+                                </tr>
+                              </table>
+                </div>
+    </main>
+    <footer id="page-footer" class="content-padding footer">
+            <div>&copy; Dmitryi</div>
+            <div></div>
+            <div></div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,134 @@
+html{
+    background: #ffffff;
+}
+body{
+    margin: 0 auto;
+    max-width: 1024px;
+    min-height: 100vh;
+    display: grid;
+    grid-template-areas:"nav nav" 
+                        "header header"
+                        "main aside"
+                        "footer footer";
+    grid-template-columns:1fr 250px ;
+    grid-template-rows: auto 1fr auto;
+    background: whitesmoke;
+}
+#page_nav{
+    grid-area: nav;
+}
+#page-header{
+    grid-area: header;
+}
+#right-sidebar{
+    grid-area: aside;
+}
+#main{
+    grid-area: main;
+}
+#page-footer{
+    grid-area: footer;
+}
+h1{color: #fff;}
+h1 small{padding-left: 25px;}
+/* -------- nav ----- */
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #fff;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+nav li {
+    float: left;
+}
+
+nav li a {
+    display: block;
+    color: #000;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+nav li a:hover {
+    color: #ffdb4d;
+}
+nav .active {
+    background-color: #ffdb4d;
+    color: #fff;
+}
+/* -----nav_end ------ */
+/* ----- header ------ */
+.header{
+    background: url("../img/header.jpg")no-repeat center scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+/* -----header_end ----- */
+.border{
+    border: 1px solid #ffdb4d;
+    background-clip: padding-box;
+    border-radius: 10px;
+}
+.content-padding{
+    padding: 10px;
+}
+/* ----- sidebar ---- */
+.sidebar_css{text-align: center;}
+.sidebar_css img{
+    max-width: 100%;    
+}
+/* ----sidebar_end ------ */
+/* ----- main_index ---- */
+.wrapper {
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    grid-gap: 10px;
+    background-color: #fff;
+    text-align: center;
+  }
+  
+  .box {
+    color: #000;
+    border: 2px solid #ffdb4d;
+    border-radius: 5px;
+    padding: 20px;
+    font-size: 15px;
+    box-sizing: border-box;
+  }
+  .box img{display: block; margin: 0 auto;}
+  /* ----main_bestel --- */
+  .formcontainer{
+      padding-top: 50px;
+    width: 400px;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-row-gap: 5px;
+}
+.form-radiogroup > label{
+    display: block;
+}
+.formlabel{
+    text-align: right;
+    padding-right: 5px;
+}
+.forminput{grid-column: 2/3;}
+.formbutton{
+    grid-column: 2/3;
+}
+.bestel_tabel{
+    padding-top: 100px;
+}
+table, th, td {
+    border: 1px solid #ffdb4d;
+}
+/* ------ main_end ---- */
+/* ---- footer ----- */
+.footer{border: 1px solid #ffdb4d; border-bottom-left-radius: 10px;border-bottom-right-radius: 10px;}
+/* ----- footer_end ---- */

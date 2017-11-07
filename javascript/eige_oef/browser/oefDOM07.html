@@ -8,21 +8,26 @@
     <title>Document</title>
     <script>
         'use strict';
-        function controleEmail() {
+        function controleGetal() {
             var invoerGetal = parseInt(frm.naamVeld1.value);
-            var getalWil = maakWilGetal();            
-            switch (true) {
-                case getalWil > invoerGetal:
-                    alert("hoger");
-                    break;
-                case getalWil < invoerGetal:
-                    alert("lager");
-                    break;
-                default: alert("juist");
-            }
+            
+            if (isNaN(invoerGetal)) {
+                alert("Geef getal in");
+            } else {
+                var getalWil = maakWilGetal(getalWil);
+                switch (true) {
+                    case getalWil > invoerGetal:
+                        alert("Random getal is hoger");
+                        break;
+                    case getalWil < invoerGetal:
+                        alert("Random getal is lager");
+                        break;
 
+                    default: alert("juist");
+                }
+            }
         }
-        function maakWilGetal() {
+        function maakWilGetal(getalWil) {
             var getalWil = Math.floor((Math.random() * 100) + 1);
             frm.VeldRandom.value = getalWil;
             return getalWil;
@@ -30,7 +35,7 @@
 
         function init() {
             var btn = document.getElementById("btn");
-            btn.onclick = controleEmail;
+            btn.onclick = controleGetal;
         }
         window.onload = function () {
             maakWilGetal();
@@ -41,7 +46,7 @@
 
 <body>
     <form name="frm">
-        <input type="text" name="VeldRandom" />
+        <input type="text" name="VeldRandom" readonly/>
         <input type="text" name="naamVeld1" />
         <input type="button" value="Controle" id="btn" />
     </form>
