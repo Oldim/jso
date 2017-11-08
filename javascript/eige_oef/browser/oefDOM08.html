@@ -9,30 +9,38 @@
     <script>
         'use strict';
         var getalWil = Math.floor((Math.random() * 100) + 1);
+        var aantal=0;
         function controleGetal() {
-            var invoerGetal = parseInt(frm.naamVeld1.value);
-            
+            var invoerGetal = parseInt(frm.naamVeld1.value);            
             if (isNaN(invoerGetal)) {
                 alert("Geef getal in");
             } else {
-                var getalWil = maakWilGetal(getalWil);
+                ++aantal;
+                //var getalWil = maakWilGetal(getalWil);
                 switch (true) {
                     case getalWil > invoerGetal:
-                        alert("Random getal is hoger");
+                        alert("Random getal is hoger");                     
                         break;
                     case getalWil < invoerGetal:
                         alert("Random getal is lager");
                         break;
-
                     default: alert("juist");
                 }
+
             }
-        }
-        function maakWilGetal() {
+            if(getalWil==invoerGetal){
+                frm.VeldRandom.value = (aantal-1)+" "+"pogingen";
+                var btn = document.getElementById("btn");
+                btn.disabled = true;
+            }
             
-            frm.VeldRandom.value = getalWil;
-            return getalWil;
         }
+        
+        // function maakWilGetal() {
+            
+        //     frm.VeldRandom.value = getalWil;
+        //     return getalWil;
+        // }
 
         function init() {
             var btn = document.getElementById("btn");

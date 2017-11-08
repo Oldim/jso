@@ -11,34 +11,58 @@
         function berekenSom() {
             var dagGebr = parseInt(frm.dagGebr.value);
             var nachtGebr = parseInt(frm.nachtGebr.value);
-            var betalen = "";
+            var betalenDag = 0;
+            var betalenNacht=0;
             if (isNaN(dagGebr) && isNaN(nachtGebr)) {
                 alert("Geef getal in");
-            } else if (!isNaN(dagGebr)) {
+            }else{
+                switch (true) {
+                    case dagGebr < 500:
+                        betalenDag = dagGebr * 0.1;
+                        break;
+                    case dagGebr < 2000:
+                        betalenDag = (dagGebr-500) * 0.9;
+                        break;
+
+                    default: betalenDag =((dagGebr-500) * 0.9)+ (dagGebr-2000) * 0.85;console.log(bedrag);
+                    
+                }
                 switch (true) {
                     case nachtGebr < 2000:
-                        betalen = nachtGebr * 0.5;
+                        betalenNacht = nachtGebr * 0.5;
                         
                         break;
                     case nachtGebr > 2000:
-                        betalen = nachtGebr * 0.4;
+                        betalenNacht = (nachtGebr-2000) * 0.4;
                         break;
-                }
-            } else {
-                switch (true) {
-                    case dagGebr < 500:
-                        betalen = dagGebr * 0.1;
-                        console.log(betalen);
-                        break;
-                    case dagGebr < 2000:
-                        betalen = dagGebr * 0.9;
-                        break;
-
-                    default: betalen = dagGebr * 0.85;
                 }
             }
+            var totaal= 50+betalenDag+ betalenNacht;
+            // } else if (!isNaN(dagGebr)) {
+            //     switch (true) {
+            //         case nachtGebr < 2000:
+            //             betalen = nachtGebr * 0.5;
+                        
+            //             break;
+            //         case nachtGebr > 2000:
+            //             betalen = nachtGebr * 0.4;
+            //             break;
+            //     }
+            // } else {
+            //     switch (true) {
+            //         case dagGebr < 500:
+            //             betalen = dagGebr * 0.1;
+            //             console.log(betalen);
+            //             break;
+            //         case dagGebr < 2000:
+            //             betalen = dagGebr * 0.9;
+            //             break;
+
+            //         default: betalen = dagGebr * 0.85;
+            //     }
+            // }
             
-            frm.som.value=betalen;
+            frm.som.value=totaal;
 
         }
 
@@ -55,8 +79,10 @@
 
 <body>
     <form name="frm">
-        <input type="text" name="dagGebr" />
-        <input type="text" name="nachtGebr" />
+            dagGebr:
+        <input type="text" name="dagGebr"/>
+        nachtGebr:
+        <input type="text" name="nachtGebr"/>
         <input type="button" value="Controle" id="btn" />
         <input type="text" name="som" readonly/>
     </form>

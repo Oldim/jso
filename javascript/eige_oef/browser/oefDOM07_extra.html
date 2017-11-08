@@ -8,7 +8,6 @@
     <title>Document</title>
     <script>
         'use strict';
-        var getalWil = Math.floor((Math.random() * 100) + 1);
         function controleGetal() {
             var invoerGetal = parseInt(frm.naamVeld1.value);
             
@@ -28,8 +27,8 @@
                 }
             }
         }
-        function maakWilGetal() {
-            
+        function maakWilGetal(getalWil) {
+            var getalWil = Math.floor((Math.random() * 100) + 1);
             frm.VeldRandom.value = getalWil;
             return getalWil;
         }
@@ -38,13 +37,16 @@
             var btn = document.getElementById("btn");
             btn.onclick = controleGetal;
         }
-        window.onload = init;
+        window.onload = function () {
+            maakWilGetal();
+            init();
+        };
     </script>
 </head>
 
 <body>
     <form name="frm">
-        <input type="text" name="VeldRandom" readonly value="random getal"/>
+        <input type="text" name="VeldRandom" readonly/>
         <input type="text" name="naamVeld1" />
         <input type="button" value="Controle" id="btn" />
     </form>
