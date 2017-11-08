@@ -2,21 +2,23 @@
 
 var toetsenbord = require('readline-sync');
 
-var lijst = ["Jan", "Piet", "Joris","Corneel"];
-var omzet = new Array(lijst.length);
-var j;
-omzet.fill(0); //alle vakjes met '0' invullen
-var naam  = toetsenbord.question("Geef een naam of type einde: ");
-
-    while (naam != "einde") { 
-        j= lijst.indexOf(naam);
-        if(j>-1){
-            var  bedrag = parseFloat(toetsenbord.question("Geef een bedrag: "));
-            omzet[j]+=bedrag;
-        } else{
-            console.log("Ongeldige naam");
-        }  
-        naam = toetsenbord.question("Geef een naam of type einde: ");
-    }
-
-
+var i, j, naam, omzet, namen = ["Jan", "Piet", "Joris", "Corneel"];
+var omzetten = new Array(namen.length);
+/*
+for (var i = 0; i < omzetten.length; i++) {
+    omzetten[i] = 0;
+}
+*/
+// korter:
+omzetten.fill(0);
+naam = toetsenbord.question("Geef naam (einde om te stoppen): ");
+while (naam != "einde") {
+    omzet = toetsenbord.question("Geef omzet: ");
+    omzet = parseInt(omzet);
+    j = namen.indexOf(naam);
+    omzetten[j] += omzet;
+    naam = toetsenbord.question("Geef naam (einde om te stoppen): ");
+}
+for (i = 0; i < namen.length; i++) {
+    console.log("%s: %d", namen[i], omzetten[i]);
+}
