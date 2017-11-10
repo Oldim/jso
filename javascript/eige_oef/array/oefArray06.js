@@ -3,25 +3,14 @@
 var toetsenbord = require('readline-sync');
 
 var cursisten = [];
-
-var minKeer=0;
-var positie="";
+var positie;
 var j;
-// while((lengte!= "") || (minKeer<10)){
-//     cursisten.push(lengte);
-//     minKeer++;
-//     lengte  = toetsenbord.question("Geef een lengte: ")
-// }
-
+var sum=0;
 for(var i=0; i<9;i++){
-    var lengte  = toetsenbord.question("Geef een lengte: ");
+    var lengte  =parseInt(toetsenbord.question("Geef een lengte: "),10) ;
     cursisten.push(lengte);
+    sum +=  cursisten[i];
 }
-positie  =parseInt(toetsenbord.question("Geef een positie: "));
-j = cursisten.indexOf(positie);
-if (j > -1) {
-    console.log(cursisten[positie]);
-}
-else {
-    console.log("foutmelding");
-}
+j = cursisten.indexOf(Math.min.apply(null, cursisten));
+console.log("Gemiddelde lengte"+ (sum/cursisten.length));
+console.log("Lengte: "+Math.min.apply(null, cursisten)+" positie: "+(j+1)+" van de kleinste cursist.");
