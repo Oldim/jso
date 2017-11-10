@@ -1,3 +1,4 @@
+
 'use strict';
 
 var toetsenbord = require('readline-sync');
@@ -30,8 +31,9 @@ console.log('unieke getallen na standaardsortering: ', getallen);
 //         }
 //     }
 // }while (gewisseld);
+//console.log('unieke getallen na function bubble sort', getallen);
 
 getallen.sort(function(a, b) {
   return a - b;
 });
-console.log('unieke getallen na bubble sort', getallen);
+console.log('unieke getallen na function expresions', getallen);
