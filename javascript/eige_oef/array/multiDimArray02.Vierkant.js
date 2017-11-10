@@ -49,8 +49,6 @@ function toonVierkant(tabel, hoofding) {
     console.log(som);    
 }
 
-
-
 controleVierkant(rechthoek,"Geef getallen van het vierkant");
 toonVierkant(rechthoek, "Magische vierkant");
 console.log(somVierkant(rechthoek));
