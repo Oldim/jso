@@ -28,7 +28,9 @@
             }
 
             if(frm.namenLinks.option[frm.namenLinks.selectedIndex]<=0){
-                alert("nix");
+                frm.gt.disabled = true;
+                document.getElementById('gt').setAttribute("disabled", "true");
+                
             }
         }
         function toevoegenLinks() {
@@ -67,8 +69,8 @@
         <br />
         <select name="namenLinks" size="5" style="width:100px">
         </select>
-        <input type="button" value="&lt;" name="lt" />
-        <input type="button" value="&gt;" name="gt" />
+        <input type="button" value="&lt;" name="lt" id="lt" />
+        <input type="button" value="&gt;" name="gt" id="gt" />
         <select name="namenRechts" size="5" style="width:100px">
         </select>
 
