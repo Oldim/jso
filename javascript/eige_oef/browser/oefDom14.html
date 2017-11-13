@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Elementen in form overlopen</title>
+    <script>
+        function toonElementen() {
+            var tekst = "";
+            var tut="";
+            var form = document.forms[0];
+            for (var i = 0; i < form.elements.length; i++) {
+                tekst = tekst + form.elements[i].type + ": " + form.elements[i].value + "\n";
+                tut+= form.elements[i].type;
+                if (tut == "checkbox") {
+                    form.kortingVeld[0].checked;
+                }
+            }
+            console.log(tut);
+
+        }
+        // function controle(){
+        //     if(toonElementen()=="checkbox"){
+        //         alert("test");
+        //     }
+        // }
+        function init() {
+            var btn = document.getElementById("btn");
+            btn.onclick = toonElementen;
+        }
+        window.onload = init;
+    </script>
+</head>
+
+<body>
+    <form id="form1">
+        <input type="checkbox" name="kortingVeld" />
+        <input type="checkbox" name="kortingVeld" />
+        <input type="checkbox" name="kortingVeld" />
+        <input type="checkbox" name="kortingVeld" />
+        <input type="checkbox" name="kortingVeld" />
+        <input type="button" value="klik" id="btn" />
+    </form>
+</body>
+
+</html>

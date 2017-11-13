@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Select en option</title>
+    <script type="text/javascript">
+
+        function voegNaamToe() {
+            var naam = frm.naamVeld.value;
+            var nieuweOption = document.createElement('option');
+            nieuweOption.value = naam;
+            nieuweOption.text = naam;
+            frm.namenLinks.add(nieuweOption);
+            //	frm.namen.options[frm.namen.options.length]=nieuweOption;
+            //	frm.naamVeld.value="";
+            frm.naamVeld.value = "";
+            frm.naamVeld.focus();
+        }
+        function toevoegenRechts() {
+            if (frm.namenLinks.selectedIndex >= 0) {
+                var option = document.createElement("option");
+                option.text = frm.namenLinks[frm.namenLinks.selectedIndex].value;
+                option.value = frm.namenLinks[frm.namenLinks.selectedIndex].value;
+                frm.namenRechts.add(option);
+                frm.namenLinks.remove(frm.namenLinks.selectedIndex);
+            } else {
+                alert("U hebt niets geselecteerd");
+            }
+
+            if(frm.namenLinks.option[frm.namenLinks.selectedIndex]<=0){
+                alert("nix");
+            }
+        }
+        function toevoegenLinks() {
+            if (frm.namenRechts.selectedIndex >= 0) {
+                var option = document.createElement("option");
+                option.text = frm.namenRechts[frm.namenRechts.selectedIndex].value;
+                option.value = frm.namenRechts[frm.namenRechts.selectedIndex].value;
+                frm.namenLinks.add(option);
+                frm.namenRechts.remove(frm.namenRechts.selectedIndex);
+            } else {
+                alert("U hebt niets geselecteerd");
+            }
+        }
+        function controle(){
+            var optiIndex= frm.namenLinks.selectedIndex;
+            if(frm.namenLinks.option[optiIndex]<=0){
+                alert("nix");
+            }
+        }
+
+        function init() {
+            frm.btn.addEventListener("click", voegNaamToe);
+            frm.gt.addEventListener("click", toevoegenRechts);
+            frm.lt.addEventListener("click", toevoegenLinks);
+        }
+
+        window.onload = init;
+    </script>
+</head>
+
+<body>
+    <form name="frm">
+        Naam:
+        <input type="text" name="naamVeld" />
+        <input type="button" value="Toevoegen" name="btn" />
+        <br />
+        <select name="namenLinks" size="5" style="width:100px">
+        </select>
+        <input type="button" value="&lt;" name="lt" />
+        <input type="button" value="&gt;" name="gt" />
+        <select name="namenRechts" size="5" style="width:100px">
+        </select>
+
+    </form>
+</body>
+
+</html>
