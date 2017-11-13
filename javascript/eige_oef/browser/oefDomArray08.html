@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        'use strict';
+        var STAPEN = 70;
+
+        function getRandom() {
+            var randomGetal = Math.floor(Math.random() * ((100 - 0) + 1) + 0);
+        }
+
+        function tekenStappen() {
+            var positieH = stappenHaas();
+            var lijn=new Array(STAPEN);
+            
+            for (var i = 0; i < positieH; i++) {
+                document.write(" ^ ");
+
+            } console.log(positieH);
+        }
+        function stappenHaas() {
+            // var positieH = maakRandom();
+            // document.write("H");
+            var positieH = 0;
+            var randomGetal = getRandom();
+            switch (true) {
+                case (randomGetal < 50):
+                    positieH += 3;
+                    break;
+                case (randomGetal < 70):
+                    positieH -= 6;
+                    break;
+                default:
+                    positieH += 1;
+            }
+            return positieH;
+
+        }
+        function stappenSchildpad() {
+            // var positieH = maakRandom();
+            // document.write("H");
+            var positieS = 0;
+            var randomGetal = getRandom();
+            switch (randomGetal) {
+                case (randomGetal < 20):
+                    positieS += 9;
+                    break;
+                case (randomGetal < 10):
+                    positieS -= 12;
+                    break;
+                case (randomGetal < 30):
+                    positieS += 1;
+                    break;
+            }
+            return positieS;
+        }
+
+
+        function init() {
+            var btn = document.getElementById("btn");
+            btn.addEventListener("click", tekenStappen);
+        }
+        window.onload = init;
+    </script>
+</head>
+
+<body>
+    <form name="frm">
+        <input type="button" value="Begin" id="btn" />
+    </form>
+</body>
+
+</html>

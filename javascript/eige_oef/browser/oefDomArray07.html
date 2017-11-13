@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        'use strict';
+        function naamIngeven() {
+            var naam1 = frm.naam1.value;
+            var naam2 = frm.naam2.value;
+            var naam3 = frm.naam3.value;
+            var naam4 = frm.naam4.value;
+            var naam5 = frm.naam5.value;
+            var namen = [naam1, naam2, naam3, naam4, naam5];
+            return namen;
+        }
+        function tonenGesoorteerd() {
+           var naam1= naamIngeven().sort().slice(0,1);
+           var naam2= naamIngeven().sort().slice(1,2);
+           var naam3= naamIngeven().sort().slice(2,3);
+           var naam4= naamIngeven().sort().slice(3,4);
+           var naam5= naamIngeven().sort().slice(4,5);
+
+            // for(var i=0;i<5;i++){
+            //     naamIngeven().slice()
+            // }
+            frm.naam1.value = naam1;
+            frm.naam2.value = naam2;
+            frm.naam3.value = naam3;
+            frm.naam4.value = naam4;
+            frm.naam5.value = naam5;
+            console.log(naam1);
+        }
+
+        function init() {
+            var btn = document.getElementById("btn").addEventListener("change", tonenGesoorteerd);
+            var btn = document.getElementById("btn");
+            btn.addEventListener("click", tonenGesoorteerd);
+        }
+        window.onload = init;
+    </script>
+</head>
+
+<body>
+    <form name="frm">
+        <input type="text" name="naam1" id="naam1" />
+        <input type="text" name="naam2" />
+        <input type="text" name="naam3" />
+        <input type="text" name="naam4" />
+        <input type="text" name="naam5" />
+        <input type="button" value="Sorteren" id="btn" />
+    </form>
+</body>
+
+</html>
