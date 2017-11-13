@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        'use strict';
+        function berekenSom() {
+            var getal1 = frm.getal1.value;
+            var getal2 = frm.getal2.value;
+            frm.uitkomst.value = parseFloat(getal1) + parseFloat(getal2);
+        }
+        function berekenProduct() {
+            var getal1 = frm.getal1.value;
+            var getal2 = frm.getal2.value;
+            frm.uitkomst.value = parseFloat(getal1) * parseFloat(getal2);
+        }
+        function berekenMin() {
+            var getal1 = frm.getal1.value;
+            var getal2 = frm.getal2.value;
+            frm.uitkomst.value = parseFloat(getal1) - parseFloat(getal2);
+        }
+        function berekenDelen() {
+            var getal1 = frm.getal1.value;
+            var getal2 = frm.getal2.value;
+            if (getal2 == 0) {
+                alert("Je mag niet delen door '0'");
+            } else {
+                frm.uitkomst.value = parseFloat(getal1) / parseFloat(getal2);
+            }
+
+        }
+        function berekenUitkomst() {
+            switch (true) {
+                case frm.hoofdbewerkingen[0].checked:
+                    berekenSom();
+                    break;
+                case frm.hoofdbewerkingen[1].checked:
+                    berekenMin();
+                    break;
+                case frm.hoofdbewerkingen[2].checked:
+                    berekenProduct();
+                    break;
+                case frm.hoofdbewerkingen[3].checked:
+                    berekenDelen();
+                    break;
+            }
+        }
+
+
+        function init() {
+            var btnDelen = document.getElementById("berek");
+            btnDelen.addEventListener("click", berekenUitkomst);
+        }
+        window.onload = init;
+    </script>
+</head>
+
+<body>
+    <form name="frm">
+        <input type="number" name="getal1" value="0" />
+        <input type="number" name="getal2" value="0" />
+        <input type="text" name="uitkomst" readonly />
+        <label>"+"</label>
+        <input type="radio" name="hoofdbewerkingen" value="+" id="btnSom" />
+        <label>"-"</label>
+        <input type="radio" name="hoofdbewerkingen" value="-" id="btnMin" />
+        <label>"x"</label>
+        <input type="radio" name="hoofdbewerkingen" value="x" id="btnProduct" />
+        <label>"/"</label>
+        <input type="radio" name="hoofdbewerkingen" value="/" id="btnDelen" />
+        <br>
+        <input type="button" value="berekenen" id="berek" />
+    </form>
+</body>
+
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        'use strict';
+
+        function berekenUitkomst() {
+            var keuze = frm.hoofdbewerkingen[frm.hoofdbewerkingen.selectedIndex].value;
+            switch (true) {
+                case keuze == "+":
+                    berekenSom();
+                    break;
+                case keuze == "-":
+                    berekenMin();
+                    break;
+                case keuze == "x":
+                    berekenProduct();
+                    break;
+                case keuze == "/":
+                    berekenDelen();
+                    break;
+                default: alert("U hebt geen keuze gemaakt");
+            }
+        }
+
+        function vergKeuze() {
+            // -------------------- met if structuur -------------------
+            // if (frm.radioKeuze[0].checked) {
+            //     frm.selectKeuze.selectedIndex = 1;
+
+            // } else if (frm.radioKeuze[1].checked) {
+            //     frm.selectKeuze.selectedIndex = 2;
+            // }
+
+            // if (frm.radioKeuze.checked == false || frm.selectKeuze.selectedIndex == 0) {
+            //     alert("U hebt niets geselecteerd!");
+            // } else if (frm.radioKeuze.checked == false || frm.selectKeuze.selectedIndex == 1) {
+            //     frm.radioKeuze[0].checked = true;
+            // } else if (frm.radioKeuze.checked == false || frm.selectKeuze.selectedIndex == 2) {
+            //     frm.radioKeuze[1].checked = true;
+            // }
+            // --------------- met switch ------------------------------
+            switch (true) {
+                case frm.radioKeuze[0].checked:
+                    frm.selectKeuze.selectedIndex = 1;
+                    break;
+                case frm.radioKeuze[1].checked:
+                    frm.selectKeuze.selectedIndex = 2;
+                    break;
+                case frm.radioKeuze.checked == false:
+                case frm.selectKeuze.selectedIndex == 0:
+                    alert("U hebt niets geselecteerd!");
+                    break;
+                case frm.radioKeuze.checked == false:
+                case frm.selectKeuze.selectedIndex == 1:
+                    frm.radioKeuze[0].checked = true;
+                    break;
+                case frm.radioKeuze.checked == false:
+                case frm.selectKeuze.selectedIndex == 2:
+                    frm.radioKeuze[1].checked = true;
+                    break;
+            }
+            console.log(frm.selectKeuze.selectedIndex);
+        }
+
+        function init() {
+            var btnDelen = document.getElementById("kies");
+            btnDelen.addEventListener("click", vergKeuze);
+        }
+        window.onload = init;
+    </script>
+</head>
+
+<body>
+    <form name="frm">
+
+        <input type="radio" name="radioKeuze" value="keuze1" />
+        <label id="keuze1">keuze 1</label>
+        <br>
+        <input type="radio" name="radioKeuze" value="keuze2" />
+        <label id="keuze2">keuze 2</label>
+        <br>
+        <label></label>
+
+        <select name="selectKeuze">
+            <option value="">maak uw keuze</option>
+            <option value="keuze1">keuze 1</option>
+            <option value="keuze2">keuze 2</option>
+        </select>
+        <input type="button" value="Kies" id="kies" />
+    </form>
+</body>
+
+</html>
