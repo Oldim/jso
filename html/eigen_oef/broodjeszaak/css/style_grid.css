@@ -1,0 +1,90 @@
+html{
+    background: rgba(255,255,255,.15) url(../img/purty_wood.png) repeat fixed center top;
+}
+body{font-family: 'Caveat Brush', cursive;}
+h1{
+    color: #fff;
+    font-size: 4em;
+    line-height: 55px;
+}
+h1 small{padding-left: 2em;}
+h1, h2, h3{font-family: 'Caveat Brush', cursive;}
+.container {
+    max-width: 360px;
+    margin: 0 auto;
+    display: -ms-grid;
+    /* min-height: 100vh; */
+    /* display: grid;
+    grid-template-columns:1fr 1fr;
+    grid-template-areas:"nav nav" 
+    "header header"
+    "main aside"
+    "footer footer";
+grid-template-rows: auto 1fr 1fr; */
+    background: #fff;
+}
+/* -------- nav ----- */
+nav{
+   
+}
+nav ul {
+    display: grid;
+    /* grid-template-columns: 1fr 1fr; */
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+    /* border-top-left-radius: 10px; */
+    border-top-right-radius: 10px;
+    
+}
+
+nav li {
+    float: left;
+}
+
+nav li a {
+    display: block;
+    color: #000;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+nav li a:hover {
+    color: #efca2b;
+}
+nav .active {
+    background-color: #efca2b;
+    color: #fff;
+}
+nav .active:hover{color: #fff;}
+/* -----nav_end ------ */
+/* ----- header ------ */
+.header{
+    background: url("../img/header.jpg")no-repeat center scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    position: relative;
+}
+.bg_demp{
+    background: rgba(255, 255, 255,0.2);
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    /* position: absolute; */
+}
+/* -----header_end ----- */
+@media screen and (min-width:600px) {
+    .container {
+        max-width: 600px;
+    }
+}
+@media screen and (min-width:960px) {
+    .container {
+        max-width: 1024px;
+    }
+}

@@ -22,7 +22,6 @@ body{
 
 #page_nav{
     grid-area: nav;
-    grid-column: 2/3;
 }
 #page-header{
     grid-area: header;

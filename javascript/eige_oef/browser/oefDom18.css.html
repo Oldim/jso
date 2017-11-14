@@ -15,22 +15,15 @@
 <script>
 
 
-window.onload = function(){
-	var body = document.getElementById("body");
-	body.onmousemove = function(e){
-		var p = document.getElementById("moveText");
-		var x = e.pageX;
-        var y = e.pageY;
-		p.style.left = x + "px";
-        p.style.top = y + "px";
+window.onload = function(e){
+	document.onmousemove = function(e){
+		var moveText = document.getElementById("moveText");
+		moveText.style.left = e.pageX+"px";
+        moveText.style.top = e.pageY+"px";
+		console.log(e.pageY);
     }
    
 }
-
-
-
-
-
 
 
 </script>
