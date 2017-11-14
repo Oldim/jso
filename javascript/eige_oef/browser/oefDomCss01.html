@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>css properties wijzigen</title>
+    <style type="text/css">
+        .specText {
+            color: red;
+        }
+    </style>
+    <script type="text/javascript">
+        var keuze = ["xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large"]
+        function verMaat() {         
+            //frm.maten.options.value = keuze;
+            var optie = frm.maten.options[frm.maten.selectedIndex].value;
+            var specText = document.getElementById("specText");
+            specText.style.fontSize = optie;
+            
+        }
+        function toonOptie(){                           
+            for (i = 0; i < keuze.length; i++) {
+                var option = document.createElement("option"); 
+                option.text = keuze[i];
+                frm.maten.add(option);
+            }
+        }
+
+        function init() {
+            toonOptie();
+            frm.btn.addEventListener("click", verMaat);
+        }
+
+        window.onload = init;
+    </script>
+</head>
+
+<body>
+    <form name="frm">
+        <select name="maten" style="width:100px">
+            <!-- <option>xx-small</option>
+            <option>x-small</option>
+            <option>small</option>
+            <option>medium</option>
+            <option>large</option>
+            <option>x-large</option>
+            <option>xx-large</option> -->
+        </select>
+        <input type="button" value="Veranderen" name="btn" />
+        <br />
+
+        <span id="specText" class="specText">Speciale text</span>
+        <br />
+
+    </form>
+</body>
+
+</html>
