@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Foutboodschappen</title>
+    <style type="text/css">
+        .verborgen {
+            visibility: hidden
+        }
+
+        .getoond {
+            color: red;
+            visibility: visible
+        }
+    </style>
+    <script>
+        function controleerInput() {
+            var errorLabel = document.getElementById("errorLabel");
+            //var errorLabelJaar = document.getElementById("errorLabelJaar");
+            if (form1.q.value != "") {
+                errorLabel.className = "verborgen";
+                return true;
+            } else {
+                errorLabel.className = "getoond";
+                return false;
+            }
+        }
+        function controleLeeftijd() {
+            var errorLabelJaar = document.getElementById("errorLabelJaar");
+            if (form1.q2.value == "") {
+                errorLabelJaar.className = "getoond";
+                return false;
+            } else if (form1.q2.value < 17) {
+                errorLabelJaar.innerHTML = "Je bent te jong";
+                errorLabelJaar.className = "getoond";
+                return false;
+            } else if (isNaN(form1.q2.value)) {
+                errorLabelJaar.innerHTML = "Vul een getal in";
+                errorLabelJaar.className = "getoond";
+                return false;
+            } else {
+                errorLabelJaar.className = "verborgen";
+                return true;
+            }
+        }
+
+        function verg() {
+            if (controleerInput() == true && controleLeeftijd() == true) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        function init() {
+            form1.onsubmit = verg;
+        }
+
+        window.onload = init;
+    </script>
+</head>
+
+<body>
+    <form id="form1" action="http://www.google.be/search" method="get">
+        Zoekterm:
+        <input type="text" name="q" />
+        <span id="errorLabel" class="verborgen">Zoekterm moet worden ingevuld</span>
+        <br /> Leeftijd:
+        <input type="text" name="q2" />
+        <span id="errorLabelJaar" class="verborgen">Leeftijd is niet ingevuld</span>
+        <br />
+        <input type="submit" name="knop" value="klikken" />
+    </form>
+</body>
+
+</html>
