@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Events 4</title>
+<style>
+#moveText {
+ color: #000;
+ position: absolute;
+ left: 0;
+ top: 0;
+}
+</style>
+
+<script>
+
+
+window.onload = function(){
+	var body = document.getElementById("body");
+	body.onmousemove = function(e){
+		var p = document.getElementById("moveText");
+		var x = e.pageX;
+        var y = e.pageY;
+		p.style.left = x + "px";
+        p.style.top = y + "px";
+    }
+   
+}
+
+
+
+
+
+
+
+</script>
+</head>
+<body id="body">
+<p id="moveText">Beweeg de muis over het grijze vlak</p>
+</body>
+</html>
