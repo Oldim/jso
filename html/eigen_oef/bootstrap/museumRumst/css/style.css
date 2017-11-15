@@ -1,0 +1,147 @@
+body {
+    font: 400 1.6em/1.65em Arial, "Helvetica Neue", Helvetica, sans-serif;
+    color: #666;
+    background: #fff;
+}
+
+h1 {
+    /* font-family: carnasbold,Arial,Helvetica,sans-serif; */
+    color: #333;
+    font-size: 2.8rem;
+    line-height: 1.3em;
+    padding: 0;
+    margin: 0 0 1em;
+}
+h3{color: #333;}
+
+.top-navbar {
+    background: #aa1a47;
+    height: 60px;
+}
+
+.logoPad {
+    padding: 0;
+    margin: 0;
+}
+
+.logo {
+    display: block;
+    border: 0;
+    background: #fff url(../img/logo_small.gif) center top no-repeat;
+    height: 60px;
+    width: 100%;
+}
+
+.navbar-form {
+    padding: 0;
+    margin-top: 0;
+    border-top: 0;
+}
+
+.btnSearch {
+    background: url(../img/search.svg) center center no-repeat;
+    padding: 1em 1em .5em;
+    font-size: 1.8rem;
+    line-height: 2.7rem;
+    display: block;
+    color: #fff;
+    height: 60px;
+    border: 0;
+}
+
+.main a,
+.top-navbar a {
+    color: #aa1a47;
+}
+
+.main a:hover .top-navbar a:hover {
+    color: #f47321;
+}
+.breadcrumb{
+    margin: 2em 0 2em;
+    position: relative;
+}
+.breadcrumb>.active {
+    color: #e0a800;
+}
+.breadcrumb a{margin-right: 1em; color: #999; text-decoration: none;}
+.breadcrumb a:hover{color: #e0a800;}
+.breadcrumb > li + li:before {
+    color: #999;
+    content: " ";
+    padding: 0 5px;
+}
+.aside a{color: #999;}
+.aside a:hover{color: #aa1a47;}
+.aside .adres::before{    
+    content: "\f015";
+}
+.aside .tel::before{    
+    content: "\f095";
+}
+.aside .fax::before{
+    content: "\f1ac";
+}
+.aside .mail::before{
+    content: "\f0e0";
+}
+.aside .openingInfo::before{
+    content: "\f129";
+}
+footer {
+    background: #f47321;
+    padding: 0;
+    margin: 0;
+}
+
+footer p,
+footer a {
+    color: #fff;
+}
+
+footer a:hover {
+    color: #d6580a;
+}
+
+@media screen and (min-width:960px) {
+    .top-navbar {
+        background: #fff;
+        height: 95px;
+        padding: 10px 0;
+    }
+    .logo {
+        display: block;
+        border: 0;
+        background: #fff url(../img/logo.gif) center top no-repeat;
+        height: 95px;
+        width: 100%;
+    }
+    .btnSearch {
+        padding: 1em 1em .5em;
+        font-size: 1.8rem;
+        line-height: 2.7rem;
+        display: inline-block;
+        color: #fff;
+        height: 30px;
+        border: 0;
+    }
+
+    footer{
+        position: relative;
+        bottom: 0;
+        left: 0;
+        width: 100%;        
+        background: #ffc513;
+    }
+    .footerBg{
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        background: url(../img/bg_footer.png) right 0 no-repeat;
+        height: 149px;
+        overflow: hidden;
+        text-align: left;
+        padding-left: 1em;
+        width: 100%;
+    }
+}

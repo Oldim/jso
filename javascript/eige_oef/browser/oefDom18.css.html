@@ -1,34 +1,73 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="ISO-8859-1">
-<title>Events 4</title>
-<style>
-#moveText {
- color: #000;
- position: absolute;
- left: 0;
- top: 0;
-}
-</style>
+	<meta charset="ISO-8859-1">
+	<title>Events 4</title>
+	<style>
+		#moveText {
+			color: #000;
+			position: absolute;
+			left: 0;
+			top: 0;
+		}
+	</style>
 
-<script>
+	<script>
+		function mouseButton() {
+			switch (event.which) {
+				case 1:
+					alert("Left button is pressed");
+					break;
+				case 2:
+					alert("Middle button is pressed");
+					break;
+				case 3:
+					alert("Right button is pressed");
+					break;
+			}
+
+		}
 
 
-window.onload = function(e){
-	document.onmousemove = function(e){
-		var moveText = document.getElementById("moveText");
-		moveText.style.left = e.pageX+"px";
-        moveText.style.top = e.pageY+"px";
-		console.log(e.pageY);
-    }
-   
-}
+
+		window.onload = function (e) {
+			document.onmousemove = function (e) {
+				var moveText = document.getElementById("moveText");
+				switch (e.which) {
+					case 1:
+						document.onmousemove = function (e) {
+							moveText.style.left = e.pageX + "px";
+							moveText.style.top = e.pageY + "px";
+						};
+						break;
+					case 2:
+						alert("Middle button is pressed");
+						break;
+					case 3:
+						alert("Right button is pressed");
+						break;
+				}
+
+			}
+
+		}
+
+		// window.onload = function (e) {
+		// 	document.onmousemove = function (e) {
+		// 		var moveText = document.getElementById("moveText");
+		// 		moveText.style.left = e.pageX + "px";
+		// 		moveText.style.top = e.pageY + "px";
+		// 	}
+
+		// }
 
 
-</script>
+	</script>
 </head>
+
 <body id="body">
-<p id="moveText">Beweeg de muis over het grijze vlak</p>
+	<p id="moveText">Beweeg de muis over het grijze vlak</p>
 </body>
+
 </html>
