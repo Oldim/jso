@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>oefTimer03</title>
+<style>
+        #balk {
+          width: 100%;
+          height: 30px;
+          position: relative;
+          background-color: #ddd;
+        }
+        
+        #vulling {
+          background-color: rgb(233, 16, 16);
+          width: 10px;
+          height: 30px;
+          position: absolute;
+        }
+        </style>
+<script>
+
+function move() {
+  var elem = document.getElementById("vulling");   
+  var width = 0;
+  var id = setInterval(tekenen, 10);
+  function tekenen() {
+    if (width == 100) {
+      clearInterval(id);
+    } else {
+      width++; 
+      elem.style.width = width + '%'; 
+    }
+  }
+}
+
+window.onload = init;
+function init(){
+	document.getElementById("btn").onclick = move;
+}
+
+</script>
+</head>
+<body>
+        <div id="balk">
+                <div id="vulling"></div>
+              </div>
+<input type="button" value="Starten" id="btn" />
+
+
+
+
+
+</body>
+</html>

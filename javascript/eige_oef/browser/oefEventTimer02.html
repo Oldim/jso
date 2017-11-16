@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>oefTimer02</title>
+<script>
+var teller;
+var tick = true;
+function bgChange() {
+		if (tick) {
+			document.body.style.backgroundColor ="#000";
+			tick = false;
+		} else {
+			document.body.style.backgroundColor ="red";
+			tick = true;
+		}
+	}
+function startBgChange(){
+    if(teller){
+        clearInterval(teller);
+    }
+    teller= setInterval(bgChange, 300);
+}
+function stopBgChange(){
+    clearInterval(teller);
+}
+
+
+
+
+window.onload = init;
+        function init() {
+            document.getElementById("btnStart").addEventListener("click", startBgChange);
+            document.getElementById("btnStop").addEventListener("click", stopBgChange);
+        };
+
+</script>
+</head>
+<body>
+        <input type="button" value="Start" id="btnStart">
+        <input type="button" value="Stop" id="btnStop">
+</body>
+</html>

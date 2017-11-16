@@ -39,6 +39,17 @@
             padding-top: 5px;
             font-size: 16px;
         }
+
+        #btnStart {
+            width: 100%;
+            padding: 8px 0;
+            color: #fff;
+            background: #000;
+            border: none;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-radius: 3px;
+        }
     </style>
     <script>
         var tick = true;
@@ -47,7 +58,7 @@
             if (tick) {
                 document.body.style.backgroundColor = "#000";
                 tick = false;
-
+                
             } else {
                 document.body.style.backgroundColor = "red";
                 tick = true;
@@ -61,6 +72,7 @@
                 setInterval(bgChange, 1000);
             }
             document.getElementById("timer").innerHTML = "Nog " + count;
+            
         }
 
         function startTijd() {
@@ -72,14 +84,16 @@
         window.onload = init;
         function init() {
             document.getElementById("btnStart").addEventListener("click", startTijd);
+            
         };
     </script>
 </head>
 
 <body>
-    <input type="button" value="Start" id="btnStart">
-    <br>
+
     <div class="timerView">
+        <input type="button" value="Start" id="btnStart">
+        <br>
         <span id="timer"></span>
         <div class="smalltext">Seconden</div>
     </div>
