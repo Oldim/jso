@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Oefening DOM 14</title>
+    <script>
+        var aantal=0;
+        function controlCheckbox() {
+            // vraag1
+            if (frm.vraag1[0].checked) {
+                aantal+=1;
+                console.log(aantal)
+            } 
+            // vraag2
+            if (frm.vraag2[1].checked) {
+                aantal+=1;
+            }
+            // vraag3
+            if (frm.vraag3[1].checked) {
+                aantal+=1;
+            }
+            // vraag4
+            if (frm.vraag4[0].checked) {
+                aantal+=1;
+            }
+            alert("Er zijn "+aantal+" correcte antw.");
+            frm.btn.disabled = true;
+        }
+        function init() {
+            document.getElementById("btn").onclick = controlCheckbox;
+        }
+        window.onload = init;
+    </script>
+</head>
+
+<body>
+    <form id="frm" action="">
+        <div>
+           1. Geef je geslacht:
+            <br />
+            <input type="radio" name="vraag1" value="" />mannelijk
+            <br />
+            <input type="radio" name="vraag1" value="" />vrouwelijk
+            <br />
+        </div>
+        <div>
+            2. Is 1>10?:
+            <br />
+            <input type="radio" name="vraag2" value="" />Ja
+            <br />
+            <input type="radio" name="vraag2" value="" />Nee
+            <br />
+        </div>
+        <div>
+           3. Wat is de kleinste getal:
+            <br />
+            <input type="radio" name="vraag3" value="" />25
+            <br />
+            <input type="radio" name="vraag3" value="" />2
+            <br />
+        </div>
+        <div>
+           4. Hoeveel is 25x25?
+            <br />
+            <input type="radio" name="vraag4" value="" />625
+            <br />
+            <input type="radio" name="vraag4" value="" />845
+            <br />
+        </div>
+        <input type="button" value="controleer" id="btn" />
+    </form>
+</body>
+
+</html>

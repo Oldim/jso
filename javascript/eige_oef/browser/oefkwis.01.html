@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Oefening DOM 14</title>
+    <script>
+        function controlCheckbox() {
+            // var form = document.forms[0];
+            // for (var i=0;i<form.elements.length;i++){
+            // 	if (form.elements[i].type=="checkbox"){
+            // 		form.elements[i].checked=true;
+            // 	}
+            // }
+            if (frm.vraag1[0].checked) {
+                alert("Juist");
+            }else{
+                alert("niet juist");
+            }
+        }
+            function init() {
+                document.getElementById("btn").onclick = controlCheckbox;
+            }
+            window.onload = init;
+    </script>
+</head>
+
+<body>
+    <form id="frm" action="">
+        Geef je geslacht:<br />
+        <input type="radio" name="vraag1" value="" />mannelijk
+        <br />
+        <input type="radio" name="vraag1" value="" />vrouwelijk
+        <br />
+        <input type="button" value="controleer" id="btn" />
+    </form>
+</body>
+
+</html>
