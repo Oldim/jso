@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Events 5</title>
+<script>
+
+function startTijd(){
+	alert('Na 5 seconden gaat deze pagina dicht.');
+    setTimeout(close, 5000);
+}
+window.onload = init;
+	function init() {
+        document.getElementById("btnStart").addEventListener("click", startTijd);
+	};
+</script>
+</head>
+<body>
+    <input type="button" value="Start" id="btnStart">
+</body>
+</html>

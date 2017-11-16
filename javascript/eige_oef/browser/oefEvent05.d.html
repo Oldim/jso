@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Events 5</title>
+    <script>
+         var tick = true;
+            var count = 5;
+        function bgChange() {          
+            if (tick) {
+                document.body.style.backgroundColor = "#000";
+                tick = false;
+                
+            } else {
+                document.body.style.backgroundColor = "red";
+                tick = true;
+            }
+        }
+
+        
+        function timer() {
+            count = count - 1;
+            if (count <= 0) {
+                setInterval(bgChange, 1000);
+            }
+            document.getElementById("timer").innerHTML = "Nog " + count + " sec";
+        }
+
+        function startTijd() {
+            alert('Na 5 seconden begin het.');
+            setInterval(timer, 1000);
+        }
+
+
+        window.onload = init;
+        function init() {
+            document.getElementById("btnStart").addEventListener("click", startTijd);
+        };
+    </script>
+</head>
+
+<body>
+    <input type="button" value="Start" id="btnStart">
+    <div id="timer"></div>
+    
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Events 6 </title>
+    <meta charset="utf-8">
+    <script>
+
+        function myTimer() {
+            var vandaag = new Date();
+            var dagen = new Array('zondag', 'maandag', 'dinsdag', 'woensdag', 'donderdag', 'vrijdag', 'zaterdag');
+            var dagnaam = (dagen[vandaag.getDay()]);
+            var huidigeDag = vandaag.getDate();
+            var huidigeMaand = vandaag.getMonth() + 1;
+            var huidigJaar = vandaag.getFullYear();
+            document.getElementById("message").innerHTML = "Huidige datum= "+dagnaam+" " + huidigJaar + ":" + huidigeMaand + ":" + huidigeDag + "<br>" + "Huidige tijd is= " + vandaag.toLocaleTimeString();
+        }
+        window.onload = function () {
+            setInterval(myTimer, 1000);
+        }
+    </script>
+</head>
+
+<body>
+    <p id="message"></p>
+</body>
+
+</html>

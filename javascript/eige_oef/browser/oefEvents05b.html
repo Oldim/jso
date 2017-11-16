@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Events 5b</title>
+<script>
+setTimeout(wakkerWorden, 5000);
+var tick = true;
+function bgChange() {
+		if (tick) {
+			document.body.style.backgroundColor ="#000";
+			tick = false;
+		} else {
+			document.body.style.backgroundColor ="red";
+			tick = true;
+		}
+	}
+function wakkerWorden(){
+	alert('Hier begint het!!!');
+    setInterval(bgChange, 1000);
+}
+</script>
+</head>
+<body>
+Na 5 seconden waarschuwt deze pagina je.
+</body>
+</html>

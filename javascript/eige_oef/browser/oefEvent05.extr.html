@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Events 5</title>
+    <style>
+        body {
+            text-align: center;
+            background: #00ECB9;
+            font-family: sans-serif;
+            font-weight: 100;
+        }
+
+        .timerView {
+            font-family: sans-serif;
+            color: #fff;
+            display: inline-block;
+            font-weight: 100;
+            text-align: center;
+            font-size: 30px;
+        }
+
+        .timerView>span {
+            padding: 15px;
+            border-radius: 3px;
+            background: #00816A;
+            display: block;
+        }
+
+        .timerView>div {
+            padding: 10px;
+            border-radius: 3px;
+            background: #00BF96;
+            display: block;
+        }
+
+        .smalltext {
+            padding-top: 5px;
+            font-size: 16px;
+        }
+    </style>
+    <script>
+        var tick = true;
+        var count = 5;
+        function bgChange() {
+            if (tick) {
+                document.body.style.backgroundColor = "#000";
+                tick = false;
+
+            } else {
+                document.body.style.backgroundColor = "red";
+                tick = true;
+            }
+        }
+
+
+        function timer() {
+            count = count - 1;
+            if (count <= 0) {
+                setInterval(bgChange, 1000);
+            }
+            document.getElementById("timer").innerHTML = "Nog " + count;
+        }
+
+        function startTijd() {
+            alert('Na 5 seconden begin het.');
+            setInterval(timer, 1000);
+        }
+
+
+        window.onload = init;
+        function init() {
+            document.getElementById("btnStart").addEventListener("click", startTijd);
+        };
+    </script>
+</head>
+
+<body>
+    <input type="button" value="Start" id="btnStart">
+    <br>
+    <div class="timerView">
+        <span id="timer"></span>
+        <div class="smalltext">Seconden</div>
+    </div>
+</body>
+
+</html>
