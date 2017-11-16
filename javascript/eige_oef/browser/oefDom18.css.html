@@ -14,25 +14,30 @@
 	</style>
 
 	<script>
-		function mouseButton() {
-			switch (event.which) {
-				case 1:
-					alert("Left button is pressed");
-					break;
-				case 2:
-					alert("Middle button is pressed");
-					break;
-				case 3:
-					alert("Right button is pressed");
-					break;
-			}
+		// function mouseButton() {
+		// 	switch (event.which) {
+		// 		case 1:
+		// 			alert("Left button is pressed");
+		// 			break;
+		// 		case 2:
+		// 			alert("Middle button is pressed");
+		// 			break;
+		// 		case 3:
+		// 			alert("Right button is pressed");
+		// 			break;
+		// 	}
 
+		// }
+		function stopFunctie(e) {
+			moveText.style.left = e.pageX;
+			moveText.style.top = e.pageY;
+			document.onmousemove = null;
 		}
 
 
 
 		window.onload = function (e) {
-			document.onmousemove = function (e) {
+			document.onmousedown = function (e) {
 				var moveText = document.getElementById("moveText");
 				switch (e.which) {
 					case 1:
@@ -42,12 +47,13 @@
 						};
 						break;
 					case 2:
-						alert("Middle button is pressed");
+
 						break;
 					case 3:
-						alert("Right button is pressed");
+
 						break;
 				}
+				document.addEventListener("dblclick", stopFunctie);
 
 			}
 
