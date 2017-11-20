@@ -20,12 +20,11 @@
             
 
             if(txtRegExp.test(txtInvoer)){
-            alert("invoer: "+txtInvoer+' \n regExp'+" is ogebouwd zoals de regulier expressie beschrijft.");
-        }else{
-            alert("invoer: "+txtInvoer+' \n regExp'+ " is NIET ogebouwd zoals de regulier expressie beschrijft.");
-            }
+                alert("invoer: "+txtInvoer+' \n regExp'+" is ogebouwd zoals de regulier expressie beschrijft.");
+            }else{
+                alert("invoer: "+txtInvoer+' \n regExp'+ " is NIET ogebouwd zoals de regulier expressie beschrijft.");
+                }
         }
-
 
         function init() {
             var btnDelen = document.getElementById("btnControl");
@@ -45,7 +44,7 @@
     </form>
 </body>
 
-<!-- \d bij RegExp : juist een cijfer / \d\d\d= 3 cijfers na elkaar-->
+    <!-- \d bij RegExp : juist een cijfer / \d\d\d= 3 cijfers na elkaar-->
       <!-- ?= quantifier1(optioneel, mag moet niet) (hulp bij regExp) hoort bij alles dier ervoor staat. =>komt 0 of 1 keer -->
       <!-- *= quantifier1(optioneel, hoort bij alles die er ervoor staat. =>komt 0 of meer keer -->
       <!-- += quantifier1(optioneel, hoort bij alles die er ervoor staat. =>komt 1 of meer keer -->
