@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        'use strict';
+        function controle(){
+            var txtInvoer = frm.txtInvoer.value;
+            var txtRegExp = new RegExp(frm.txtRegExp.value);
+
+            if(txtRegExp.test(txtInvoer)){
+            alert("invoer: "+txtInvoer+' \n regExp'+" is ogebouwd zoals de regulier expressie beschrijft.");
+        }else{
+            alert("invoer: "+txtInvoer+' \n regExp'+ " is NIET ogebouwd zoals de regulier expressie beschrijft.");
+            }
+        }
+
+
+        function init() {
+            var btnDelen = document.getElementById("btnControl");
+            btnDelen.addEventListener("click", controle);
+        }
+        window.onload = init;
+    </script>
+</head>
+
+<body>
+    <form name="frm">
+        <label for="">invoer:<input type="text" name="txtInvoer" /></label> 
+        <label for="">reguliere expressie<input type="text" name="txtRegExp" /></label>
+        <input type="button" value="Controleer" id="btnControl" />
+    </form>
+</body>
+
+<!-- \d bij RegExp : juist een cijfer / \d\d\d= 3 cijfers na elkaar-->
+      <!-- ?= quantifier1(optioneel, mag moet niet) (hulp bij regExp) hoort bij alles dier ervoor staat. =>komt 0 of 1 keer -->
+      <!-- *= quantifier1(optioneel, hoort bij alles die er ervoor staat. =>komt 0 of meer keer -->
+      <!-- += quantifier1(optioneel, hoort bij alles die er ervoor staat. =>komt 1 of meer keer -->
+      <!-- {min keer,max keer} -->
+      <!-- []  = juist een charakteer die tussen [] staan -->
+
+</html>
