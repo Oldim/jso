@@ -10,7 +10,14 @@
         'use strict';
         function controle(){
             var txtInvoer = frm.txtInvoer.value;
-            var txtRegExp = new RegExp(frm.txtRegExp.value);
+            if(frm.checkHoofdLet.checked==false){
+                var txtRegExp = new RegExp(frm.txtRegExp.value, "i");
+            }else{
+                var txtRegExp = new RegExp(frm.txtRegExp.value);
+            }
+            // alternatief schrijfweize
+           // var txtRegExp= frm.checkHoofdLet.checked? new RegExp(frm.txtRegExp.value) : new RegExp(frm.txtRegExp.value, "i");
+            
 
             if(txtRegExp.test(txtInvoer)){
             alert("invoer: "+txtInvoer+' \n regExp'+" is ogebouwd zoals de regulier expressie beschrijft.");
@@ -30,8 +37,10 @@
 
 <body>
     <form name="frm">
-        <label for="">invoer:<input type="text" name="txtInvoer" /></label> 
-        <label for="">reguliere expressie<input type="text" name="txtRegExp" /></label>
+        <label for="">invoer: <input type="text" name="txtInvoer" /></label> 
+        <label for="">reguliere expressie: <input type="text" name="txtRegExp" /></label>
+        <label for=""><input type="checkbox" name="checkHoofdLet" checked>hoofdlettergevoelig?</label>
+        <br>
         <input type="button" value="Controleer" id="btnControl" />
     </form>
 </body>
@@ -49,5 +58,6 @@
       <!-- [A-Z] = charakteer van A tot Z (alleen hoofdletters) -->
       <!-- " . " = punt beteken er moet juist 1 charakter staan, maar het maakt niet uit welke -->
       <!-- (be|com) =  be of com -->
+      <!-- "i"= modifier ignore of het kleine of grote letters -->
 
 </html>
