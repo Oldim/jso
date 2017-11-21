@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Test 2 - deel 2 - vraag 3</title>
+<script>
+        'use strict';
+        
+        function pigLatin(nieuweTekst) {
+            var tekst = frm.txtInvoer.value;
+            var nieuweTekst = "";
+            for (var i = 0; i < tekst.length; i++) {
+                if (tekst.search(/p/i) != null) {
+                    nieuweTekst = tekst.replace(/(^|\s+)/gi, "$1p");
+                }
+            }
+            return nieuweTekst;
+        }        
+
+        function toonPigLatin(){
+            frm.txtVertaling.value = pigLatin();
+        }
+
+        function init() {
+            var btn = document.getElementById("btnVertaal");
+            btn.addEventListener("click", toonPigLatin);
+        }
+        
+        window.onload = init;
+    </script>
+</head>
+<body>
+    <form name="frm">
+        <label for="txtInvoer">Originele zin: </label><input type="text" id="txtInvoer" name="txtInvoer" placeholder="Zin om te vertalen naar pigLatin"/>
+        <input type="button" value="Vertaal naar pigLatin" id="btnVertaal"/>
+        <label for="txtVertaling">Vertaling: </label><input type="text" id="txtVertaling" name="txtVertaling" readonly />
+    </form>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        'use strict';
+        var vragenLijst = new Array("vraag1", "vraag2", "vraag3", "vraag4", "vraag5");
+        var antwLijst = new Array("antw1", "antw2", "antw3", "antw4", "antw5");
+
+        function wilVraag(msg) {
+            var msg = vragenLijst[Math.floor(Math.random() * vragenLijst.length)];
+            return msg;
+        }
+        function toonVraag() {
+            var msg = wilVraag(msg);
+            for (var i = 0; i < vragenLijst.length; i++) {
+                frm.veldVraag.value = msg;
+            }
+            return msg;
+        }
+        function toonAntw() {
+            switch (true) {
+                case frm.veldVraag.value == vragenLijst[0]:
+                    frm.veldAntw.value = antwLijst[0];
+                    break;
+                case frm.veldVraag.value == vragenLijst[1]:
+                    frm.veldAntw.value = antwLijst[1];
+                    break;
+                case frm.veldVraag.value == vragenLijst[2]:
+                    frm.veldAntw.value = antwLijst[2];
+                    break;
+                case frm.veldVraag.value == vragenLijst[3]:
+                    frm.veldAntw.value = antwLijst[3];
+                    break;
+                case frm.veldVraag.value == vragenLijst[4]:
+                    frm.veldAntw.value = antwLijst[4];
+                    break;
+            }
+
+
+            // for (var i = 0; i < antwLijst.length; i++) {
+            // if (vragenLijst.indexOf[frm.veldVraag.value] == vragenLijst) {
+            //     frm.veldAntw.value = toonVraag();
+            // }
+
+            // }
+
+        }
+
+        function init() {
+            toonVraag();
+            var btnVraag = document.getElementById("btnVraag");
+            btnVraag.addEventListener("click", toonVraag);
+
+            var btnAntw = document.getElementById("btnAntw");
+            btnAntw.addEventListener("click", toonAntw);
+        }
+        window.onload = init;
+
+    </script>
+</head>
+
+<body>
+    <form name="frm">
+        <input type="button" value="Bepaal de actieve vraag" id="btnVraag" />
+        <br>
+        <label for="">Vraag:
+            <input type="text" name="veldVraag" id="veldVraag" />
+        </label>
+        <br>
+        <label for=""> Antwoord:
+            <input type="text" name="veldAntw" id="veldAntw" />
+        </label>
+        <br>
+        <input type="button" value="Bepaal het antwoord op die vraag" id="btnAntw" />
+    </form>
+</body>
+
+</html>
