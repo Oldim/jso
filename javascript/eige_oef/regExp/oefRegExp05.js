@@ -1,34 +1,72 @@
-// terzijde: zie juiste regel voor geboortejaren voor en na 2000 op
-// https://nl.wikipedia.org/wiki/Rijksregisternummer
-// -> laatste 2 cijfers van rrn vormen controlegetal
-// Noem getal bestaande uit eerste 9 cijfers g, dan geldt
-// ALS het controlegetal gelijk is aan 97 - (g % 97)
-// DAN is de persoon geboren voor 2000
-// ANDERS is de persoon geboren in 2000 of later
+
+// 'use strict';
+
+// var toetsenbord = require('readline-sync');
+
+
+// function controleRekening() {
+//     var laatsteCijf = bankRek.substr(5, 14);
+//     var controleGetal = parseInt(bankRek.substr(12, 14));
+//     if (bankRek.match(/^(be|BE)\d{2}\s\d{4}\s\d{4}\s\d{4}$/) != null) {
+//         console.log("Dit zou een IBANrek kunnen zijn.");
+//         //var laatsteCijf= bankRek.match(/[0-9]+$/)[0];
+//         if (controleGetal % 97==controleGetal){
+//             laatsteCijf += 111400;
+//             laatsteCijf = laatsteCijf.replace(/\s/g, "");
+//             laatsteCijf = parseInt(laatsteCijf);
+//             laatsteCijf = laatsteCijf / 97 - 98;
+//         }
+
+//         console.log(laatsteCijf);
+//     } else {
+//         console.log("Dit is geen Iban rek nr.");
+//     }
+// }
+
+// var bankRek = toetsenbord.question("Belgisch IBAN-nummer: ");
+
+// controleRekening(bankRek);
+
+
 'use strict';
+
+function controleerRekening(rek) {
+	var expressie = /^BE[0-9]{2}( [0-9]{4}){3}$/i;
+	var isJuist = false;
+	if (expressie.test(rek)) {
+		var getallen = rek.split(" ");
+		var eersteGetal = parseInt(getallen[1].substr(0, 3), 10);
+		var rest = eersteGetal % 97;
+		var deel1 = getallen[1].substr(3);
+		var deel2 = getallen[2];
+		var deel3 = getallen[3].substr(0, 2);
+		var deeltal = parseInt(deel1 + deel2 + deel3, 10) + rest * 10000000;
+		rest = deeltal % 97;
+		if (rest == 0) rest = 97;
+		var controle = parseInt(getallen[3].substr(2), 10);
+		if (rest == controle)  // geldig belgisch identificatienr
+		{
+			// om te vermijden dat getallen te groot worden en deling fout loopt:
+			// rest bij deling van eerste getal door 97 eerst berekenen (principe staartdeling)
+			var identificatieNr = parseInt(getallen[1], 10) % 97;
+			identificatieNr = "" + identificatieNr + getallen[2] + getallen[3] + "111400";
+
+			// voorgaande 2 lijnen vervangen onderstaande lijn om fouten te vermijden als getal te groot wordt
+			//var identificatieNr = ""+getallen[1] + getallen[2] + getallen[3] + "111400";
+			var tmp = parseInt(identificatieNr, 10);
+			rest = tmp % 97;
+			controle = 98 - rest;
+			isJuist = controle == parseInt(getallen[0].substr(2), 10);
+		}
+	}
+	return isJuist;
+}
 
 var toetsenbord = require('readline-sync');
 
-
-function controleRekening() {
-    var laatsteCijf = bankRek.substr(5, 14);
-    var controleGetal = parseInt(bankRek.substr(12, 14));
-    if (bankRek.match(/^(be|BE)\d{2}\s\d{4}\s\d{4}\s\d{4}$/) != null) {
-        console.log("Dit zou een IBANrek kunnen zijn.");
-        //var laatsteCijf= bankRek.match(/[0-9]+$/)[0];
-        if (controleGetal % 97==controleGetal){
-            laatsteCijf += 111400;
-            laatsteCijf = laatsteCijf.replace(/\s/g, "");
-            laatsteCijf = parseInt(laatsteCijf);
-            laatsteCijf = laatsteCijf / 97 - 98;
-        }
-
-        console.log(laatsteCijf);
-    } else {
-        console.log("Dit is geen Iban rek nr.");
-    }
+var rek = toetsenbord.question("Geef een Belgisch IBAN-nummer (BExx xxxx xxxx xxxx): ");
+if (controleerRekening(rek)) {
+	console.log("Dit is een geldig IBAN-nummer");
+} else {
+	console.log("Dit is geen geldig IBAN-nummer");
 }
-
-var bankRek = toetsenbord.question("Belgisch IBAN-nummer: ");
-
-controleRekening(bankRek);
