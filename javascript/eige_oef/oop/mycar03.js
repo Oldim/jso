@@ -1,3 +1,4 @@
+'use strict';
 //functie die we kunnen gebruiken om 0.1 of meer objecten met dezelfde properties en methodes te kunnen maken
 // CONSTRUCTOR
 function Auto(merk, model) {
