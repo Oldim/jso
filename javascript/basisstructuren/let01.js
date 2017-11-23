@@ -32,6 +32,6 @@ console.log(verrassing4);  // and?
  
 let verrassing5 = "and?";
 {
-	//var verrassing5 = "what did you expect?";  // syntax error: 'verassing5' has already been declared
+	var verrassing5 = "what did you expect?";  // syntax error: 'verassing5' has already been declared
 }
 console.log(verrassing5);  // and?
