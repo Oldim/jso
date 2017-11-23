@@ -28,3 +28,6 @@ console.log("Na %d:%s auto gereden te hebben tegen %d km/uur heb je %d km afgele
 var auto2 = new Auto(60, 2, 30);
 console.log("Na %d:%s auto2 gereden te hebben tegen %d km/uur heb je %d km afgelegd",
     auto2.aantalUren, auto2.aantalMinuten < 10 ? "0" + auto2.aantalMinuten : auto2.aantalMinuten, auto2.snelheid, auto2.afstand());
+
+delete auto2.snelheid;
+console.log(auto2);
