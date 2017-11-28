@@ -5,27 +5,21 @@ Het volgende statement moet waarde ‘0012’ aan s toekennen.
 var s = Number.pad(12,4,’0’);
 */
 
+    
 
-function Number(num, size, char) {
-	var geboorteJaar = this.getYear();
-	var geboorteMaand = this.getMonth();
-	var geboorteDag = this.getDate();
-	var vandaagJaar = datum.getYear();
-	var vandaagMaand = datum.getMonth();
-	var vandaagDag = datum.getDate();
-	var leeftijd = vandaagJaar - geboorteJaar;
-	if (geboorteMaand > vandaagMaand) {
-		leeftijd--;
-	} else if (geboorteMaand == vandaagMaand) {
-		if (geboorteDag > vandaagDag) {
-			leeftijd--;
-		}
-	}
-	return leeftijd;
-}
+    Number.pad = function(num, size, char){
+        var result = ""+num;
+        while(result.length < size)
+            result = char + result;
+        return result;
+    }
+    
 
-Date.prototype.geefLeeftijd = geefLeeftijd;
-var geboorteDatum = new Date(2000, 11, 11);  // 11 december 2000
-var refDatum = new Date(2017, 11, 10);  // 10 december 2017
-console.log("op ", refDatum.toLocaleDateString("nl-BE"), " is deze persoon ",
-	geboorteDatum.geefLeeftijd(refDatum), " jaar oud");
+    var getal=5;
+    console.log(Number.pad(getal, 2, '0'));
+    getal=10;
+    console.log(Number.pad(getal, 2, '0'));
+    getal=100;
+    console.log(Number.pad(getal, 2, '0'));
+    console.log(Number.pad(getal, 4, '0'));
+    
