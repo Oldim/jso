@@ -1,7 +1,5 @@
 'use strict';
 
-
-
 var toetsenbord = require('readline-sync');
 
 function Begroting() {
@@ -10,26 +8,40 @@ function Begroting() {
 }
 
 Begroting.prototype.voegInkomstToe= function (inkomstBedrag) {
-    var totaalInkomst;
-    for (var i = 0; i < this.inkomsten.length; i++) {
-        totaalInkomst += this.inkomsten[i];
-    }
-    this.inkomsten[i] = inkomstBedrag;
-    return totaalInkomst;
+    this.inkomsten.push(inkomstBedrag);
 };
 
-
-Begroting.prototype.voegUitgaveToe = function (uitgaven) {
-    var totaalUitgave;
-    for (var i = 0; i < this.uitgaven.length; i++) {
-        totaalUitgave += this.uitgaven[i];
-    }
-    this.uitgaven[i] = uitgaafBedrag;
+Begroting.prototype.voegUitgaveToe = function (uitgaafBedrag) {
+    this.uitgaven.push(uitgaafBedrag);
 };
-
 
 Begroting.prototype.presenteerBegroting = function () {
-    console.log("\tUitgaven: " + this.uitgaven + "\n\tInkomsten: " + this.inkomsten);
+    var tekst = "Uitgaven:\n";
+    for (var i = 0; i < this.uitgaven.length; i++) {
+        tekst += "-" + this.uitgaven[i] + "\n";
+    }
+    tekst += "Inkomsten:\n";
+    for (var i = 0; i < this.inkomsten.length; i++) {
+        tekst += this.inkomsten[i] + "\n";
+    }
+    var verschil = this.berekenVerschil();
+    if (verschil < 0) {
+        tekst +=  -verschil + "\n";
+    }
+    tekst += "De begroting is in evenwicht.\n";
+    return tekst;
+};
+
+Begroting.prototype.berekenVerschil = function () {
+    var totaalInkomsten = 0;
+    for (var i = 0; i < this.inkomsten.length; i++) {
+        totaalInkomsten += this.inkomsten[i];
+    }
+    var totaalUitgaven = 0;
+    for (var i = 0; i < this.uitgaven.length; i++) {
+        totaalUitgaven += this.uitgaven[i];
+    }
+    return totaalInkomsten - totaalUitgaven;
 };
 
 var begroting = new Begroting();
@@ -37,9 +49,7 @@ for (var i = 1; i <= 3; i++) {
     var inkomstBedrag = parseFloat(toetsenbord.question('Geef inkomsten in :'));
     var uitgaafBedrag = parseFloat(toetsenbord.question('Geef uitgave in :'));
     begroting.voegInkomstToe(inkomstBedrag);
-}
+    begroting.voegUitgaveToe(uitgaafBedrag);
+};
 
-
-
-//delete auto2.snelheid;
-console.log("inkomsten: " + begroting.voegInkomstToe());
+console.log("inkomsten: " + begroting.presenteerBegroting());
