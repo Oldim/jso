@@ -38,8 +38,8 @@ function ShowHond(naam, ras, gewicht, aantalPrijzen) {
     this.aantalPrijzen = aantalPrijzen;
 };
 ShowHond.prototype = new Hond();
-ShowHond.prototype.paradeer = function (paradeer) {
-    console.log(this.naam + " is bezig met " + paradeer);
+ShowHond.prototype.paradeer = function (paradeerMove) {
+    console.log(this.naam + " is bezig met " + paradeerMove);
 };
 
 ShowHond.prototype.winShow = function () {

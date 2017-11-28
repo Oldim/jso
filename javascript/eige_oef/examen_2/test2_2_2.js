@@ -24,25 +24,35 @@ waarbij <jaar> het ingetikte jaar is
 en <romeins> dat jaar in Romeinse cijfers.
 
 */
-var getal;
-getal = parseInt(toetsenbord.question("cijfer: "));
 
-
-function controle() {
-    while (isNaN(getal)) {
-        console.log('U hebt geen getal ingegeven!');
-        getal = parseInt(toetsenbord.question("cijfer: "));
-        if (getal > 0 || getal <= 2100) {
-            console.log("U hebt een %s ingetikt", eenheden[getal]);
-
-        } else {
-            console.log('U hebt verkeerd getal ingegeven!');
-        }
-
-    }
+function isGeldigJaar(jaar){
+    return !isNaN(jaar) && isFinite(jaar) && jaar > 0 && jaar <= 2100;
 }
 
+function arabischNaarRomeins(jaar){
+    if(isGeldigJaar(jaar)){
+        var indexEenheden, indexTientallen, indexHonderdtallen, indexDuizendtallen;
+        indexDuizendtallen = Math.floor(jaar / 1000);
+        jaar -= indexDuizendtallen * 1000;
+        indexHonderdtallen = Math.floor( jaar / 100);
+        jaar -= indexHonderdtallen * 100;
+        indexTientallen = Math.floor(jaar/10);
+        jaar -= indexTientallen * 10;
+        indexEenheden = jaar;
+        return duizendtallen[indexDuizendtallen]  +
+         honderdtallen[indexHonderdtallen] +
+         tientallen[indexTientallen] + eenheden[indexEenheden];
+    }
+    return "";
+}
 
-
-var result= controle();
-console.log(result);
+var jaar = toetsenbord.question('Tik een jaar (1-2100) in: ');
+while(!isGeldigJaar(jaar)){
+    if(isNaN(jaar)){
+        jaar = toetsenbord.question('Tik een getal in als jaar aub (1-2100): ');
+    }
+    else{
+        jaar = toetsenbord.question('Tik een getal tussen 1 (incl) en 2100 (incl) in als jaar aub: ');
+    }
+}
+console.log("%d is in Romeinse cijfers %s", jaar, arabischNaarRomeins(jaar));
