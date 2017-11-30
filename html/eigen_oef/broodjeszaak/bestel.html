@@ -27,7 +27,7 @@
             
     </aside>
     <main id="main" class="content-padding">
-            <form class="formcontainer" action="bestel.php" method="POST">
+            <form class="formcontainer" action="bestel.php" method="POST">                    
                     <label class="formlabel" for="txtKies">Kies:</label>
                     <select name="txtKies">
                             <option value="di_mare">Di Mare</option>
@@ -38,16 +38,16 @@
                     <label class="formlabel">Soort brood</label>
                     <div class="form-radiogroup">
                         <label>
-                            <input type="radio" name="nederlands" value="goed" checked>Wit</label>
+                            <input type="radio" name="wit" value="goed" checked>Wit</label>
                         <label>
-                            <input type="radio" name="nederlands" value="middelmatig">Bruin</label>
+                            <input type="radio" name="bruin" value="middelmatig">Bruin</label>
                     </div>
                     <label class="forminput">
                             <input type="checkbox" name="rijbewijs">Smoos?</label>
-                    <input class="formbutton more-btn" type="button" name="btn" value="Bestel">
+                    <input class="formbutton more-btn" type="button" name="btn" value="Bestel" id="more-btn">
                 </form>
                 <div class="bestel_tabel">
-                        <table style="width:100%">
+                        <table style="width:100%" id="tabelBr">
                                 <tr>
                                   <th>Aantal</th>
                                   <th>Broodje</th> 
@@ -76,4 +76,5 @@
             <div><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></div>
     </footer>
 </body>
+<script src="js/script.js"></script>
 </html>

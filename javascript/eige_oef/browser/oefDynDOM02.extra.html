@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>DOM manipulatie: voorbeeld 1</title>
+    <script>
+        var lijstje = ["brood", "kaas", "boter", "ham"];
+        var melkProduct = ["youghurt", "kaas", "boter", "melk"];
+        window.onload = function () {
+            maakHoofding();
+            maakLijst();
+            maakDiv();
+            maakKnop();
+            maakCheckbox();
+
+            var btn = document.getElementById("btn");
+            btn.onclick = extraToevoegen;
+        }
+
+        function maakHoofding() {
+            var h2 = document.createElement("h2");
+            h2.innerText = "Boodschappenlijstje";
+            document.body.appendChild(h2);
+        }
+
+        function maakLijst() {
+            var ul = document.createElement("ul");
+            document.body.appendChild(ul);
+            ul.id = "lijstUl"
+            var li;
+            // for(var i=0; i<lijstje.length; i++){
+            //     li = document.createElement("li");
+            //     li.innerText = lijstje[i];
+            //     ul.appendChild(li);
+            // }
+            // ------ forEach ------
+            lijstje.forEach(item => {
+                li = document.createElement("li");
+                li.innerText = item;
+                ul.appendChild(li);
+            });
+        }
+
+        function maakKnop() {
+            var btn = document.createElement("input");
+            var div = document.getElementsByTagName("div")[0];
+            btn.type = "button";
+            btn.value = "bestellen";
+            btn.id = "btnBestel";
+            btn.onclick = function () {
+                var ul = document.getElementById("lijstUl");
+                if (document.getElementById("chbmelkallergie").checked) {
+                    alert("wegens allergie worden alle melk producten verwijdert");
+                    var li = ul.getElementsByTagName("li");
+                    for (var i = ul.children.length - 1; i >= 0; i--) {
+                        li=ul.children[i];
+                        if (melkProduct.indexOf(li.innerText) > -1) {
+                            ul.removeChild(li);
+                        }
+                    }
+
+                } else {
+                    alert("uw lijst wordt bewerkt");
+                    if (ul) {
+                        var li = ul.getElementsByTagName("li");
+                        for (var i = li.length - 1; i >= 0; i--) {
+                            ul.removeChild(li[i])
+                        }
+                    }
+
+                }
+
+
+            }
+            div.appendChild(btn);
+        }
+
+        function extraToevoegen() {
+            // var ul = document.getElementById("lijstUl");
+            var ul = document.getElementsByTagName("ul")[0];
+            var li;
+            li = document.createElement("li");
+            li.innerText = frm.extraT.value;
+            ul.appendChild(li);
+            console.log(lijstje);
+        }
+        function maakCheckbox() {
+            var div = document.getElementById("eenDiv");
+            var label = document.createElement("label");
+            label.innerText = "melkallergie";
+            label.htmlFor = "chbmelkallergie";
+            div.insertBefore(label, div.childNodes[0]);
+            var check = document.createElement("input");
+            check.type = "checkbox";
+            check.id = "chbmelkallergie";
+            div.insertBefore(check, div.childNodes[1]);
+        }
+        function maakDiv() {
+            var div = document.createElement("div");
+            div.id = "eenDiv";
+            document.body.appendChild(div);
+        }
+
+
+    </script>
+</head>
+
+<body>
+    <h1>Onderstaande elementen zijn dynamisch toegevoegd</h1>
+    <form name="frm">
+        <input type="text" name="extraT" />
+        <input type="button" value="Begin" id="btn" />
+    </form>
+</body>
+
+</html>
