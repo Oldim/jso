@@ -27,8 +27,6 @@ Speelkaartenboek.prototype.waarden = ["1", "2", "3", "4", "5", "6", "7", "8", "9
 Speelkaartenboek.prototype.volgendeKaart = function () {
     if (this.index < this.speelkaarten.length) {
         return this.speelkaarten[this.index++];
-        var div = document.getElementById("eenDiv");
-        document.body.replaceChild(div, imgOpen.src);
     }
     return null;
 }
@@ -91,9 +89,32 @@ for (var i = 0; i < kaartenboek.speelkaarten.length; i++) {
  */
 function schudBoek() {
     kaartenboek.schud();
+    //var imgOpen = document.getElementById("imgOpen");
+    var div = document.getElementById("eenDiv");
+    if (div) {
+        var imgOpen = div.getElementsByTagName("img");
+            for (var i = imgOpen.length - 1; i >= 1; i--) {
+                div.removeChild(imgOpen[i]);
+            }
+    }
+    document.getElementById("btnGeef").disabled=false;
+    
 }
 function GeefNew() {
-    kaartenboek.volgendeKaart();
+    var div = document.getElementById("eenDiv");
+    var kaartNew = kaartenboek.volgendeKaart();
+    // var imgOpen = document.getElementById("imgOpen");
+    // imgOpen.src = "img/"+kaartNew.afbeelding;
+
+    for (var i = 0; i < kaartenboek.speelkaarten.length; i++) {
+        var imgOpen = document.createElement("img");
+        imgOpen.src = "img/" + kaartNew.afbeelding;
+    }
+    div.appendChild(imgOpen);
+    document.getElementById("btnSchud").disabled=false;
+    disableNew();
+
+
 }
 
 function maakDiv() {
@@ -107,22 +128,38 @@ function toonImg() {
     img.id = "kaart";
     img.src = "img/cardback.png"
     div.appendChild(img);
-
+    // 2de kaart
     var imgOpen = document.createElement("img");
+    imgOpen.id = "imgOpen";
     imgOpen.src = "img/1c.png";
     div.appendChild(imgOpen);
+
+
+
     // for (var i = 0; i < kaartenboek.speelkaarten.length; i++) {
     //     var imgOpen = document.createElement("img");
     //     imgOpen.src = "img/"+Speelkaartenboek[i]+ ".png";
     //     div.appendChild(imgOpen);
     // }
 }
-
+function disableNew(){
+    var disKnop = kaartenboek.isLeeg();
+    if(kaartenboek.isLeeg()){
+        document.getElementById("btnGeef").disabled=true;
+    }
+}
+function disableSchud(){
+    var disKnop = kaartenboek.isLeeg();
+    if(kaartenboek.isLeeg()){
+        document.getElementById("btnSchud").disabled=true;
+    }
+}
 
 window.onload = function () {
 
     maakDiv();
     toonImg();
+    disableSchud();
     var btnGeef = document.getElementById("btnGeef");
     btnGeef.addEventListener("click", GeefNew);
 
