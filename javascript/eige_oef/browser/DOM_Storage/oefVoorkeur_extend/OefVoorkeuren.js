@@ -1,55 +1,40 @@
-var img = ["Krokodil", "Fire Fox', cursive", "Schildpad"];
-var font = ["font-family: 'Spectral SC', serif", "font-family: 'Indie Flower', cursive", "font-family: 'Gloria Hallelujah', cursive"];
-function setFont() {    
-    var optie = frm.bgFont.options[frm.bgFont.selectedIndex].value;
-    document.body.style.fontFamily=optie;
+window.onload = function(e) {
+	var bgcolorForm = document.getElementById('bgcolor');
+	var fontForm = document.getElementById('font');
+	var imageForm = document.getElementById('image');
 
+	if (!localStorage['bgcolor']) {
+		populateStorage();
+	} else {
+		setStyles();
+	}
+
+	bgcolorForm.onchange = populateStorage;
+	fontForm.onchange = populateStorage;
+	imageForm.onchange = populateStorage;
 }
-function toonFont() {
-    for (var i = 0; i < font.length; i++) {
-        var option = document.createElement("option");
-        option.text = font[i];
-        frm.bgFont.add(option);
-    }
+
+function populateStorage() {
+	localStorage.setItem('bgcolor', document.getElementById('bgcolor').value);
+	localStorage.setItem('font', document.getElementById('font').value);
+	localStorage.setItem('image', document.getElementById('image').value);
+
+	setStyles();
 }
 
-// function setImg() {    
-//     var optie = frm.bgImg.options[frm.bgImg.selectedIndex].value;
-//     var bgImg = document.getElementById("bgImg");
-//     bgImg.src = optie;
+function setStyles() {
+	var currentColor = localStorage.getItem('bgcolor');
+	var currentFont = localStorage.getItem('font');
+	var currentImage = localStorage.getItem('image');
 
-// }
-// function toonImg() {
-//     for (var i = 0; i < img.length; i++) {
-//         var option = document.createElement("option");
-//         option.text = img[i];
-//         frm.bgImg.add(option);
-//     }
-// }
+	document.getElementById('bgcolor').value = currentColor;
+	document.getElementById('font').value = currentFont;
+	document.getElementById('image').value = currentImage;
+	
+	var htmlElem = document.querySelector('html');
+	var imgElem = document.querySelector('img');
 
-// function setColor() {
-//     var body = document.body;
-//     body.style.backgroundColor = body.style.backgroundColor == KLEUR1 ? KLEUR2 : KLEUR1;
-// }
-
-
-
-// function setFont() {
-//     var font1=font-family: 'Spectral SC', serif;
-//     var font2=font-family: 'Indie Flower', cursive;
-//     var font3=font-family: 'Gloria Hallelujah', cursive;
-//     var body = document.body;
-//     body.style.backgroundColor = body.style.backgroundColor == font1 ? font2 : font1;
-// }
-
-// function setImg() {
-//     var img1 ="";
-//     var img2 = img - family: 'Indie Flower', cursive;
-//     var img3 = font - family: 'Gloria Hallelujah', cursive;
-// }
-
-
-
-window.onload = function () {
-    toonFont();
-};
+	htmlElem.style.backgroundColor = currentColor;
+	htmlElem.style.fontFamily = currentFont;
+	imgElem.setAttribute('src', currentImage);
+}
