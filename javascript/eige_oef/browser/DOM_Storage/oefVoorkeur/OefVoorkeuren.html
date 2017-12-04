@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Indie+Flower|Spectral+SC" rel="stylesheet">
+    <LINK href="OefVoorkeuren.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <section>
+        <h1>Web storage</h1>
+        <div class="bg">
+            <div >
+                <img  src="" alt="" id="img">
+            </div>
+            <div id="keuze">
+                <form name="frm" id="frm">
+                    <label for="bgColor"> AchtergrondKleur
+                        <input type="color" id="bgColor" onchange="setColor(this);">
+                    </label>
+                    <label for="bgFont"> Fontstyle
+                        <select name="bgFont" id="bgFont" onchange="setFont(this);">
+                            <option value="bgFont1" selected>Spectral SC</option>
+                            <option value="bgFont2">Indie Flower</option>
+                            <option value="bgFont3">Gloria Hallelujah</option>
+                        </select>
+                    </label>
+                    <label for="bgImg">Afbeelding
+                        <select name="bgImg" id="bgImg" onchange="setImg(this);">
+                            <option value="bgImg1" selected>Krokodil</option>
+                            <option value="bgImg2">Fire Fox</option>
+                            <option value="bgImg3">Schildpad</option>
+                        </select>
+                    </label>
+                </form>
+            </div>
+        </div>
+    </section>
+</body>
+<script src="OefVoorkeuren.js"> </script>
+</html>
