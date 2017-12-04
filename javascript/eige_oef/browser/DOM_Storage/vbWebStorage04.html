@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Web Storage - voorbeeld 3</title>
+</head>
+
+<body>
+    <h1>JSON object in web storage</h1>
+    <form>
+        <label for="naam">Naam:</label>
+        <input type="text" id="naam" placeholder="Tik hier uw naam">
+        <br/>
+        <label for="voornaam">Voornaam:</label>
+        <input type="text" id="voornaam" placeholder="Tik hier uw voornaam">
+        <br/>
+        <input type="button" value="Bewaar" onclick="bewaarPersoonInLocalStorage(this.form.naam.value, this.form.voornaam.value)">
+    </form>
+    <input type="button" value="Toon" onclick="toonPersoonUitLocalStorage()">
+</body>
+<script>
+
+    // function persoon(){
+
+    //     this.form.naam.value=naam;
+    //     this.form.voornaam.value=voornaam;
+    // }
+    // persoon = new persoon();
+    var persoon = [];
+
+    function bewaarPersoonInLocalStorage(naam, voornaam) {
+        // persoon.name=this.form.naam.value;
+        // persoon.voornaam=this.form.voornaam.value;
+
+
+        // localStorage.setItem('persoon', JSON.stringify(persoonObject));
+
+        persoon.push(naam, voornaam);
+        localStorage.setItem('persoon', JSON.stringify(persoon));
+    }
+
+    function toonPersoonUitLocalStorage() {
+        // var persoon = JSON.parse(localStorage.getItem('persoon'));
+        // if (persoon != null) {
+        //     alert(persoon.voornaam + " " + persoon.naam);
+        // }
+        // else {
+        //     alert("Er is nog geen persoon bewaard.");
+        // }
+        var ul = document.createElement("ul");
+        document.body.appendChild(ul);
+        ul.id = "lijstUl"
+        var persoon = JSON.parse(localStorage.getItem('persoon'));
+        // persoon.push(naam,voornaam);
+        ul = document.getElementsByTagName("ul")[0];
+        var li;
+        li = document.createElement("li");
+        li.innerText = persoon;
+        ul.appendChild(li);
+        // var li;
+        // for (var i = 0; i < persoon.length; i++) {
+        //     li = document.createElement("li");
+        //     li.innerText = persoon[i];
+        //     ul.appendChild(li);
+        // };
+
+
+    }
+
+
+</script>
+
+</html>
