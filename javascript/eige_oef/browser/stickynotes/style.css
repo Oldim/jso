@@ -1,0 +1,119 @@
+*{
+    margin:0;
+    padding:0;
+  }
+  body{
+    margin:3em;
+    background:#666;
+  }
+  h2,p{
+    font-size:100%;
+    font-weight:bold;
+  }
+  p{font-family: 'Reenie Beanie', cursive;}
+  ul,li{
+    list-style:none;
+  }
+  ul{
+    overflow:hidden;
+    padding:3em;
+  }
+  ul li a{
+    text-decoration:none;
+    color:#000;
+    background:#ffff80;
+    display:block;
+    height:10em;
+    width:10em;
+    padding:1em;
+    overflow: auto;
+    
+    transition: 0.3s all;
+    -webkit-transition: 0.3s all;
+    -o-transition: 0.3s all;
+    -ms-transition: 0.3s all;
+    -moz-transition: 0.3s all;
+  }
+  ul li a:hover{
+    transform: scale(1.1);
+  }
+
+  ul li{
+    margin:1em;
+    float:left;
+    box-shadow: 9px 9px 18px #000;
+    position: relative;
+  }
+  li:nth-child(even) {
+    -ms-transform: rotate(4deg); /* IE 9 */
+    -webkit-transform: rotate(4deg); /* Chrome, Safari, Opera */
+    transform: rotate(4deg);
+  }
+  li:nth-child(odd) {
+    -ms-transform: rotate(-4deg); /* IE 9 */
+    -webkit-transform: rotate(-4deg); /* Chrome, Safari, Opera */
+    transform: rotate(-4deg);
+  }
+  ul li:nth-child(even) a{
+    background:rgb(173, 69, 8);
+  }
+  ul li:nth-child(3n) a{
+    background:rgb(171, 175, 226);
+  }
+  /* ---- bewerking */
+#btnClose{
+    cursor: pointer;
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    transition: 0.4s all;
+    -webkit-transition: 0.4s all;
+    -o-transition: 0.4s all;
+    -ms-transition: 0.4s all;
+    -moz-transition: 0.4s all;
+}
+#btnClose:hover{
+    transform: scale(1.5);
+}
+  #newNote{
+    cursor: pointer;
+    font-weight: bold;
+    height: 61px;
+    padding-bottom: 2px;
+    width: 61px;
+  }
+textarea{
+    background: none;
+    text-decoration: none;
+    text-transform: none;
+    border: none;
+    font-weight: bold;
+    font-size: 1em;
+    resize: none;
+}
+.textArea{
+    font-family: 'Reenie Beanie', cursive;
+    height: 6em;
+    width: 100%;
+}
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    #000;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:    #000;
+   opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:    #000;
+   opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color:    #000;
+}
+::-ms-input-placeholder { /* Microsoft Edge */
+   color:    #000;
+}
+
+::placeholder { /* Most modern browsers support this now. */
+   color:    #000;
+}
