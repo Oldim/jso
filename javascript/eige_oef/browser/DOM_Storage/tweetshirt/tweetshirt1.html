@@ -7,6 +7,8 @@
 		canvas {
 			border: 1px solid black;
 		}
+		.onvisible{display: none;}
+		.visible{display: inline-block};
 	</style>
 	<script src="tweetshirt1.js"></script>
 </head>
@@ -28,18 +30,18 @@
 	</p>
 	<p>
 		<label for="shape">Circles or squares?</label>
-		<select id="shape">
-			<option value="none" selected="selected">Neither</option>
+		<select id="shape" onchange="showShapeColor(this);">
+			<option value="neither" selected="selected">Neither</option>
 			<option value="circles">Circles</option>
 			<option value="squares">Squares</option>
 		</select>
-		<input type="color" id="colorCircles">
+		<input type="color" id="colorCircles" class="onvisible">
 	</p>
 	<p>
 		<label for="foregroundColor">Select text color:</label>
 		<input type="color" id="foregroundColor">
 		<label for="foregroundColor">Select text size:</label>
-		<input type="number">
+		<input type="number" id="tweetTxtSize">
 	</p>
 	<p>
 		<label for="tweets">Pick a tweet:</label>
@@ -48,6 +50,8 @@
 	</p>
 	<p>
 		<input type="button" id="previewButton" value="Preview">
+		<input type="button" id="btnSave" value="Save">
+		<input type="button" id="btnShowSave" value="Reload">
 	</p>
 </form>
 
