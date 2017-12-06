@@ -91,7 +91,7 @@ function saveLocal(textAreaTitel,textArea) {
     // var div = document.querySelectorAll("div>a");    
    // var textAreaTitel = document.querySelectorAll("div>TEXTAREA").value;  
    var note = [];  
-    var textArea = document.querySelectorAll("a>TEXTAREA").value;
+    //var textArea = document.querySelectorAll("a>TEXTAREA").value;
 
     // var div = document.getElementsByTagName("div");
     // for (var i = 0; i < div.length; i++) {
@@ -104,7 +104,7 @@ function saveLocal(textAreaTitel,textArea) {
     for(var i=0; i < div.length; i++){
        var textAreaTitel = div[i].querySelector("TEXTAREA").value;
        var textArea = a[i].querySelector("TEXTAREA").value;
-        note.push(textAreaTitel, textArea );        
+        note.push({textAreaTitel, textArea });        
     }
     console.log(textAreaTitel);  
 
@@ -117,11 +117,9 @@ function saveLocal(textAreaTitel,textArea) {
     // localStorage.setItem('textAreaTitel', textAreaTitel);
     // localStorage.setItem('textArea', textArea);    
     // localStorage.setItem('img', img);
-    var jsonStr = JSON.stringify(note);
-	localStorage.setItem("notes", jsonStr);
-    
-   // localStorage.setItem('note', JSON.stringify({ textAreaTitel: textAreaTitel, textArea: textArea }));
-    console.log(textAreaTitel);
+
+ localStorage.setItem('note', JSON.stringify(note));
+    console.log(note);
 }
 
 function reloadLocal() {
