@@ -61,7 +61,7 @@
     background:rgb(171, 175, 226);
   }
   /* ---- bewerking */
-#btnClose{
+.btnClose{
     cursor: pointer;
     position: absolute;
     top: 8px;
@@ -72,7 +72,7 @@
     -ms-transition: 0.4s all;
     -moz-transition: 0.4s all;
 }
-#btnClose:hover{
+.btnClose:hover{
     transform: scale(1.5);
 }
   #newNote{
