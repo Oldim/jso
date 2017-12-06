@@ -75,21 +75,22 @@ function Note(textAreaTitel,textArea){
     this.textAreaTitel = textAreaTitel;
     this.textArea = textArea;
 }
-var note = [];
-function pushToArray() {
-    var div = document.getElementsByTagName("div");
-    for(var i=0; i < div.length; i++){
-       var textAreaTitel = div[i].querySelector("TEXTAREA").value;
-        note.push( new Note(textAreaTitel) );        
-    }
-    console.log(textAreaTitel);
-}
+
+// function pushToArray() {
+//     var div = document.getElementsByTagName("div");
+//     for(var i=0; i < div.length; i++){
+//        var textAreaTitel = div[i].querySelector("TEXTAREA").value;
+//         note.push( new Note(textAreaTitel) );        
+//     }
+//     console.log(textAreaTitel);
+// }
 
 function saveLocal(textAreaTitel,textArea) {
     // var li = document.getElementsByTagName("li");    
     // var a = document.querySelectorAll("li>a");    
     // var div = document.querySelectorAll("div>a");    
-   // var textAreaTitel = document.querySelectorAll("div>TEXTAREA").value;    
+   // var textAreaTitel = document.querySelectorAll("div>TEXTAREA").value;  
+   var note = [];  
     var textArea = document.querySelectorAll("a>TEXTAREA").value;
 
     // var div = document.getElementsByTagName("div");
@@ -99,9 +100,11 @@ function saveLocal(textAreaTitel,textArea) {
     // }
     
     var div = document.getElementsByTagName("div");
+    var a=document.getElementsByTagName("a");
     for(var i=0; i < div.length; i++){
        var textAreaTitel = div[i].querySelector("TEXTAREA").value;
-        note.push( new Note(textAreaTitel) );        
+       var textArea = a[i].querySelector("TEXTAREA").value;
+        note.push(textAreaTitel, textArea );        
     }
     console.log(textAreaTitel);  
 
@@ -114,8 +117,10 @@ function saveLocal(textAreaTitel,textArea) {
     // localStorage.setItem('textAreaTitel', textAreaTitel);
     // localStorage.setItem('textArea', textArea);    
     // localStorage.setItem('img', img);
+    var jsonStr = JSON.stringify(note);
+	localStorage.setItem("notes", jsonStr);
     
-    localStorage.setItem('note', JSON.stringify({ textAreaTitel: textAreaTitel, textArea: textArea }));
+   // localStorage.setItem('note', JSON.stringify({ textAreaTitel: textAreaTitel, textArea: textArea }));
     console.log(textAreaTitel);
 }
 
