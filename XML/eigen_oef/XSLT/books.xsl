@@ -11,7 +11,6 @@
 <td><xsl:apply-templates select="title" /></td>
 <td><xsl:apply-templates select="author" /></td>
 <td><xsl:value-of select="@ISBN"></xsl:value-of></td>
-
 <td><xsl:apply-templates select="price" /></td>
 </tr>
 </xsl:for-each>
