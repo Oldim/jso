@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="XMLUtil.js"></script>
+    <script>
+
+        'use strict';
+        var doc = loadXMLDoc("allelements.xml");
+        var namen = doc.querySelectorAll("NAME");
+
+        function toonNode(node) {
+            var serializer = new XMLSerializer();
+            var str = serializer.serializeToString(node);
+            alert(str);
+        }
+
+        function toonElem() {
+            var msg = wilElem(msg);
+            for (var i = 0; i < namen.length; i++) {
+                frm.elemVeld.value = msg;
+            }
+            return msg;
+        }
+
+        function controle() {
+            for (var i = 0; i < namen.length; i++) {
+                namen[i].textContent = 1.05 * namen[i].textContent;
+            }
+            var msg = namen[Math.floor(Math.random() * 10)];
+            return msg;
+            // ter controle:
+            toonNode(doc);
+        }
+
+        function wilElem(msg) {
+            var msg = namen[Math.floor(Math.random() * 10)];
+            return msg;
+            // ter controle:
+            toonNode(doc);
+        }
+
+        function init() {
+            toonVraag();
+            var btnControle = document.getElementById("btnControle");
+            btnControle.addEventListener("click", toonElem);
+
+            // var btnAntw = document.getElementById("btnAntw");
+            // btnAntw.addEventListener("click", toonAntw);
+        }
+        window.onload = init;
+
+
+    </script>
+</head>
+
+<body>
+    <form name="frm">
+        Chemisch element :
+        <input type="text" name="elemVeld" id="elemVeld" />
+         Afkorting :
+        <input type="text" name="afkortingVeld" id="afkortingVeld"/>
+        <!-- <input type="button" value="Controle" onclick="controle()" /> -->
+        <input type="button" value="Controle" id="btnControle" />
+
+    </form>
+</body>
+
+</html>
