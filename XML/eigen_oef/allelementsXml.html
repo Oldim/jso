@@ -9,131 +9,261 @@
     <script src="XMLUtil.js"></script>
     <script>
 
+        // 'use strict';
+        // var doc = loadXMLDoc("allelements.xml");
+        // var namen = [];
+        // var symbolElts = doc.querySelectorAll("SYMBOL");
+        // var teller = 0;
+        // var TOTAAlVRAGEN = 2;
+        // var keer = 0;
+
+        // function toonNode(node) {
+        //     var serializer = new XMLSerializer();
+        //     var str = serializer.serializeToString(node);
+        //     alert(str);
+        // }
+
+        // function toonElem() {
+        //     var doc = loadXMLDoc("allelements.xml");
+        //     var namen = doc.querySelectorAll("NAME");
+        //     var elem = wilElem();
+
+        //     for (var i = 0; i < namen.length; i++) {
+        //         frm.elemVeld.value = elem;
+        //     }
+        //     return elem;
+        // }
+
+        // function symbolElem() {
+        //     var doc = loadXMLDoc("allelements.xml");
+        //     var symbolElts = doc.querySelectorAll("SYMBOL");
+        //     var symbol = [];
+        //     var symbolElem;
+        //     for (var i = 0; i < symbolElts.length; i++) {
+        //         symbol[i] = symbolElts[i].textContent;
+        //     }
+        //     for (var i = 0; i < namen.length; i++) {
+        //         if (frm.elemVeld.value == namen[i]) {
+        //             symbolElem = symbol[i];
+        //         }
+        //     }
+        //     return symbolElem;
+        //     // ter controle:
+        //     toonNode(doc);
+        // }
+        // function controle() {
+        //     var symbol = symbolElem();
+        //     if (frm.afkortingVeld.value == symbol) {
+        //         teller += 1;
+        //         keer += 1;
+
+        //     } else {
+        //         keer += 1;
+        //     }
+        //     frm.afkortingVeld.value = "";
+        //     document.getElementById("afkortingVeld").focus();
+        //     if (keer == TOTAAlVRAGEN) {
+        //         setScore();
+
+        //     } else {
+        //         toonElem();
+        //     }
+        //     symbolElem();
+        // }
+
+        // function convert() {
+        //     document.getElementById("btnControle").hidden = false;
+        //     document.getElementById("btnStart").hidden = true;
+        //     toonElem();
+        //     document.getElementById("afkortingVeld").focus();
+        //     var div = document.getElementById("txtScore");
+        //     var pars = div.getElementsByTagName("p");
+        //     for (var i = pars.length - 1; i >= 0; i--) {
+        //         div.removeChild(pars[i])
+        //     }
+        // }
+
+        // function setScore() {
+        //     document.getElementById("btnControle").hidden = true;
+        //     document.getElementById("btnStart").hidden = false;            
+        //     var doc = document;
+        //     var txtScore = document.getElementById("txtScore");
+        //     var pEl = doc.createElement("p");
+        //     pEl.appendChild(doc.createTextNode("Aantal juiste is "+teller));
+        //     txtScore.appendChild(pEl);
+        //     frm.elemVeld.value = "";
+        //     teller = 0;
+        //     keer = 0;
+        //     top3();
+        // }
+        // function top3(){
+        //     prompt("Geef je naam in");
+        // }
+
+        // function wilElem(msg) {
+        //     var doc = loadXMLDoc("allelements.xml");
+        //     var namenElts = doc.querySelectorAll("NAME");
+        //     for (var i = 0; i < namenElts.length; i++) {
+        //         namen[i] = namenElts[i].textContent;
+        //     }
+        //     var msg = namen[Math.floor(Math.random() * namenElts.length)];
+        //     return msg;
+        //     // ter controle:
+        //     toonNode(doc);
+        // }
+
+        // function init() {
+        //     var btnControle = document.getElementById("btnControle");
+        //     btnControle.addEventListener("click", controle);
+        //     document.getElementById("btnControle").hidden = true;
+        //     document.getElementById("btnStart").onclick = convert;
+        // }
+        // window.onload = init;
         'use strict';
-        var doc = loadXMLDoc("allelements.xml");
-        var namen = [];
-        var symbolElts = doc.querySelectorAll("SYMBOL");
-        var teller = 0;
-        var TOTAAlVRAGEN = 2;
-        var keer = 0;
 
-        function toonNode(node) {
-            var serializer = new XMLSerializer();
-            var str = serializer.serializeToString(node);
-            alert(str);
-        }
+const AANTALVRAGEN = 3;
+var atomen, aantal, score, indexHuidigAtoom, startTijd, top3;
 
-        function toonElem() {
-            var doc = loadXMLDoc("allelements.xml");
-            var namen = doc.querySelectorAll("NAME");
-            var elem = wilElem();
+window.onload = function () {
+    laadAtomen();
+    laadTop3();
+    document.getElementById("btnStart").onclick = start;
+    document.getElementById("btnOK").hidden = true;
+    document.getElementById("btnOK").onclick = verwerkAntwoord;
+}
 
-            for (var i = 0; i < namen.length; i++) {
-                frm.elemVeld.value = elem;
-            }
-            return elem;
-        }
+function laadAtomen() {
+    atomen = [];
+    var doc = loadXMLDoc("xml-bestanden/allelements.xml");
+    var xmlAtoms = doc.getElementsByTagName("ATOM");
+    for (var i = 0; i < xmlAtoms.length; i++) {
+        atomen.push(new Atoom(xmlAtoms[i].querySelector("NAME").textContent,
+            xmlAtoms[i].querySelector("SYMBOL").textContent));
+    }
+}
 
-        function symbolElem() {
-            var doc = loadXMLDoc("allelements.xml");
-            var symbolElts = doc.querySelectorAll("SYMBOL");
-            var symbol = [];
-            var symbolElem;
-            for (var i = 0; i < symbolElts.length; i++) {
-                symbol[i] = symbolElts[i].textContent;
-            }
-            for (var i = 0; i < namen.length; i++) {
-                if (frm.elemVeld.value == namen[i]) {
-                    symbolElem = symbol[i];
-                }
-            }
-            return symbolElem;
-            // ter controle:
-            toonNode(doc);
-        }
-        function controle() {
-            var symbol = symbolElem();
-            if (frm.afkortingVeld.value == symbol) {
-                teller += 1;
-                keer += 1;
+function laadTop3() {
+    top3 = JSON.parse(localStorage.getItem("top3"));
+    if (top3 == null) top3 = [];
+}
 
-            } else {
-                keer += 1;
-            }
-            frm.afkortingVeld.value = "";
-            document.getElementById("afkortingVeld").focus();
-            if (keer == TOTAAlVRAGEN) {
-                setScore();
+function start() {
+    aantal = 0;
+    score = 0;
+    toonVolgendAtoom();
+    document.getElementById("btnOK").hidden = false;
+    document.getElementById("btnStart").hidden = true;
+    document.getElementById("divFeedback").innerText = "";
+    document.getElementById("divScore").innerText = "";
+    startTijd = Date.now();
+}
 
-            } else {
-                toonElem();
-            }
-            symbolElem();
-        }
+function toonVolgendAtoom() {
+    indexHuidigAtoom = Math.floor(Math.random() * atomen.length);
+    document.getElementById("txtNaam").value = atomen[indexHuidigAtoom].naam;
+    document.getElementById("txtSymbool").value = "";
+    document.getElementById("txtSymbool").focus();
+}
 
-        function convert() {
-            document.getElementById("btnControle").hidden = false;
-            document.getElementById("btnStart").hidden = true;
-            toonElem();
-            document.getElementById("afkortingVeld").focus();
-            var div = document.getElementById("txtScore");
-            var pars = div.getElementsByTagName("p");
-            for (var i = pars.length - 1; i >= 0; i--) {
-                div.removeChild(pars[i])
-            }
-        }
+function verwerkAntwoord() {
+    aantal++;
+    if (document.getElementById("txtSymbool").value == atomen[indexHuidigAtoom].symbool) {
+        verwerkJuistAntwoord();
+    }
+    else {
+        verwerkFoutAntwoord();
+    }
+    if (aantal == AANTALVRAGEN) {
+        verwerkEindeQuiz();
+    }
+    else {
+        document.getElementById("divScore").innerText =
+            `Uw tijd: ${verstrekenTijd(startTijd, Date.now())}`;
+        toonVolgendAtoom();
+    }
+}
 
-        function setScore() {
-            document.getElementById("btnControle").hidden = true;
-            document.getElementById("btnStart").hidden = false;            
-            var doc = document;
-            var txtScore = document.getElementById("txtScore");
-            var pEl = doc.createElement("p");
-            pEl.appendChild(doc.createTextNode("Aantal juiste is "+teller));
-            txtScore.appendChild(pEl);
-            frm.elemVeld.value = "";
-            teller = 0;
-            keer = 0;
-            top3();
-        }
-        function top3(){
-            prompt("Geef je naam in");
-        }
+function verwerkJuistAntwoord() {
+    score++;
+    document.getElementById("divFeedback").innerText = "Juist."
+}
 
-        function wilElem(msg) {
-            var doc = loadXMLDoc("allelements.xml");
-            var namenElts = doc.querySelectorAll("NAME");
-            for (var i = 0; i < namenElts.length; i++) {
-                namen[i] = namenElts[i].textContent;
-            }
-            var msg = namen[Math.floor(Math.random() * namenElts.length)];
-            return msg;
-            // ter controle:
-            toonNode(doc);
-        }
+function verwerkFoutAntwoord() {
+    document.getElementById("divFeedback").innerText = `Dit is fout. Het symbool van ${atomen[indexHuidigAtoom].naam} is ${atomen[indexHuidigAtoom].symbool}.`;
+}
 
-        function init() {
-            var btnControle = document.getElementById("btnControle");
-            btnControle.addEventListener("click", controle);
-            document.getElementById("btnControle").hidden = true;
-            document.getElementById("btnStart").onclick = convert;
-        }
-        window.onload = init;
+function verwerkEindeQuiz() {
+    var eindTijd = Date.now();
+    verstrekenTijd(startTijd, eindTijd);
+    document.getElementById("btnOK").hidden = true;
+    document.getElementById("btnStart").hidden = false;
+    document.getElementById("divScore").innerText =
+        `Uw score: ${score}/${aantal}\nUw tijd: ${verstrekenTijd(startTijd, eindTijd)}`;
+    voegToeAanTop3(new Score(prompt("Uw naam: "), score, aantal, eindTijd - startTijd));
+}
+
+function verstrekenTijd(startTijd, eindTijd) {
+    var verstrekenMilliSec = eindTijd - startTijd;
+    var verstrekenSec = Math.floor(verstrekenMilliSec / 1000);
+    verstrekenMilliSec -= verstrekenSec * 1000;
+    return `${verstrekenSec} sec ${verstrekenMilliSec} msec`;
+}
+
+function voegToeAanTop3(kandidaatScore) {
+    top3.push(kandidaatScore);
+    top3.sort(function (score1, score2) {
+        if (score1.score > score2.score) return -1;
+        if (score1.score < score2.score) return 1;
+        if (score1.tijd < score2.tijd) return -1;
+        if (score1.tijd > score2.tijd) return 1;
+        return score1.datum - score2.datum;
+    });
+    if (top3.length > 3) {
+        top3.length = 3;
+    }
+    localStorage["top3"] = JSON.stringify(top3);
+}
+
+function Atoom(naam, symbool) {
+    this.naam = naam;
+    this.symbool = symbool;
+}
+
+function Score(naam, score, aantal, tijd) {
+    this.naam = naam;
+    this.score = score;
+    this.aantal = aantal;
+    this.datum = new Date();
+    this.tijd = tijd;   // tijd in millisec
+}
 
 
     </script>
 </head>
 
 <body>
-    <form name="frm">
+    <!-- <form name="frm">
         Chemisch element :
         <input type="text" name="elemVeld" id="elemVeld" disabled/> Afkorting :
         <input type="text" name="afkortingVeld" id="afkortingVeld" />
-        <!-- <input type="button" value="Controle" onclick="controle()" /> -->
         <input type="button" id="btnStart" value="Start" />
         <input type="button" value="Controle" id="btnControle" />
     </form>
-    <div id="txtScore"></div>
+    <div id="txtScore"></div> -->
+    <form>
+        <div>
+        <label for="txtNaam">Naam: </label><input type="text" id="txtNaam" disabled />
+        </div>
+        <div>
+        <label for="txtSymbool">Symbool: </label><input type="text" id="txtSymbool" />
+        </div>
+        <div>
+        <input type="button" id="btnOK" value="OK" />
+        <input type="button" id="btnStart" value="Start" />
+        </div>
+    </form>
+    <div id="divFeedback"></div>
+    <div id="divScore"></div>
 </body>
 
 </html>

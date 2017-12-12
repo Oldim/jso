@@ -11,6 +11,19 @@ var names = [
 function findHints(q) {
     var hint = "";
     // TODO: return string with all names starting with q.  Separate different names by a comma.
+
+    // var request = new XMLHttpRequest();
+    // request.onreadystatechange = function(){
+	// 	if(this.readyState == 4  && this.status == 200){
+	// 		return 
+	// 	}
+    // }
+        //   for (var i = 0; i < names.length; i++) {            
+                   
+        //             names.toString();
+        //     }
+            names.toString();
+
     if (hint == ""){
         return "No suggestion found.";
     }
