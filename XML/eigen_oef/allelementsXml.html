@@ -13,6 +13,9 @@
         var doc = loadXMLDoc("allelements.xml");
         var namen = [];
         var symbolElts = doc.querySelectorAll("SYMBOL");
+        var teller = 0;
+        var TOTAAlVRAGEN = 2;
+        var keer = 0;
 
         function toonNode(node) {
             var serializer = new XMLSerializer();
@@ -27,17 +30,8 @@
 
             for (var i = 0; i < namen.length; i++) {
                 frm.elemVeld.value = elem;
-                //frm.afkortingVeld.value = symbol;
             }
             return elem;
-
-            //  for (var i = 0; i < namen.length; i++) {
-
-            //     if (frm.elemVeld.value == namen[i]) {
-            //         frm.afkortingVeld.value = symbol[i];
-            //     }
-
-            // }
         }
 
         function symbolElem() {
@@ -47,67 +41,82 @@
             var symbolElem;
             for (var i = 0; i < symbolElts.length; i++) {
                 symbol[i] = symbolElts[i].textContent;
-                //symbolElem= symbol[i];
             }
             for (var i = 0; i < namen.length; i++) {
-
                 if (frm.elemVeld.value == namen[i]) {
-                    //frm.afkortingVeld.value = symbol[i];
                     symbolElem = symbol[i];
                 }
-
             }
             return symbolElem;
             // ter controle:
             toonNode(doc);
         }
         function controle() {
-            // var btn=document.getElementById("btnControle");
-            // btn.value= 'Controle';
-           
-           
             var symbol = symbolElem();
-            var teller = "";
             if (frm.afkortingVeld.value == symbol) {
-                teller ++;
-            } else {
-                setScore();
-            }
-             toonElem();
-            symbolElem();
-            console.log(teller);
-        }
-        function setScore() {
+                teller += 1;
+                keer += 1;
 
+            } else {
+                keer += 1;
+            }
+            frm.afkortingVeld.value = "";
+            document.getElementById("afkortingVeld").focus();
+            if (keer == TOTAAlVRAGEN) {
+                setScore();
+
+            } else {
+                toonElem();
+            }
+            symbolElem();
+        }
+
+        function convert() {
+            document.getElementById("btnControle").hidden = false;
+            document.getElementById("btnStart").hidden = true;
+            toonElem();
+            document.getElementById("afkortingVeld").focus();
+            var div = document.getElementById("txtScore");
+            var pars = div.getElementsByTagName("p");
+            for (var i = pars.length - 1; i >= 0; i--) {
+                div.removeChild(pars[i])
+            }
+        }
+
+        function setScore() {
+            document.getElementById("btnControle").hidden = true;
+            document.getElementById("btnStart").hidden = false;            
             var doc = document;
-            var txtScore= document.getElementById("txtScore");
+            var txtScore = document.getElementById("txtScore");
             var pEl = doc.createElement("p");
-            pEl.appendChild(doc.createTextNode("Dit is fout."));
+            pEl.appendChild(doc.createTextNode("Aantal juiste is "+teller));
             txtScore.appendChild(pEl);
-            
+            frm.elemVeld.value = "";
+            teller = 0;
+            keer = 0;
+            top3();
+        }
+        function top3(){
+            prompt("Geef je naam in");
         }
 
         function wilElem(msg) {
             var doc = loadXMLDoc("allelements.xml");
             var namenElts = doc.querySelectorAll("NAME");
-
             for (var i = 0; i < namenElts.length; i++) {
                 namen[i] = namenElts[i].textContent;
             }
-            var msg = namen[Math.floor(Math.random() * 10)];
-
+            var msg = namen[Math.floor(Math.random() * namenElts.length)];
             return msg;
             // ter controle:
             toonNode(doc);
         }
 
         function init() {
-            
             var btnControle = document.getElementById("btnControle");
             btnControle.addEventListener("click", controle);
-
-            // var btnAntw = document.getElementById("btnAntw");
-            // btnAntw.addEventListener("click", toonAntw);
+            document.getElementById("btnControle").hidden = true;
+            document.getElementById("btnStart").onclick = convert;
         }
         window.onload = init;
 
@@ -121,7 +130,8 @@
         <input type="text" name="elemVeld" id="elemVeld" /> Afkorting :
         <input type="text" name="afkortingVeld" id="afkortingVeld" />
         <!-- <input type="button" value="Controle" onclick="controle()" /> -->
-        <input type="button" value="Start" id="btnControle" />
+        <input type="button" id="btnStart" value="Start" />
+        <input type="button" value="Controle" id="btnControle" />
     </form>
     <div id="txtScore"></div>
 </body>
