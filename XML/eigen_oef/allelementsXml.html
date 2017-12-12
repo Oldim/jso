@@ -11,7 +11,8 @@
 
         'use strict';
         var doc = loadXMLDoc("allelements.xml");
-        var namen = doc.querySelectorAll("NAME");
+        var namen = [];
+        var symbolElts = doc.querySelectorAll("SYMBOL");
 
         function toonNode(node) {
             var serializer = new XMLSerializer();
@@ -20,34 +21,90 @@
         }
 
         function toonElem() {
-            var msg = wilElem(msg);
+            var doc = loadXMLDoc("allelements.xml");
+            var namen = doc.querySelectorAll("NAME");
+            var elem = wilElem();
+
             for (var i = 0; i < namen.length; i++) {
-                frm.elemVeld.value = msg;
+                frm.elemVeld.value = elem;
+                //frm.afkortingVeld.value = symbol;
             }
-            return msg;
+            return elem;
+
+            //  for (var i = 0; i < namen.length; i++) {
+
+            //     if (frm.elemVeld.value == namen[i]) {
+            //         frm.afkortingVeld.value = symbol[i];
+            //     }
+
+            // }
         }
 
-        function controle() {
-            for (var i = 0; i < namen.length; i++) {
-                namen[i].textContent = 1.05 * namen[i].textContent;
+        function symbolElem() {
+            var doc = loadXMLDoc("allelements.xml");
+            var symbolElts = doc.querySelectorAll("SYMBOL");
+            var symbol = [];
+            var symbolElem;
+            for (var i = 0; i < symbolElts.length; i++) {
+                symbol[i] = symbolElts[i].textContent;
+                //symbolElem= symbol[i];
             }
-            var msg = namen[Math.floor(Math.random() * 10)];
-            return msg;
+            for (var i = 0; i < namen.length; i++) {
+
+                if (frm.elemVeld.value == namen[i]) {
+                    //frm.afkortingVeld.value = symbol[i];
+                    symbolElem = symbol[i];
+                }
+
+            }
+            return symbolElem;
             // ter controle:
             toonNode(doc);
         }
+        function controle() {
+            // var btn=document.getElementById("btnControle");
+            // btn.value= 'Controle';
+           
+           
+            var symbol = symbolElem();
+            var teller = "";
+            if (frm.afkortingVeld.value == symbol) {
+                teller ++;
+            } else {
+                setScore();
+            }
+             toonElem();
+            symbolElem();
+            console.log(teller);
+        }
+        function setScore() {
+
+            var doc = document;
+            var txtScore= document.getElementById("txtScore");
+            var pEl = doc.createElement("p");
+            pEl.appendChild(doc.createTextNode("Dit is fout."));
+            txtScore.appendChild(pEl);
+            
+        }
 
         function wilElem(msg) {
+            var doc = loadXMLDoc("allelements.xml");
+            var namenElts = doc.querySelectorAll("NAME");
+
+            for (var i = 0; i < namenElts.length; i++) {
+                namen[i] = namenElts[i].textContent;
+            }
             var msg = namen[Math.floor(Math.random() * 10)];
+
             return msg;
             // ter controle:
             toonNode(doc);
         }
 
         function init() {
-            toonVraag();
+            
             var btnControle = document.getElementById("btnControle");
-            btnControle.addEventListener("click", toonElem);
+            btnControle.addEventListener("click", controle);
 
             // var btnAntw = document.getElementById("btnAntw");
             // btnAntw.addEventListener("click", toonAntw);
@@ -61,13 +118,12 @@
 <body>
     <form name="frm">
         Chemisch element :
-        <input type="text" name="elemVeld" id="elemVeld" />
-         Afkorting :
-        <input type="text" name="afkortingVeld" id="afkortingVeld"/>
+        <input type="text" name="elemVeld" id="elemVeld" /> Afkorting :
+        <input type="text" name="afkortingVeld" id="afkortingVeld" />
         <!-- <input type="button" value="Controle" onclick="controle()" /> -->
-        <input type="button" value="Controle" id="btnControle" />
-
+        <input type="button" value="Start" id="btnControle" />
     </form>
+    <div id="txtScore"></div>
 </body>
 
 </html>
