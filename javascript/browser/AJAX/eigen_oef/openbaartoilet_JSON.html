@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>JSON ophalen (3)</title>
+    <style>
+        tr:nth-child(even) { background: #CCC;}
+        tr:nth-child(odd) { background: #FFF; }
+    </style>
+    <script>
+        window.onload=function(){
+            document.getElementById("loadmessage").style.display ="none";
+        }
+        function getGeg() {
+            //var url = "sales.json";  
+            var url = "http://datasets.antwerpen.be/v4/gis/openbaartoilet.json";
+            var request = new XMLHttpRequest();
+            request.onreadystatechange = function () {
+                if(this.readyState!=4){
+                    document.getElementById("loadmessage").style.display ="block";
+                }
+                if (this.readyState == 4 && this.status == 200) {                   
+                    var record = (JSON.parse(request.responseText)).data;
+                    //var record = recordData.data;
+                    displayGeg(record);
+                    console.log(record)
+                }
+            }
+            request.open("GET", url);
+            request.send();
+        }
+
+        function displayGeg(record) {
+            var tabel = document.getElementById("recordTabel");
+            var tr = document.getElementsByTagName("tr");
+
+            while (tr.length > 1) {
+                tabel.children[0].removeChild(tr[1]);
+            }
+            for (var i = 0; i < record.length; i++) {
+                var omschrijving = record[i].omschrijving;
+                var straat = record[i].straat;
+                var huisnummer = record[i].huisnummer;
+                var postcode = record[i].postcode;
+                var district = record[i].district;
+                var nieuweRij = tabel.insertRow(i + 1);
+                var celOmschrijving = nieuweRij.insertCell(0);
+                celOmschrijving.innerHTML = omschrijving;
+                nieuweRij.insertCell(1).innerHTML = straat;
+                nieuweRij.insertCell(2).innerHTML = huisnummer;
+                nieuweRij.insertCell(3).innerHTML = postcode;
+                nieuweRij.insertCell(4).innerHTML = district;
+            }
+
+        }
+
+
+    </script>
+</head>
+
+<body>
+    <input type="button" value="Haal JSON op" onclick="getGeg()" />
+    <table id="recordTabel" border="1">
+        <thead>
+            <tr>
+                <th>omschrijving</th>
+                <th>straat</th>
+                <th>huisnummer</th>
+                <th>postcode</th>
+                <th>district</th>
+            </tr>
+            
+        </thead>
+    </table>
+    <div id="loadmessage">even geduld...</div>
+</body>
+
+</html>
