@@ -29,13 +29,14 @@
                 xmlHttp.open("GET", "ploeg.xml");
                 xmlHttp.onreadystatechange = function () {
                     if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+                        document.getElementById("result").innerHTML = ""; // om als je op knop drukt, komt text 1 keer voor en niet meerdere
                         var xmlDoc = xmlHttp.responseXML;
                         var spelers = xmlDoc.getElementsByTagName("speler");
                         var result = "<h1>Overzicht spelers</h1>";
                             var div =document.getElementById("result")
                             var ul = document.createElement("ul");
                             
-                            var h = document.createElement("h1");
+                            var h = document.createElement('h1');
                             h.innerHTML="Overzicht spelers";
                             div.appendChild(h);
                             div.appendChild(ul);
