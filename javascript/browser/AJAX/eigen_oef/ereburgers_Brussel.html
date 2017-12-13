@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Lijst met ereburgers van Brussel</title>
+    <style>
+        tr:nth-child(even) {
+            background: #CCC;
+        }
+
+        tr:nth-child(odd) {
+            background: #FFF;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            document.getElementById("loadmessage").style.display = "none";
+        }
+
+
+        function getGeg() {
+            var url = "http://opendata.brussel.be/api/records/1.0/search/?dataset=ereburgers1"; 
+            fetch(url).then(function (response) {
+                return response.json();
+            }).then(function (responseAsJSON) {
+                var domParser = new DOMParser();
+                var doc = domParser.parseFromString(responseAsJSON, "text/xml");
+                var data = responseAsJSON.records;
+                displayGeg(data);
+                console.log(data)
+            });
+        }
+
+        function displayGeg(data) {
+            var tabel = document.getElementById("recordTabel");
+            var tr = document.getElementsByTagName("tr");
+
+            while (tr.length > 1) {
+                tabel.children[0].removeChild(tr[1]);
+            }
+            for (var i = 0; i < data.length; i++) {
+                var nom = data[i].nom;
+                var functie = data[i].functie;
+                var nieuweRij = tabel.insertRow(i + 1);
+                nieuweRij.insertCell(0).innerHTML = nom;
+                nieuweRij.insertCell(1).innerHTML = functie;
+            }
+
+        }
+
+
+
+
+
+
+    </script>
+</head>
+
+<body>
+    <input type="button" value="Haal JSON op" onclick="getGeg()" />
+    <table id="recordTabel" border="1">
+        <thead>
+            <tr>
+                <th>omschrijving</th>
+                <th>straat</th>
+                <th>huisnummer</th>
+                <th>postcode</th>
+                <th>district</th>
+            </tr>
+
+        </thead>
+    </table>
+    <div id="loadmessage">even geduld...</div>
+</body>
+
+</html>
