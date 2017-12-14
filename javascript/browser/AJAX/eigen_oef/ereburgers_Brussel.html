@@ -13,21 +13,33 @@
         }
     </style>
     <script>
+
         window.onload = function () {
             document.getElementById("loadmessage").style.display = "none";
         }
 
-
         function getGeg() {
-            var url = "http://opendata.brussel.be/api/records/1.0/search/?dataset=ereburgers1"; 
+            var aantalRow = frm.aantalRowVeld.value;
+            var url = "http://opendata.brussel.be/api/records/1.0/search/?dataset=ereburgers1";
             fetch(url).then(function (response) {
                 return response.json();
             }).then(function (responseAsJSON) {
                 var domParser = new DOMParser();
                 var doc = domParser.parseFromString(responseAsJSON, "text/xml");
                 var data = responseAsJSON.records;
-                displayGeg(data);
-                console.log(data)
+                var maxRow = responseAsJSON.nhits;
+                if (aantalRow != "" && aantalRow > maxRow) {
+                    alert("U hebt te veel aantal rijen ingevuld, max.: " + maxRow);
+                }
+                else {
+                    if (aantalRow == "") {
+                        displayGeg(data);
+                        console.log(data);
+                    }
+                    else {
+                        showAantalRow(aantalRow);
+                    }
+                }
             });
         }
 
@@ -39,15 +51,47 @@
                 tabel.children[0].removeChild(tr[1]);
             }
             for (var i = 0; i < data.length; i++) {
-                var nom = data[i].nom;
-                var functie = data[i].functie;
+                var nom = data[i].fields.nom;
+                var functie = data[i].fields.functie;
+                var datum = data[i].fields.date;
+                var datumOpt = { year: 'numeric', month: 'long', day: 'numeric' };
+
                 var nieuweRij = tabel.insertRow(i + 1);
                 nieuweRij.insertCell(0).innerHTML = nom;
                 nieuweRij.insertCell(1).innerHTML = functie;
+                nieuweRij.insertCell(2).innerHTML = new Date(datum).toLocaleDateString(datumOpt);
             }
 
         }
 
+
+        function zoekGeg(str) {
+            frm.aantalRowVeld.value = ""
+            var url = "http://opendata.brussel.be/api/records/1.0/search/?dataset=ereburgers1&q=" + str;
+            fetch(url).then(function (response) {
+                return response.json();
+            }).then(function (responseAsJSON) {
+                var domParser = new DOMParser();
+                var doc = domParser.parseFromString(responseAsJSON, "text/xml");
+                var data = responseAsJSON.records;
+                displayGeg(data);
+                console.log(url);
+            });
+        }
+
+
+        function showAantalRow(aantalRow) {
+            var url = "https://opendata.brussel.be/api/records/1.0/search/?dataset=ereburgers1&rows=" + aantalRow;
+            fetch(url).then(function (response) {
+                return response.json();
+            }).then(function (responseAsJSON) {
+                var domParser = new DOMParser();
+                var doc = domParser.parseFromString(responseAsJSON, "text/xml");
+                var data = responseAsJSON.records;
+                displayGeg(data);
+                console.log(data);
+            });
+        }
 
 
 
@@ -57,15 +101,26 @@
 </head>
 
 <body>
-    <input type="button" value="Haal JSON op" onclick="getGeg()" />
+    <form name="frm">
+        <div>
+            <input type="text" id="zoekVeld" name="zoekVeld" placeholder="Zoeken in volledige tekst" />
+            <input type="button" value="Zoek" id="btnZoek" onclick="zoekGeg(frm.zoekVeld.value)" />
+        </div>
+        <div>
+            <input type="number" id="aantalRowVeld" name="aantalRowVeld" min="0" placeholder="Aantal rijen in het resultaat" />
+            <input type="button" value="Haal JSON op" onclick="getGeg()" />
+        </div>
+
+
+
+    </form>
+
     <table id="recordTabel" border="1">
         <thead>
             <tr>
-                <th>omschrijving</th>
-                <th>straat</th>
-                <th>huisnummer</th>
-                <th>postcode</th>
-                <th>district</th>
+                <th>naam</th>
+                <th>functie</th>
+                <th>datum</th>
             </tr>
 
         </thead>

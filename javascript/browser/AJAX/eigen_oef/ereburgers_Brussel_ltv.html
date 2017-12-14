@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Lijst met ereburgers van Brussel</title>
+    <style>
+        h1{
+            color: red;
+            text-decoration: underline;
+        }
+        tr:nth-child(even) {
+            background: #CCC;
+        }
+
+        tr:nth-child(odd) {
+            background: #FFF;
+        }
+    </style>
+    <script>
+
+        window.onload = function () {
+            document.getElementById("loadmessage").style.display = "none";
+        }
+        function getGeg() {
+            var aantalRow = frm.aantalRowVeld.value;
+            var zoekTerm = frm.zoekVeld.value;
+            var url = "http://opendata.brussel.be/api/records/1.0/search/?dataset=ereburgers1";
+            fetch(url).then(function (response) {
+                return response.json();
+            }).then(function (responseAsJSON) {
+                var domParser = new DOMParser();
+                var doc = domParser.parseFromString(responseAsJSON, "text/xml");
+                var data = responseAsJSON.records;
+                var maxRow = responseAsJSON.nhits;
+                var aantal = (maxRow / aantalRow).toFixed(0);
+                if (zoekTerm == "") {
+                    if (aantalRow != "" && aantalRow > maxRow) {
+                        alert("U hebt te veel aantal rijen ingevuld, max.: " + maxRow);
+                    } else {
+                        if (aantalRow == "") {
+                            displayGeg(data);
+                            console.log(data);
+                        } else {
+                            showAantalRow(aantalRow, aantal);
+                        }
+                    }
+                } else {
+                    zoekGeg(frm.zoekVeld.value);
+                }
+            });
+        }
+        function displayGeg(data, aantal) {
+            var tabel = document.getElementById("recordTabel");
+            var tr = document.getElementsByTagName("tr");
+            var aantalRow = frm.aantalRowVeld.value;
+            var aantalPage = document.getElementById("aantalPage");
+            var a;
+            while (tr.length > 1) {
+                tabel.children[0].removeChild(tr[1]);
+            }
+            for (var i = 0; i < data.length; i++) {
+                var nom = data[i].fields.nom;
+                var functie = data[i].fields.functie;
+                var datum = data[i].fields.date;
+                var datumOpt = { year: 'numeric', month: 'long', day: 'numeric' };
+
+                var nieuweRij = tabel.insertRow(i + 1);
+                nieuweRij.insertCell(0).innerHTML = nom;
+                nieuweRij.insertCell(1).innerHTML = functie;
+                nieuweRij.insertCell(2).innerHTML = new Date(datum).toLocaleDateString(datumOpt);
+            }
+
+            // aantalPage.removeChild(a);
+            var aHref = document.getElementsByTagName("a");
+            var lengte = aHref.length;
+            for (var i = 0; i < lengte; i++) {
+                aantalPage.removeChild(aHref[0]);
+            }
+            for (var i = 0; i < aantal; i++) {
+                a = document.createElement("a");
+                a.setAttribute("href", "");
+                a.innerText = i + 1 + " ";
+                aantalPage.appendChild(a);
+            }
+            var as = document.querySelectorAll("#aantalPage > a");
+            for (var i = 0; i < as.length; i++) {
+                as[i].addEventListener("click", function (event) {
+                    startVanaf();
+                    event.preventDefault();
+                }, false);
+            }
+        }
+
+        function startVanaf(e) {
+            e = e || window.event;
+            // var juisteP = parseInt(e.target.innerText);
+            //  juisteP+=1;
+            // var url = "https://opendata.brussel.be/api/records/1.0/search/?dataset=ereburgers1&start=" + juisteP;
+
+            var aantalRow = frm.aantalRowVeld.value;
+            var zoekTerm = frm.zoekVeld.value;
+
+            var url = "https://opendata.brussel.be/api/records/1.0/search/?dataset=ereburgers1&start=" + ((e.target.innerText) - 1) * aantalRow + "&rows=" + aantalRow;
+
+            fetch(url).then(function (response) {
+                return response.json();
+            }).then(function (responseAsJSON) {
+                var domParser = new DOMParser();
+                var doc = domParser.parseFromString(responseAsJSON, "text/xml");
+                var data = responseAsJSON.records;
+                var maxRow = responseAsJSON.nhits;
+                var aantal = (maxRow / aantalRow).toFixed(0);
+
+                displayGeg(data, aantal);
+                // console.log(e.target.innerText)
+            });
+        }
+
+
+        function zoekGeg(str) {
+            var url = "http://opendata.brussel.be/api/records/1.0/search/?dataset=ereburgers1&q=" + str;
+            var aantalRow = frm.aantalRowVeld.value;
+            fetch(url).then(function (response) {
+                return response.json();
+            }).then(function (responseAsJSON) {
+                var domParser = new DOMParser();
+                var doc = domParser.parseFromString(responseAsJSON, "text/xml");
+                var data = responseAsJSON.records;
+                var maxRow = responseAsJSON.nhits;
+                var aantal = (maxRow / aantalRow).toFixed(0);
+                if (aantalRow != "" && aantalRow > maxRow) {
+                    alert("U hebt te veel aantal rijen ingevuld, max.: " + maxRow);
+                } else {
+                    if (aantalRow == "") {
+                        displayGeg(data);
+                        console.log(data);
+                    } else {
+                        showAantalRow(aantalRow, aantal);
+                    }
+                    showAll(str, aantalRow, aantal);
+                }
+                //displayGeg(data);
+                console.log(url);
+            });
+        }
+
+
+        function showAantalRow(aantalRow, aantal) {
+            var url = "https://opendata.brussel.be/api/records/1.0/search/?dataset=ereburgers1&rows=" + aantalRow;
+            fetch(url).then(function (response) {
+                return response.json();
+            }).then(function (responseAsJSON) {
+                var domParser = new DOMParser();
+                var doc = domParser.parseFromString(responseAsJSON, "text/xml");
+                var data = responseAsJSON.records;
+                displayGeg(data, aantal);
+                console.log(data);
+            });
+        }
+
+        function showAll(str, aantalRow, aantal) {
+            var url = "https://opendata.brussel.be/api/records/1.0/search/?dataset=ereburgers1&q=" + str + "&rows=" + aantalRow;
+            fetch(url).then(function (response) {
+                return response.json();
+            }).then(function (responseAsJSON) {
+                var domParser = new DOMParser();
+                var doc = domParser.parseFromString(responseAsJSON, "text/xml");
+                var data = responseAsJSON.records;
+                displayGeg(data);
+                console.log(data);
+            });
+        }
+
+
+
+
+
+    </script>
+</head>
+
+<body>
+
+<h1>Ereburgers van Brussel</h1>
+
+
+    <form name="frm">
+        <div>
+            <input type="text" id="zoekVeld" name="zoekVeld" placeholder="Zoeken in volledige tekst" />
+            <!-- <input type="button" value="Zoek" id="btnZoek" onclick="zoekGeg(frm.zoekVeld.value)" /> -->
+        </div>
+        <div>
+            <input type="number" id="aantalRowVeld" name="aantalRowVeld" min="1" placeholder="Aantal rijen in het resultaat" />
+            <input type="button" value="Zoek" onclick="getGeg()" />
+        </div>
+
+
+
+    </form>
+
+    <table id="recordTabel" border="1">
+        <thead>
+            <tr>
+                <th>naam</th>
+                <th>functie</th>
+                <th>datum</th>
+            </tr>
+
+        </thead>
+    </table>
+    <div id="loadmessage">even geduld...</div>
+    <div id="aantalPage">
+
+    </div>
+</body>
+
+</html>
