@@ -26,8 +26,8 @@
                         .append($('<td>').append($('<input type="button" value="verwijderen" >')))
                     );
                 // list.push(naam, prijs);
-                $("td[prijsTD]").each(function (i) {
-                     totaal += prijs;
+                $("td[class='prijsTD']").each(function (i) {
+                     totaal +=parseFloat(prijs);
                 });
                 // list.push(prijs);
                 prijs= parseInt(prijs);
