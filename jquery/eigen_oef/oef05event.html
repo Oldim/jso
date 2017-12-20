@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="http://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+    <script>
+        var list = new Array();
+        $(function () {
+            $(':button', '#frm').click(function (evt) {
+                var naam = $('#naam').val();
+                var prijs = $('#prijs').val();
+                var totaal;
+                // $('#tabelPr').append($('<tr>'));
+                // $('tr').append($('<td>'));
+                // // $('tr').append($('<td>'));
+                // $('td:first').text(naam);
+                // $('td:last').text(prijs);
+                $('#tabelPr')
+                    .append($('<tr>')
+                        .append($('<td>').append(naam))
+                        .append($('<td>').append(prijs).addClass("prijsTD"))
+                        .append($('<td>').append($('<input type="button" value="verwijderen" >')))
+                    );
+                // list.push(naam, prijs);
+                $("td[prijsTD]").each(function (i) {
+                     totaal += prijs;
+                });
+                // list.push(prijs);
+                prijs= parseInt(prijs);
+                // $.each(list,function(i, val){
+                //     totaal+=list[i];
+                // });
+                totaal += prijs;
+                console.log(totaal);
+                 $('table').after('<div>').text("Totaal: " +totaal);
+                
+                $(':button', '#tabelPr').click(function (evt) {
+                        $(this).closest('tr').remove();
+                    });
+
+            });
+
+
+
+        });
+
+
+
+
+    </script>
+</head>
+
+<body>
+    <form id="frm">
+        <label for="naam">Naam</label>
+        <input type="text" name="naam" id="naam" />
+        <label for="prijs">Prijs:</label>
+        <input type="number" name="prijs" id="prijs" />
+        <input type="button" value="Toevoegen" />
+    </form>
+    <table id="tabelPr">
+        <!-- <tr>
+            <th>Pr. Naam</th>
+            <th>Pr. Prijs</th>
+            <th></th>
+        </tr> -->
+
+
+    </table>
+</body>
+
+</html>
