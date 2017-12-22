@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <style>
+    div>img{
+        max-width: 150px;
+        height: auto;
+        position: relative;
+    }
+    </style>
+    <script>
+    $(function(){
+         $("#divAppel").click(function(){
+             $('img').animate({opacity:'0.8'},1500,function(){
+                $(this).attr("src","img/apple-bite.jpg"); 
+             });            
+              $('img').animate({opacity:'1',top:'600'},2000,'easeOutBounce', function(){
+                  $(this).attr("src","img/apple_bite_2.png");
+              });
+         });       
+
+        });
+    </script>
+</head>
+<body>
+
+    <div id="divAppel">
+        <img src="img/man.png" alt="">
+    </div>
+    
+</body>
+</html>
