@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Lijst met museum van Antw. en Brussel</title>
+    <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    <style>
+        #mapAntw,
+        #mapBrussel {
+            margin: 5px;
+            width: 400px;
+            height: 400px;
+            border: 1px solid black;
+            display: inline-block;
+            text-align: center;
+        }
+
+        th,
+        td {
+            padding: 10px;
+        }
+
+        th {
+            cursor: pointer;
+        }
+
+        th:hover {
+            background-color: #999;
+        }
+
+        tr:hover {
+            background-color: #999;
+            cursor: pointer;
+        }
+
+        tr:first-child {
+            background: #fff;
+        }
+
+        .chooseColor {
+            background-color: #999;
+        }
+    </style>
+    <script>
+
+        window.onload = function () {
+            document.getElementById("loadmessage").style.display = "none";
+            getGegAntw();
+            getGegBrussel();
+        }
+        function getGegAntw() {
+            var url = "http://datasets.antwerpen.be/v4/gis/museumoverzicht.xml";
+            fetch(url).then(function (response) {
+                return response.text();
+            }).then(function (responseText) {
+                var domParser = new DOMParser();
+                var doc = domParser.parseFromString(responseText, "text/xml");
+                var data = doc.getElementsByTagName("record");
+                var maxRow = doc.getElementsByTagName("paging");
+                var stad = "Antwerpen"
+                displayGeg(data, stad);
+                displayMapAntw(data, stad);
+            });
+        }
+        function getGegBrussel() {
+            var url = "https://opendata.brussel.be/api/records/1.0/search/?dataset=musea-in-brussel&rows=145";
+            fetch(url).then(function (response) {
+                return response.json();
+            }).then(function (responseAsJSON) {
+                var domParser = new DOMParser();
+                var doc = domParser.parseFromString(responseAsJSON, "text/xml");
+                var maxRow = responseAsJSON.nhits;
+                var data = responseAsJSON.records;
+                var stad = "Brussel"
+                displayGeg(data, stad);
+                displayMapBrussel(data, stad);
+            });
+        }
+        function displayGeg(data, stad) {
+            var tabel = document.getElementById("recordTabel");
+            var tr = document.getElementsByTagName("tr");
+            // var aantalRow = frm.aantalRowVeld.value;
+            // var aantalPage = document.getElementById("aantalPage");
+            // var a;
+            // while (tr.length > 1) {
+            //     tabel.children[0].removeChild(tr[1]);
+            // }
+            if (stad == "Antwerpen") {
+                for (var i = 0; i < data.length; i++) {
+                    var stad = stad;
+                    var naamNodes = data[i].getElementsByTagName("naam")[0];
+                    var straatNodes = data[i].getElementsByTagName("straat")[0];
+                    var huisnummerNodes = data[i].getElementsByTagName("huisnummer")[0];
+                    var naam = naamNodes.firstChild.nodeValue;
+                    var straat = straatNodes.firstChild.nodeValue;
+                    var huisnummer = huisnummerNodes.firstChild.nodeValue;
+                    var nieuweRij = tabel.insertRow(i + 1);
+                    nieuweRij.insertCell(0).innerHTML = stad;
+                    nieuweRij.insertCell(1).innerHTML = naam;
+                    nieuweRij.insertCell(2).innerHTML = straat + " " + huisnummer;
+                    // var test = tabel.getElementsByTagName("tr")[1]
+                    // console.log(test)
+                }
+                var huidigeTrAntw = tabel.getElementsByTagName("tr")[1];
+                huidigeTrAntw.className = "chooseColor";
+            } else {
+                for (var i = 0; i < data.length; i++) {
+                    var stad = stad;
+                    var naam = data[i].fields.naam_van_het_museum;
+                    var adres = data[i].fields.adres;
+
+                    var nieuweRij = tabel.insertRow(i + 1);
+                    nieuweRij.insertCell(0).innerHTML = stad;
+                    nieuweRij.insertCell(1).innerHTML = naam;
+                    nieuweRij.insertCell(2).innerHTML = adres;
+                }
+                var huidigeTrBrussel = tabel.getElementsByTagName("tr")[1];
+                huidigeTrBrussel.className = "chooseColor";
+            }
+
+
+            // aantalPage.removeChild(a);
+            // var aHref = document.getElementsByTagName("a");
+            // var lengte = aHref.length;
+            // for (var i = 0; i < lengte; i++) {
+            //     aantalPage.removeChild(aHref[0]);
+            // }
+            // for (var i = 0; i < aantal; i++) {
+            //     a = document.createElement("a");
+            //     a.setAttribute("href", "");
+            //     a.innerText = i + 1 + " ";
+            //     aantalPage.appendChild(a);
+            // }
+            // var as = document.querySelectorAll("#aantalPage > a");
+            // for (var i = 0; i < as.length; i++) {
+            //     as[i].addEventListener("click", function (event) {
+            //         startVanaf();
+            //         event.preventDefault();
+            //     }, false);
+            // }
+        }
+        // ---------------------------------- map
+        var map = null;
+
+        function displayMapAntw(data, stad) {
+            var point_lat = data[0].getElementsByTagName("point_lat")[0];
+            var point_lng = data[0].getElementsByTagName("point_lng")[0];
+            var latitude = point_lat.firstChild.nodeValue;
+            var longitude = point_lng.firstChild.nodeValue;
+            showMap(latitude, longitude, stad);
+            for (var i = 0; i < data.length; i++) {
+                var point_lat = data[i].getElementsByTagName("point_lat")[0];
+                var point_lng = data[i].getElementsByTagName("point_lng")[0];
+                var latitude = point_lat.firstChild.nodeValue;
+                var longitude = point_lng.firstChild.nodeValue;
+
+                var naamNodes = data[i].getElementsByTagName("naam")[0];
+                var straatNodes = data[i].getElementsByTagName("straat")[0];
+                var huisnummerNodes = data[i].getElementsByTagName("huisnummer")[0];
+                var naam = naamNodes.firstChild.nodeValue;
+                var straat = straatNodes.firstChild.nodeValue;
+                var huisnummer = huisnummerNodes.firstChild.nodeValue;
+                var title = naam;
+                var content = naam + "<br/>" + straat + " " + huisnummer;
+                var googleLatAndLong = new google.maps.LatLng(latitude, longitude);
+                addMarker(map, googleLatAndLong, title, content);
+            }
+
+
+        }
+        function displayMapBrussel(data, stad) {
+            var latitude = data[0].fields.latitude_breedtegraad;
+            var longitude = data[0].fields.longitude_lengtegraad;
+            showMap(latitude, longitude, stad);
+            for (var i = 0; i < data.length; i++) {
+                latitude = data[i].fields.latitude_breedtegraad;
+                longitude = data[i].fields.longitude_lengtegraad;
+                var naam = data[i].fields.naam_van_het_museum;
+                var adres = data[i].fields.adres;
+                var title = naam;
+                var content = naam + "<br/>" + adres;
+                var googleLatAndLong = new google.maps.LatLng(latitude, longitude);
+                addMarker(map, googleLatAndLong, title, content);
+            }
+        }
+
+        function showMap(latitude, longitude, stad) {
+            if (stad == "Antwerpen") {
+                var googleLatAndLong = new google.maps.LatLng(latitude, longitude);
+                var mapOptions = {
+                    zoom: 10,
+                    center: googleLatAndLong,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                };
+                console.log(googleLatAndLong)
+                var mapDiv = document.getElementById("mapAntw");
+                map = new google.maps.Map(mapDiv, mapOptions);
+            } else {
+                var googleLatAndLong = new google.maps.LatLng(latitude, longitude);
+                var mapOptions = {
+                    zoom: 10,
+                    center: googleLatAndLong,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                };
+                var mapDiv = document.getElementById("mapBrussel");
+                map = new google.maps.Map(mapDiv, mapOptions);
+            }
+        }
+
+        function addMarker(map, latlong, title, content) {
+            var markerOptions = {
+                position: latlong,
+                map: map,
+                title: title,
+                clickable: true
+            };
+            var marker = new google.maps.Marker(markerOptions);
+
+            var infoWindowOptions = {
+                content: content,
+                position: latlong
+            };
+
+            var infoWindow = new google.maps.InfoWindow(infoWindowOptions);
+
+            google.maps.event.addListener(marker, 'click', function () {
+                infoWindow.open(map);
+            });
+        }
+        // ---------------------------------- _END_map
+
+
+        //--------- set_Center
+        function setVolgende() {
+
+
+        }
+        //-------------------------- _set_center
+        // ------------------------ soort
+        function sortTable(n) {
+            var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+            table = document.getElementById("recordTabel");
+            switching = true;
+            //Set the sorting direction to ascending:
+            dir = "asc";
+            /*Make a loop that will continue until
+            no switching has been done:*/
+            while (switching) {
+                //start by saying: no switching is done:
+                switching = false;
+                rows = table.getElementsByTagName("tr");
+                /*Loop through all table rows (except the
+                first, which contains table headers):*/
+                for (i = 1; i < (rows.length - 1); i++) {
+                    //start by saying there should be no switching:
+                    shouldSwitch = false;
+                    /*Get the two elements you want to compare,
+                    one from current row and one from the next:*/
+                    x = rows[i].getElementsByTagName("td")[n];
+                    y = rows[i + 1].getElementsByTagName("td")[n];
+                    /*check if the two rows should switch place,
+                    based on the direction, asc or desc:*/
+                    if (dir == "asc") {
+                        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                            //if so, mark as a switch and break the loop:
+                            shouldSwitch = true;
+
+                            break;
+                        }
+                    } else if (dir == "desc") {
+                        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                            //if so, mark as a switch and break the loop:
+                            shouldSwitch = true;
+                            break;
+                        }
+                    }
+
+                }
+
+                if (shouldSwitch) {
+                    /*If a switch has been marked, make the switch
+                    and mark that a switch has been done:*/
+                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                    switching = true;
+                    //Each time a switch is done, increase this count by 1:
+                    switchcount++;
+                } else {
+                    /*If no switching has been done AND the direction is "asc",
+                    set the direction to "desc" and run the while loop again.*/
+                    if (switchcount == 0 && dir == "asc") {
+                        dir = "desc";
+                        switching = true;
+                    }
+                }
+            }
+            // var huidigeTH = rows[0].getElementsByTagName("th")[n];
+            //                 var icon = "test"
+            //                 huidigeTH.innerHTML=huidigeTH.innerHTML+icon;
+        }
+        //---------------------------- _END_soort
+        function refresh() {
+            location.reload();
+        }
+    </script>
+</head>
+
+<body>
+
+    <h1>Museum van Antw. en Brussel (met map)</h1>
+
+
+    <form name="frm">
+        <div>
+
+            <input type="button" value="Refresh" id="btnRefresh" onclick="refresh()" />
+            <input type="button" value="Vorige" id="btnVorige" />
+            <input type="button" value="Volgende" id="btnVolgende" onclick="setVolgende()" />
+        </div>
+
+    </form>
+    <div id="mapAntw"></div>
+    <div id="mapBrussel"></div>
+    <table id="recordTabel" border="1">
+        <thead>
+            <tr>
+                <th onclick="sortTable(0)">Stad</th>
+                <th onclick="sortTable(1)">Naam</th>
+                <th onclick="sortTable(2)">Adres</th>
+            </tr>
+
+        </thead>
+    </table>
+    <div id="loadmessage">even geduld...</div>
+
+    </div>
+</body>
+
+</html>
