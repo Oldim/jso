@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script>
+        $(function () {
+            $('table').attr("id", "tabelNamen");
+            $('#btnget').click(function () {
+                $.ajax('http://localhost:8080/namen', {
+                    method: 'GET',
+                    dataType: 'json',
+                }).done(function (data) {
+                    $('tbody', '#tabelNamen').html('');
+                    // $('tbody', '#tabelNamen').empty('');
+                    console.log(data);
+                    console.dir(data);
+
+                    for (var i = 0; i < data.length; i++) {
+                        console.log(data[i]);
+                        let id = data[i].id;
+                        $('#tabelNamen')
+                            .append($('<tr>')
+                                .append($('<td>').append(data[i].id))
+                                .append($('<td>').append(data[i].voornaam))
+                                .append($('<td>').append(data[i].achternaam))
+                                .append($('<button>').text('Verwijderen').attr('id', 'btn' + id))
+                            );
+                        $('#btn' + id).click(function () {
+                            $.ajax('http://localhost:8080/namen?id=' + id, {
+                                method: 'DELETE',
+                                dataType: 'json'
+                            }).done(function (data) {
+                                console.log(data);
+                            }).fail(function (obj, err, msg) {
+                                console.dir(msg);
+                            });
+                            console.dir(id);
+                        });
+                        // let $rij =$('<tr>');
+                        //     $rij.html('<td>'+data[i].id+'</td><td>'+data[i].voornaam+'</td><td>'+data[i].achternaam+'</td>');
+                        //     $('#tabelNamen').append($rij);
+                    }
+
+
+                }).fail(function (obj, err, msg) {
+                    console.dir(obj);
+                    console.dir(err);
+                    console.dir(msg);
+                })
+            });
+
+            $('#btngetId').click(function () {
+                $.ajax('http://localhost:8080/namen', {
+                    method: 'GET',
+                    dataType: 'json',
+                    data: { id: 1 },
+                }).done(function (data) {
+                    console.log(data);
+                }).fail(function (obj, err, msg) {
+                    console.dir(msg);
+                });
+
+            });
+
+            $('#btnGetSelectId').click(function () {
+                var inputId = $('#inputId').val();
+                $.ajax('http://localhost:8080/namen', {
+                    method: 'GET',
+                    dataType: 'json',
+                    data: { id: inputId },
+                }).done(function (data) {
+                    console.log(data);
+                    $('tbody', '#tabelNamen').html('');
+                    $('#gegNaam').html('');
+                    $('#tabelNamen')
+                        .append($('<tr>')
+                            .append($('<td>').append(data.id))
+                            .append($('<td>').append(data.voornaam))
+                            .append($('<td>').append(data.achternaam))
+                            .append($('<button>').text('Verwijderen'))
+                        );
+                    $('#gegNaam')
+                        .append($('<div>').text("id: ")
+                            .append($('<span>').text(data.id)))
+                        .append($('<div>').text("voornaam: ")
+                            .append($('<span>').text(data.voornaam)))
+                        .append($('<div>').text("achternaam: ")
+                            .append($('<span>').text(data.achternaam)));
+                }).fail(function (obj, err, msg) {
+                    console.dir(msg);
+                    $('tbody', '#tabelNamen').html('');
+                    $('#gegNaam').html('');
+                    $('#gegNaam').append($('<div>').text(msg));
+                    alert(msg);
+                });
+            });
+
+            $('#btnDelete').click(function () {
+                let prm = prompt("Geef id");
+                $.ajax('http://localhost:8080/namen?id=' + prm, {
+                    method: 'DELETE',
+                    dataType: 'json'
+                }).done(function (data) {
+                    console.log(data);
+                }).fail(function (obj, err, msg) {
+                    console.dir(msg);
+                });
+
+            });
+
+
+
+
+
+        });
+    </script>
+</head>
+
+<body>
+
+    <button id="btnget"> Get data</button>
+    <button id="btngetId"> Get Id</button>
+    <button id="btnDelete"> Delete id</button>
+    <div>
+        <input type="number" id="inputId" min="1">
+        <button id="btnGetSelectId"> Get chosen Id</button>
+    </div>
+    <div id="gegNaam">
+
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Voornaam</th>
+                <th>Achternaam</th>
+                <th>Actie</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</body>
+
+</html>
