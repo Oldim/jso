@@ -62,6 +62,12 @@ function processPost(req, res){
     });
     req.on('end', function () {
        var persoon =  JSON.parse(body);
+        // if (namen.length == 0) {
+                  
+        //         } else {
+        //             alert('this record already exists');
+        //         }
+
        namen.push(persoon);
        res.writeHead(200, 'OK');
        res.end();

@@ -7,6 +7,15 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <style>
+        .devider {
+            /* margin: 0 auto; */
+            width: 46px;
+            height: 4px;
+            line-height: 2em;
+            background: #be1408;
+        }
+    </style>
     <script>
         $(function () {
             $('table').attr("id", "tabelNamen");
@@ -38,6 +47,8 @@
                                 console.log(data);
                             }).fail(function (obj, err, msg) {
                                 console.dir(msg);
+                            }).always(function () {
+                                toonLijst();
                             });
                             console.dir(id);
                         });
@@ -45,8 +56,6 @@
                         //     $rij.html('<td>'+data[i].id+'</td><td>'+data[i].voornaam+'</td><td>'+data[i].achternaam+'</td>');
                         //     $('#tabelNamen').append($rij);
                     }
-
-
                 }).fail(function (obj, err, msg) {
                     console.dir(obj);
                     console.dir(err);
@@ -97,6 +106,8 @@
                     $('#gegNaam').html('');
                     $('#gegNaam').append($('<div>').text(msg));
                     alert(msg);
+                }).always(function () {
+                    toonLijst();
                 });
             });
 
@@ -107,22 +118,75 @@
                     dataType: 'json'
                 }).done(function (data) {
                     console.log(data);
+                    toonLijst();
                 }).fail(function (obj, err, msg) {
                     console.dir(msg);
                 });
 
+
             });
-            $('#btnPost').click(function(){
-                $.ajax('http://localhost:8080/namen',{
-                    method:'POST',
-                    data:JSON.stringify({id: 4, voornaam: 'Josje', achternaam: 'Huisman'})
-                    
-                }).done(function(){
+            $('#btnPost').click(function () {
+                $.ajax('http://localhost:8080/namen', {
+                    method: 'POST',
+                    data: JSON.stringify({ id: 4, voornaam: 'Josje', achternaam: 'Huisman' })
+
+                }).done(function () {
                     console.log('item is toegevoegd');
-                }).fail(function(obj, error, msg){
+                }).fail(function (obj, error, msg) {
                     console.log(msg);
                 })
             });
+            $('#btnAdd').click(function () {
+                var id = $('#addId').val();
+                var vn = $('#addVoornaam').val();
+                var achtn = $('#addAchternaam').val();
+                $.ajax('http://localhost:8080/namen', {
+                    method: 'POST',
+                    data: JSON.stringify({ id: id, voornaam: vn, achternaam: achtn })
+
+                }).done(function () {
+                    console.log('item is toegevoegd');
+
+                }).fail(function (obj, error, msg) {
+                    console.log(msg);
+                }).always(function () {
+                    toonLijst();
+                })
+            });
+
+            function toonLijst() {
+                var inputId = $('#inputId').val();
+                $.ajax('http://localhost:8080/namen', {
+                    method: 'GET',
+                    dataType: 'json',
+                    data: { id: inputId },
+                }).done(function (data) {
+                    console.log(data);
+                    $('tbody', '#tabelNamen').html('');
+                    $('#gegNaam').html('');
+                    $('#tabelNamen')
+                        .append($('<tr>')
+                            .append($('<td>').append(data.id))
+                            .append($('<td>').append(data.voornaam))
+                            .append($('<td>').append(data.achternaam))
+                            .append($('<button>').text('Verwijderen'))
+                        );
+                    $('#gegNaam')
+                        .append($('<div>').text("id: ")
+                            .append($('<span>').text(data.id)))
+                        .append($('<div>').text("voornaam: ")
+                            .append($('<span>').text(data.voornaam)))
+                        .append($('<div>').text("achternaam: ")
+                            .append($('<span>').text(data.achternaam)));
+                }).fail(function (obj, err, msg) {
+                    console.dir(msg);
+                    $('tbody', '#tabelNamen').html('');
+                    $('#gegNaam').html('');
+                    $('#gegNaam').append($('<div>').text(msg));
+                    alert(msg);
+                });
+
+            }
 
 
 
@@ -158,6 +222,24 @@
         <tbody>
         </tbody>
     </table>
+    <div class="devider"></div>
+    <form name="frmAddName" id="frmAddName">
+        <div>
+            <label for="addId">Id: </label>
+            <input type="number" min="1" id="addId">
+        </div>
+        <div>
+            <label for="addVoornaam">Voornaam: </label>
+            <input type="text" id="addVoornaam">
+        </div>
+        <div>
+            <label for="addAchternaam">Achternaam: </label>
+            <input type="text" id="addAchternaam">
+        </div>
+        <div>
+            <button id="btnAdd">Naam Toevoegen</button>
+        </div>
+    </form>
 </body>
 
 </html>
