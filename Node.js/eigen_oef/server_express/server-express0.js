@@ -17,9 +17,17 @@ server.get('/*.html', function(request, response){
 // path: eingigd op .html(maar is niet )
 
 server.get('/*', function(request, response){
-
+    
     console.log(" request met method get for NOT html receivet");
     response.send('request met get voor NIET-html pagina wotdt verweerkt');
+
+});
+
+app.get('/*', function(request, response){
+    var voornaam = request.query.voornaam;
+    var naam= request.query.naam;
+   console.log(" request met method get for NOT html receivet");
+   response.send('request met get voor NIET-html pagina wotdt verweerkt');
 
 });
 
