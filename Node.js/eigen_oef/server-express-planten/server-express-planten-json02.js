@@ -25,6 +25,17 @@ function getRecords(callback) {
 	});
 }
 
+
+app.all('/*', function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+
+app.get('/toonJSON01.html', function(req, res) {
+	res.sendFile(__dirname + "/" + "toonJSON01.html");
+});
+
 app.get('', function (req, res) {
 	console.log('request received');
 	getRecords(function (err, rows) {
@@ -42,6 +53,7 @@ app.get('', function (req, res) {
 		res.end(JSON.stringify({ data: rows }));
 	});
 });
+
 
 var server = app.listen(1337, function () {
 	var host = server.address().address;

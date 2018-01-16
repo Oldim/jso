@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <script>
+        $(function () {
+            $('#btnget').click(function () {
+                $.ajax('http://127.0.0.1:1337', {
+                    method: 'GET',
+                    dataType: 'json',
+                }).done(function (data) {
+                    console.log(data.data);
+                    var dataSet = data;
+                    $.each(data.data, function (key, value) {
+                        $('#planten').append("<li>"+value.PLANTENNAAM+"</li>");
+                    });
+
+                }).fail(function (obj, error, msg) {
+                    console.dir(msg);
+                    console.log('fail');
+                })
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <h2>Plantennamen</h2>
+    <input type="button" value="Toon" id="btnget">
+    <div>
+        <ul id="planten"></ul>
+    </div>
+</body>
+
+</html>
