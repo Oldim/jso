@@ -29,7 +29,6 @@ function insertRecords(rows, callback) {
 		connection.end();
 	});
 }
-
 var row1 = { lev_code: '998', lev_naam: 'GROTE SMURF', adres: 'Paddenstoel 1', woonplaats: 'Smurfendorp', korting: 0 };
 var row2 = { lev_code: '997', lev_naam: 'SMURFIN', adres: 'Vliegenzwam 86', woonplaats: 'Smurfendorp', korting: 0 };
 var row3 = { lev_code: '996', lev_naam: 'BABYSMURF', adres: 'De kleine paddenstoel', woonplaats: 'Smurfendorp', korting: 0 };
