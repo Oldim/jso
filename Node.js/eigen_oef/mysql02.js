@@ -11,10 +11,9 @@ var connection = mysql.createConnection({
   port: 3306
 });
 
-var kleur = "rood";
 connection.connect();
-var identifiers = ['plantennaam', 'planten', 'kleur', kleur];
-connection.query('SELECT ?? from ?? WHERE ?? = ?', identifiers, function (err, rows, fields) {
+var identifiers = ['plantennaam', 'kleur','planten'];
+connection.query('SELECT ??, ?? from ??', identifiers, function (err, rows, fields) {
   if (!err) {
     var result = JSON.stringify(rows);
     console.log(result);

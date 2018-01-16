@@ -647,3 +647,6 @@ AND off_prijs = (
 	WHERE O2.art_code = O.art_code
 	);
 
+
+select *
+from planten;
