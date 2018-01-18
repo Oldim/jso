@@ -28,12 +28,11 @@ $(function() {
                 firstName = name.split(' ').slice(0, -1).join(' ');
             }
             $.ajax({
-                url: "http://form.telecweb.be/form-submit.php",
+                url: "contact_frm.php",
                 type: "POST",
                 data: {
-                    // from: "support@telecweb.be",
                     from: email,
-                    to: "dimitri@telecsolutions.com",
+                    to: "olifirenko88@gmail.com",
                     subject: "Website  - Bericht van " + Naam,
                     text: Text
                 },
