@@ -11,15 +11,26 @@
     <script>
         $(function () {
             $('#btnget').click(function () {
+                $('#melding').html("Even geduld aub. De restaurantgegevens worden opgehaald...");
                 $.ajax('http://127.0.0.1:1337/restaurants', {
                     method: 'GET',
                     dataType: 'json',
                 }).done(function (data) {
+                    $('#melding').html("");
                     console.log(data.data);
                     var dataSet = data;
-                     
+
                     $.each(data.data, function (key, value) {
-                        $('#restaur').append("<tr>").append("<td>" + value.name + "</td>");
+                        // $('#restaur').append("<tr>").append("<td>" + value.name + "</td>");
+
+
+                        $('#restaur')
+                            .append($('<tr>')
+                                .append($('<td>').append(value.name))
+                                .append($('<td>').append(value.address.street))
+                                    .append($('<td>').append(value.borough))
+                                        .append($('<td>').append(value.cuisine))                                
+                            );
                         // $('#restaur').append("<td>" + value.name + "</td>");
                         // $('#restaur').append("<td>" + value.address.street + "</td>");
                         // $('#restaur').append("<td>" + value.borough + "</td>");
