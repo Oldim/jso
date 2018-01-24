@@ -1,6 +1,5 @@
-/**  voor MongoDb 3+ */
-/*
- * vooraf:  npm install mongodb
+/**  voor MongoDb 3+ 
+Delete the document with the address "Mountain 21":
  */
 
 'use strict';
@@ -19,13 +18,10 @@ mongoClient.connect(url, function (err, client) {
     // Get the restaurants collection
     var collection = db.collection('restaurants');
     // Find all documents
-        var myquery = { borough: "Missing" };
-        var newvalues = {$set: {borough: "unknown"} };
-        collection.updateMany(myquery, newvalues,function (err, docs) {
+         var myquery = { cuisine: 'Kg' };
+        collection.deleteOne(myquery,function (err, docs) {
         console.log("Restaurant document(s) found:");
-        console.log(docs.result.nModified + " document(s) updated");
-
-        
+        console.log(docs.result.n + " document(s) deleted");        
         client.close();
     });
 });

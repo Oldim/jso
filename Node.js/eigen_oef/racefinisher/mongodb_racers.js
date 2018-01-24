@@ -17,15 +17,19 @@ mongoClient.connect(url, function (err, client) {
     var db = client.db('testdb');
     console.log("Connected successfully to server");
     // Get the restaurants collection
-    var collection = db.collection('restaurants');
+    var collection = db.collection('racers');
     // Find all documents
-        var myquery = { borough: "Missing" };
-        var newvalues = {$set: {borough: "unknown"} };
-        collection.updateMany(myquery, newvalues,function (err, docs) {
+         var myobj = { fname: "Violetta", lname: "Hazanskaya", gender:"V",fh:"1",fm:"49", };
+        collection.insertOne(myobj,function (err, docs) {
         console.log("Restaurant document(s) found:");
-        console.log(docs.result.nModified + " document(s) updated");
+        console.log(docs.insertedCount + " document(s) toegevoegd");
 
-        
         client.close();
     });
 });
+
+
+
+
+
+

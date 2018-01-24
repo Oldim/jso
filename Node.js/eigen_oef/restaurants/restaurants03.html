@@ -24,12 +24,10 @@
                     console.log(data.data);
                     var dataSet = data.data;
 
-                    $.each(dataSet, function (key, value) {
-                         $('#selectKeuken').append("<option>" + dataSet[key] + "</option>");   
-                        // $('#restaur').append("<td>" + value.name + "</td>");
-                        // $('#restaur').append("<td>" + value.address.street + "</td>");
-                        // $('#restaur').append("<td>" + value.borough + "</td>");
-                        // $('#restaur').append("<td>" + value.cuisine + "</td>");
+                    $.each(dataSet, function (key, value) {"'>"'>
+                         $('#selectKeuken').append("<option>" ++encodeURIComponent dataSet[key] +"'>+ "</option>");
+                       //  $('#selCuisine').append("<option value='"+encodeURIComponent(keuken)+"'>"+ keuken+"</option>");   
+
                     });
 
                 }).fail(function (obj, error, msg) {
