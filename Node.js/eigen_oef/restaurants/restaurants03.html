@@ -14,9 +14,36 @@
     </style>
     <script>
         $(function () {
-            $('#btnget').click(function () {
+            $(document).ready(function () {
                 $('#melding').html("Even geduld aub....");
-                $.ajax('http://127.0.0.1:1337/restaurants', {
+                $.ajax('http://127.0.0.1:1337/restaurants/keukens', {
+                    method: 'GET',
+                    dataType: 'json',
+                }).done(function (data) {
+                    $('#melding').html("");
+                    console.log(data.data);
+                    var dataSet = data.data;
+
+                    $.each(dataSet, function (key, value) {
+                         $('#selectKeuken').append("<option>" + dataSet[key] + "</option>");   
+                        // $('#restaur').append("<td>" + value.name + "</td>");
+                        // $('#restaur').append("<td>" + value.address.street + "</td>");
+                        // $('#restaur').append("<td>" + value.borough + "</td>");
+                        // $('#restaur').append("<td>" + value.cuisine + "</td>");
+                    });
+
+                }).fail(function (obj, error, msg) {
+                    console.dir(msg);
+                    console.log('fail');
+                })
+            });
+            $('#btnget').click(function () {
+               // $("#restaur").empty();
+            
+                $('#melding').html("Even geduld aub....");
+                let keuken = $('#selectKeuken').val();
+                console.log(keuken);
+                $.ajax('http://127.0.0.1:1337/restaurants/keukens/'+keuken, {
                     method: 'GET',
                     dataType: 'json',
                 }).done(function (data) {
@@ -25,13 +52,12 @@
                     var dataSet = data;
 
                     $.each(data.data, function (key, value) {
+                        
                         // $('#restaur').append("<tr>").append("<td>" + value.name + "</td>");
-
-
                         $('#restaur')
                             .append($('<tr>')
-                                .append($('<td>').append(value.name))
-                                .append($('<td>').append(value.address.street))
+                                
+                                .append($('<td>').append(value.name))                                
                                     .append($('<td>').append(value.borough))
                                         .append($('<td>').append(value.cuisine))                                
                             );
@@ -51,15 +77,16 @@
 </head>
 
 <body>
-    <h1>Overzicht restaurants</h1>
+    <h1>Overzicht Keukens</h1>
     <div id="melding"></div>
     <input type="button" value="Toon" id="btnget">
     <div>
-        <ul id="planten"></ul>
+        <select id="selectKeuken" name="selectKeuken">
+            <option value="keuze">Kies Keuken</option>
+        </select>
         <table id="restaur">
             <tr>
                 <th>Naam</th>
-                <th>Adres</th>
                 <th>Buurt</th>
                 <th>Keuken</th>
             </tr>
