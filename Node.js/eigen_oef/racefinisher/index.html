@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="vendore/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Abril+Fatface" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+
+
+        <div id="tabs">
+            <div id="usual1" class="usual">
+                <ul>
+                    <li>
+                        <a href="#tab1" class="selected">Male Finishers</a>
+                    </li>
+                    <li>
+                        <a href="#tab2">Female Finishers</a>
+                    </li>
+                    <li>
+                        <a href="#tab3">All Finishers</a>
+                    </li>
+                    <li>
+                        <a href="#tab4">Add New Finisher</a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div id="tab1">
+                        <h1>All Male Finishers</h1>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <h4>Name</h4>
+                            </div>
+                            <div class="col-md-4">
+                                <h4>Time</h4>
+                            </div>
+                            <div class="col-md-4">
+                                <h4>Place</h4>
+                            </div>
+                        </div>
+                        <div id="racersMan" class="row"></div>
+                    </div>
+                    <div id="tab2">
+                        <h1>All Female Finishers</h1>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <h4>Name</h4>
+                            </div>
+                            <div class="col-md-4">
+                                <h4>Time</h4>
+                            </div>
+                            <div class="col-md-4">
+                                <h4>Place</h4>
+                            </div>
+                        </div>
+                        <div id="racersVrouw" class="row"></div>
+
+                    </div>
+                    <div id="tab3">
+                        <h1>All Finishers</h1>
+                        <hr>
+                        <!-- <div>
+                    <table id="racers">
+                        <tr>
+                            <th>Name</th>
+                            <th>Time</th>
+                            <th>Place</th>
+                        </tr>
+                    </table>
+                </div> -->
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <h4>Name</h4>
+                            </div>
+                            <div class="col-md-4">
+                                <h4>Time</h4>
+                            </div>
+                            <div class="col-md-4">
+                                <h4>Place</h4>
+                            </div>
+                        </div>
+                        <div id="racers" class="row"></div>
+
+                    </div>
+                    <div id="tab4">
+                        <h1>Add new Finisher</h1>
+                        <hr>
+
+                        <!-- <form action="http://127.0.0.1:1337/addRacers" method="post">
+                    <div>Naam:
+                        <input type="text" name="fname">
+                    </div>
+                    <div>Voornaam:
+                        <input type="text" name="lname">
+                    </div>
+                    Geslacht:
+                    <div>
+                        <input type="radio" name="gender" value="man" checked> Mannelijk
+                        <br>
+                        <input type="radio" name="gender" value="vrouw"> Vrouwelijk
+                        <br>
+                    </div>
+                    <div>Finish Time:
+                        <input type="text" name="fh">(Hours)
+                        <input type="text" name="fm">(Minutes)</div>
+                    <input type="submit" value="Add Runner">
+                    <input type="reset" value="Clear">
+                </form> -->
+                        <div class="row">
+                            <div class="col-md-6 col-md-offset-3">
+                                <form action="http://127.0.0.1:1337/addRacers" method="post"></form>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <h5>Naam:</h5>
+                                            <input type="text" name="fname" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <h5>Voornaam:</h5>
+                                            <input type="text" name="lname" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6"><div class="text-center">Geslacht:</div> </div>
+                                    <div class="col-md-6">
+                                        
+                                        <div class="form-group">
+                                            <div class="row">
+                                            <div class="col-md-6 col-xs-6"><input type="radio" name="gender" value="man" checked> Mannelijk</div>
+                                            <div class="col-md-6 col-xs-6"><input type="radio" name="gender" value="vrouw"> Vrouwelijk</div>
+                                        </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="titleTime">Finish Time:</div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <div class="col-md-6">
+                                            <input type="text" name="fh" placeholder="Hours" class="form-control">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="text" name="fm" placeholder="Minutes" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row"> 
+                                    <div class="btns">                                       
+                                    <div class="col-md-6">
+                                        <input type="submit" value="Add Runner" class="more_btn">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="reset" value="Clear" class="more_btn">
+                                    </div>
+                                    </div>
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="vendore/script.js"> </script>
+    <script>$("#usual1 ul").idTabs(); </script>
+
+</body>
+
+</html>
