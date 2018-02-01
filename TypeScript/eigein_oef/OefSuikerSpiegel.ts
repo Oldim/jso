@@ -13,14 +13,24 @@ class SuikerSpiegel {
         let result: string;
         let datum = this.datum.toLocaleDateString("nl-BE");
         result = "bloedsuikerwaarden op " + datum + " is "+ this.waardenToString();
+        return result;
     };
-    private waardenToString(): string{
-        let result: string= "";
-        for(let i:number=0; i<SuikerSpiegel.aantalMetingen;i++){
+    
 
-        }
-    }
-
+    private waardenToString(): string {
+		let result: string = "";
+		for (let i: number = 0; i < SuikerSpiegel.aantalMetingen; i++) {
+			result += this.bloedsuikerwaarden[i];
+			if (this.isHypo(i)) {
+				result += " HYPO";
+			}
+			if (this.isHyper(i)) {
+				result += " HYPER";
+			}
+			result += "\n";
+		}
+		return result;
+	}
 
     noteer(metingNr: number, waarde: number) :void {
         if(metingNr>=0 && metingNr < SuikerSpiegel.aantalMetingen){
@@ -59,31 +69,31 @@ class SuikerSpiegel {
         }
         return aantal;
     };
-}
+};
 
-
-
-
-
-// class AantalHypos{
-//     static AantalHypos: number = 0;  // static => gemeenschappelijk voor alle instanties
-//     constructor(public bronRekening: Bankrekening, 
-//         public doelRekening: Bankrekening, public bedrag: number){
-//     }
-//     noteer(): void {
-//         this.bronRekening.haalAf(this.bedrag);
-//         this.doelRekening.stort(this.bedrag);
-//         Overschrijving.aantalUitgevoerd++;
-//     }
-// }
-// isHypo(){
-
-// };
 
 let diabet: SuikerSpiegel = new SuikerSpiegel(20,11,2017);
 console.log(diabet);
-// diabet.noteer();
 
-// console.log(diabet.noteer());
-// let bericht: string = willekeurigBericht();
-// console.log(bericht);
+
+// hoofdprog
+let spiegel1: SuikerSpiegel = new SuikerSpiegel(23, 10, 2014);
+console.log("NA CREATIE");
+console.log(spiegel1.toString());
+console.log("aantal hypos: %s", spiegel1.aantalHypos);
+console.log("aantal hypers: %s", spiegel1.aantalHyper);
+spiegel1.noteer(0, 100);
+spiegel1.noteer(1, 120);
+spiegel1.noteer(2, 55);
+spiegel1.noteer(3, 255);
+spiegel1.noteer(4, 75);
+spiegel1.noteer(-1, 66);
+console.log("Na Noteer");
+console.log(spiegel1.toString());
+for (let i: number = 0; i < 4; i++) {
+	let isHypo: boolean = spiegel1.isHypo(i);
+	let isHyper: boolean = spiegel1.isHyper(i);
+	console.log(i + (isHypo ? " hypo" : isHyper ? " hyper" : " ok"));
+}
+console.log("aantal hypos: %s", spiegel1.aantalHypos);
+console.log("aantal hypers: %s", spiegel1.aantalHyper);
