@@ -1,0 +1,119 @@
+html { 
+    background: #000 url("../img/under_construction.jpg") no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+body{
+    margin-top: 80px;
+    background: transparent;
+    font-family: 'Anton', sans-serif;
+}
+h1{font-size: 6em;}
+h1,h2{
+    text-align: center;
+    color: #ff9900;
+}
+/*------ collaps ----*/
+.waarom .btn-danger{text-align: center;}
+.panel h4{text-align: center;}
+.panel .panel-heading{background: #404040;}
+.waarom .btn-default {color: #d20101; background: none; }
+.waarom .btn-default:hover {color: #337ab7; }
+	/*----- button change ----*/
+.btn.active { display: none;}
+.btn span:nth-of-type(1) {display: none;}
+.btn span:last-child {display: block;}
+.btn.active span:nth-of-type(1) {display: block; }
+.btn.active span:last-child {display: none;}
+.btn-group-lg > .btn, .btn-lg{padding: 5px 10px; border: none; background: #f5f5f5;}
+	/*----- /button change END ----*/
+/*------ /collaps END ----*/
+
+/*------ tabs ----*/
+
+.classnaam{ background: #404040;}
+.classnaam h1{ color: #fff}
+		/* ----- icons ----- */
+.ico{
+    margin: 0 auto;
+    font-size: 48px;
+    padding: 10px;
+}
+.ico-centr{text-align: center; color: #d20101;}
+.classnaam-tab{ margin-top: 30px;}
+.nav-tabs{
+    display: block;
+    width: 444px;
+    margin: 0 auto;
+    border-bottom: 0;    
+}
+		/* ----- /icons END ----- */
+.nav-tabs>li{border-bottom: 1px solid #d20101;}
+.nav-tabs>li.active{  border-bottom: 0;}
+.nav-tabs>li>a{
+    padding: 20px 30px;
+    border: 1px solid #e2e2e2;
+    border-bottom: 0;
+    background: #fff;
+}
+.nav-tabs>li>a:hover{
+    background: #e2e2e2;
+    color: #d20101;
+    border-color: #d20101;
+}
+.nav-tabs>li.active>a, 
+.nav-tabs>li.active>a:focus, 
+.nav-tabs>li.active>a:hover{
+    cursor: default;
+    background-color: #fff;
+    border: 1px solid #d20101;
+    border-bottom: 0;
+    color: #d20101;
+}
+.tab-content{
+    padding: 30px;
+    border: 1px solid #d20101;
+    border-radius: 5px;
+    background: #fff;
+}
+.tab-content .tab-title{
+    color: #337ab7;
+    text-align: center;
+    padding: 0;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.tab-content h4{text-align: center; color: rgb(153, 153, 153);}
+.tab-content p{ margin-bottom: 20px; text-align: center;}
+.tooltip-inner {
+    padding: 10px 15px;
+    max-width: 400px;
+}
+/*------ /tabs END ----*/
+/*------- map ------*/
+#map{height: 360px;}
+.map{height: 360px;}
+.map p{color: #000;}
+/*------- /map END ------*/
+/*----- Back-to-top ---*/
+.scrollToTop{
+    display: none;
+    position: fixed;
+    bottom: 100px;
+    right: 40px;
+}
+.scrollToTop .ico{font-size: 48px; color: #b30000; opacity: 0.6; }
+.scrollToTop .ico:hover{opacity: 1;}
+/*----- /Back-to-top END ---*/
+/*------- @media's ------*/
+@media (max-width: 768px){
+    body{margin-top: 50px;}
+    h1{font-size: 4em;}
+    .scrollToTop{
+        bottom: 15px;
+        right: 15px;
+    }
+    .scrollToTop .ico{font-size: 36px;}
+}
