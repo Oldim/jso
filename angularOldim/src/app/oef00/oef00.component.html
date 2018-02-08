@@ -1,0 +1,8 @@
+<h1>Oef00 in Angular 4</h1>
+
+<form>
+  <label for="txtAantal">Aantal: </label><input type="number"  id="txtAantal" [(ngModel)]="aantal" name="txtAantal" ><br/>
+  <label for="txtPrijs">Eenheidsprijs: </label><input type="number"  id="txtPrijs" [(ngModel)]="prijs" name="txtPrijs" ><br/>
+ <p>Totaal: <span>{{ BerekenTotaal() }}</span> </p>
+</form>
+

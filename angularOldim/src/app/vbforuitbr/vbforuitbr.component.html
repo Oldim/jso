@@ -1,0 +1,10 @@
+<h1>Template reference variable</h1>
+<form>
+  <label for="txtNaam">Naam: </label><input #txt type="text"  id="txtNaam" [(ngModel)]="name" name="txtNaam" >
+  <input type="button"  value="Toevoegen" id="btnAdd" (click)="addPirate();  txt.focus();">
+</form>
+
+
+<ul *ngIf="piraten.length > 0">
+  <li  *ngFor="let piraat of piraten">{{ piraat }}</li>
+</ul>

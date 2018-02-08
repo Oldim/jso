@@ -1,0 +1,7 @@
+<textarea #txt [(ngModel)]="message" (focus)="txt.setSelectionRange(0,0);" maxlength="{{maxKarakteers()}}"></textarea>
+<form>
+  
+  <input type="button" [disabled]="message == ''"  value="Bewaar" id="btnBewaar" (click)="toonBericht(); txt.focus();">
+  <input type="button" [disabled]="tekstIsLeeg()"  value="Wis" id="btnWis" (click)="wisContent(); txt.focus();">
+  <p>Aantal beshcikbare karakters: {{ aantalKarakteer() }}</p>
+</form>

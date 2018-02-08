@@ -1,0 +1,10 @@
+<h1>Template reference variable</h1>
+<form>
+    <label for="txtType">Type: </label><select name="txtType" id="txtType" *ngIf="broodjes.length > 0">
+      <option  *ngFor="let broodje of broodjes">{{ broodje.naam }}</option>
+    </select>
+  <label for="txtAantal">Aantal: </label><input type="number"  id="txtAantal" [(ngModel)]="aantal" name="txtAantal" >
+
+  <input type="button"  value="Bestellen" id="btnBestel" (click)="addBroodje();">
+  
+</form>
