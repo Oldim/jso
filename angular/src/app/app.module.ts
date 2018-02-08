@@ -1,20 +1,28 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';  // nodig voor ngModel (-> 2 way binding)
 
 import { AppComponent } from './app.component';
-import { VbDatabindingComponent } from './voorbeelden/vbdatabinding/vbdatabinding.component';
+import { Oef00Component } from './oefeningen/oef00/oef00.component';
+import { OefNotitieComponent } from './oefeningen/oefnotitie/oefnotitie.component';
+import { VbForuitbrComponent } from './voorbeelden/vbfor/vbforuitbr.component';
+// TODO: alle componenten die in deze module gedefinieerd zijn importeren
 
 @NgModule({
   declarations: [
     AppComponent,
-    VbDatabindingComponent,
+    Oef00Component,
+    OefNotitieComponent,
+    VbForuitbrComponent
+    // TODO: alle componenten die in deze module gedefinieerd zijn hier importeren
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,  //  nodig om 2 way binding te kunnen doen
   ],
   providers: [],
-  bootstrap: [VbDatabindingComponent]
+  // TODO: in bootstrap array (enkel) alle componenten opsommen
+  // die horen bij user defined tags die in index.html gebruikt worden
+  bootstrap: [VbForuitbrComponent]
 })
 export class AppModule { }
