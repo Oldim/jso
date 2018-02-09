@@ -12,6 +12,7 @@ import { OefbroodjesComponent } from './oefbroodjes/oefbroodjes.component';
 import { OefHogerComponent } from './oef-hoger/oef-hoger.component';
 import { HttpClientModule } from '@angular/common/http';
 import { OefhttpComponent } from './oefhttp/oefhttp.component';
+import { OefcurrentyconvertorComponent } from './oefcurrentyconvertor/oefcurrentyconvertor.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { OefhttpComponent } from './oefhttp/oefhttp.component';
     VbforuitbrComponent,
     OefbroodjesComponent,
     OefHogerComponent,
-    OefhttpComponent
+    OefhttpComponent,
+    OefcurrentyconvertorComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +34,7 @@ import { OefhttpComponent } from './oefhttp/oefhttp.component';
 
   ],
   providers: [],
-  bootstrap: [OefhttpComponent]
+  bootstrap: [OefcurrentyconvertorComponent]
 })
 export class AppModule { 
 
