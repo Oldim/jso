@@ -13,6 +13,7 @@ import { OefHogerComponent } from './oef-hoger/oef-hoger.component';
 import { HttpClientModule } from '@angular/common/http';
 import { OefhttpComponent } from './oefhttp/oefhttp.component';
 import { OefcurrentyconvertorComponent } from './oefcurrentyconvertor/oefcurrentyconvertor.component';
+import { CurrencyService03 } from './oefcurrentyconvertor/oefcurrentyconvertor_extra';
 
 
 @NgModule({
@@ -33,7 +34,7 @@ import { OefcurrentyconvertorComponent } from './oefcurrentyconvertor/oefcurrent
     HttpClientModule
 
   ],
-  providers: [],
+  providers: [CurrencyService03],
   bootstrap: [OefcurrentyconvertorComponent]
 })
 export class AppModule { 

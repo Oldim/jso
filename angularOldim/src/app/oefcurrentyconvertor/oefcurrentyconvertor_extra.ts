@@ -12,6 +12,7 @@ import { Rate } from './model';
 export class CurrencyService03 {
      getRate():Observable<Rate[]> {
         return this.http.get<Rate[]>("https://api.fixer.io/latest");
+        
      }
  
      constructor(private http: HttpClient) {

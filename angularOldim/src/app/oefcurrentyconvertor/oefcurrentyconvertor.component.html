@@ -1,3 +1,12 @@
-<p>
-  oefcurrentyconvertor works!
-</p>
+<form #frm="ngForm">
+  <input type="text" name="txtValue1"  #value1="ngModel" [(ngModel)]="txtValue1" required/>
+  <!-- <span style="color:red" *ngIf="value1.dirty  && value1.invalid">
+    <span *ngIf="value1.errors.required">Getal moet ingevuld worden.</span>
+  </span> -->
+    <select name="exchange" id="txtType" [(ngModel)]="gekozenRate">
+        <!-- <select name="exchange" id="txtType" > -->
+      <option  *ngFor="let rate of exchange" [ngValue]="exchange">{{ rate.rates}}</option>
+    </select>
+  <input type="text" name="txtValue2" />
+  <input type="button" value="btnConvert" id="btnConvert" [disabled]="!frm.form.valid"/>
+</form>

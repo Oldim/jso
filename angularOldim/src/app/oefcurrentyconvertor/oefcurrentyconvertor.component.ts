@@ -8,7 +8,7 @@ import { Rate } from './model';
   styleUrls: ['./oefcurrentyconvertor.component.css']
 })
 export class OefcurrentyconvertorComponent implements OnInit {
-  exchange: Rate[];
+  exchange: Rate[] = this.exchange;
 
   constructor(private rateService: CurrencyService03) { }
 
@@ -16,7 +16,14 @@ export class OefcurrentyconvertorComponent implements OnInit {
 
     this.rateService.getRate().subscribe(
       data => {
-        this.exchange = data as any[];
+        // this.exchange = data as any[];
+        // console.log(data);
+        this.exchange=[];
+        data["rates"].forEach(element => {
+          this.exchange.push(new Rate(
+           element.base, element.rates
+          ));
+        });
       });
   }
 }
