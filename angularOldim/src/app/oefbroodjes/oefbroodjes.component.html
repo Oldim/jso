@@ -1,24 +1,28 @@
 <h1>Template reference variable</h1>
 <form #f="ngForm">
     <label for="txtType">Type: </label>
-    <select name="broodje" id="txtType" *ngIf="broodjes.length > 0" ngModel>
+    <select name="broodje" id="txtType" *ngIf="broodjes.length > 0" [(ngModel)]="gekozenType">
       <option  *ngFor="let broodje of broodjes" [ngValue]="broodje">{{ broodje.naam }}</option>
     </select>
-  <label for="txtAantal">Aantal: </label><input type="number"  id="txtAantal" [(ngModel)]="aantal" name="txtAantal" >
+  <label for="txtAantal">Aantal: </label>
+  <input type="number"  id="txtAantal"  [(ngModel)]="aantal" name="txtAantal" >
 
-  <input type="button"  value="Bestellen" id="btnBestel" (click)="addBroodje();">
-  
+  <input type="button"  value="Bestellen" id="btnBestel" (click)="addBroodje();" >
   
 </form>
+<div *ngIf="bestelling.bestellijnen.length > 0">
 <table>
   <tr>
       <th>Naam</th>
       <th>Prijs</th>
       <th>Aantal</th>
   </tr>
-  <tr>
-    <td>{{ f.value.broodje.naam  }}</td>
-    <td>{{ f.value.broodje.prijs | currency:"EUR":symbol-narrow  }}</td>
+  <tr *ngFor="let broodje of bestelling.bestellijnen">
+    <td>{{ broodje.broodje.naam  }}</td>
+    <td>{{ broodje.broodje.prijs | currency:"EUR":symbol-narrow  }}</td>
+    <td>{{broodje.aantal}}</td>
     
   </tr>
 </table>
+<p> De totaalprijs is {{totaalprijs() |currency:'EUR':2}}</p>
+</div>

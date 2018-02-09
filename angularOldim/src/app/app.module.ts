@@ -9,6 +9,9 @@ import { Oef00Component } from './oef00/oef00.component';
 import { OefNotitieComponent } from './oef-notitie/oef-notitie.component';
 import { VbforuitbrComponent } from './vbforuitbr/vbforuitbr.component';
 import { OefbroodjesComponent } from './oefbroodjes/oefbroodjes.component';
+import { OefHogerComponent } from './oef-hoger/oef-hoger.component';
+import { HttpClientModule } from '@angular/common/http';
+import { OefhttpComponent } from './oefhttp/oefhttp.component';
 
 
 @NgModule({
@@ -18,13 +21,22 @@ import { OefbroodjesComponent } from './oefbroodjes/oefbroodjes.component';
     Oef00Component,
     OefNotitieComponent,
     VbforuitbrComponent,
-    OefbroodjesComponent
+    OefbroodjesComponent,
+    OefHogerComponent,
+    OefhttpComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
+
   ],
   providers: [],
-  bootstrap: [OefbroodjesComponent]
+  bootstrap: [OefhttpComponent]
 })
-export class AppModule { }
+export class AppModule { 
+
+
+
+
+}

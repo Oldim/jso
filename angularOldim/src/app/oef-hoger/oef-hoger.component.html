@@ -1,0 +1,10 @@
+<form #f="ngForm">
+<p>Uw got (1-100) :
+  <input type="number" name="txtNumber" id="txtNumber" [(ngModel)]="txtNumber" min="1" required>
+</p>
+<input type="button" [disabled]="!f.form.valid" value="Gok" (click)="doeGok();"/>
+<input type="button" [disabled]="!f.form.valid" value="Opnieuw" (click)="wisContent();"/>
+<!-- <input type="button" [disabled]="tekstIsLeeg()"  value="Wis" id="btnWis" (click)="wisContent(); txt.focus();"> -->
+</form>
+<div>{{tip}}</div>
+<div>Aantal beurten: {{hogerlager.aantalBeurten}} </div>

@@ -8,14 +8,21 @@ export class BestelLijn  {
   }
 
   export class Bestelling  {
-    constructor(public bestellijnen: BestelLijn[], private prijs, public aantal: number) {  }
+    bestellijnen: BestelLijn[] = [];
 
-    voegLijnToe(lijn: BestelLijn):void{
-       
+    voegLijnToe(lijn: BestelLijn): void {
+        this.bestellijnen.push(lijn);
     }
-    totaalprijs():number{
-        return this.aantal * this.prijs;
+
+    totaalprijs(): number {
+        let totaal: number = 0;
+        for (let i = 0; i < this.bestellijnen.length; i++) {
+            totaal += this.bestellijnen[i].broodje.prijs * this.bestellijnen[i].aantal;
+        }
+        return totaal;
     }
+
+
   }
 
   export let broodjes: Broodje[] = new Array<Broodje>();
