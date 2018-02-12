@@ -3,10 +3,15 @@
   <!-- <span style="color:red" *ngIf="value1.dirty  && value1.invalid">
     <span *ngIf="value1.errors.required">Getal moet ingevuld worden.</span>
   </span> -->
-    <select name="exchange" id="txtType" [(ngModel)]="gekozenRate">
+    <select name="exchange" id="txtType" [(ngModel)]="gekozenRate" autofocus>
         <!-- <select name="exchange" id="txtType" > -->
-      <option  *ngFor="let rate of exchange" [ngValue]="exchange">{{ rate.rates}}</option>
+      <option  *ngFor="let rate of exchange" [ngValue]="exchange" >{{ rate.valuta}}</option>
     </select>
-  <input type="text" name="txtValue2" />
-  <input type="button" value="btnConvert" id="btnConvert" [disabled]="!frm.form.valid"/>
+    <input type="button" value="btnConvert" id="btnConvert" [disabled]="!frm.form.valid" (click)="convertValue();"/>
+    <select name="exchangeTo" id="txtTypeTo" [(ngModel)]="gekozenRateTo" autofocus>
+      <!-- <select name="exchange" id="txtType" > -->
+    <option  *ngFor="let rate of exchange" [ngValue]="exchange" >{{ rate.valuta}}</option>
+  </select>
+  <input type="text" name="txtValue2"  disabled/>
+  
 </form>

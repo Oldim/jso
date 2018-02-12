@@ -10,11 +10,13 @@ import { Rate } from './model';
 // Injectable => client moet object niet zelf maken
 @Injectable()
 export class CurrencyService03 {
-     getRate():Observable<Rate[]> {
-        return this.http.get<Rate[]>("https://api.fixer.io/latest");
+    
+     getRate(myUrl):Observable<Rate[]> {
+        return this.http.get<Rate[]>(myUrl);
         
      }
  
      constructor(private http: HttpClient) {
      }
+   
 }

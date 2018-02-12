@@ -1,5 +1,5 @@
 export class Rate {
-    constructor(public base: string, public rates: any[]) {
+    constructor(public valuta: string, public wisselkoers: number) {
 
     }
 }
