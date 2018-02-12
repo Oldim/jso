@@ -12,12 +12,14 @@ export class HeroesComponent implements OnInit {
   id: number;
   bl: boolean;
   naam: string;
+  temp: string;
   ToonBeschik: boolean= false;
   constructor() { }
 
-  ngOnInit() {  }
-  ToonNaam(): string{
-    return this.naam;
+  ngOnInit() { 
+   }
+   ToonNaam(hero: Hero): void{
+   this.heroes[0] = hero;
   }
 
 

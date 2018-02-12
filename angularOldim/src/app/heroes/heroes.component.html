@@ -2,11 +2,11 @@
 <p>enkel beschikbare helden tonen <input type="checkbox" name="ToonBeschik" id="ToonBeschik" value="ToonBeschik" [(ngModel)]="ToonBeschik"></p>
 <div>
   <ul  *ngFor="let hero of heroes">
-    <li *ngIf="ToonBeschik == true && hero.bl == true" ><a href="#" (click)="ToonNaam(hero.naam);"><span>{{hero.id}} </span>{{hero.naam}}</a> </li>
-    <li *ngIf="ToonBeschik == false"><a href="#" (click)="ToonNaam();"><span>{{hero.id}} </span>{{hero.naam}}</a> </li>
+    <li *ngIf="ToonBeschik == true && hero.bl == true" ><a href="#" (click)="ToonNaam(hero);" ><span>{{hero.id}} </span>{{hero.naam}}</a> </li>
+    <li *ngIf="ToonBeschik == false"><a href="#" (click)="ToonNaam(hero);"><span>{{hero.id}} </span>{{hero.naam}}</a> </li>
   </ul>
 </div>
 
 <div *ngIf="heroes.length > 3"> <p>Er zijn veel helden!</p></div>
 
-{{ToonNaam(hero.naam)}}
+
