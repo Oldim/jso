@@ -18,34 +18,40 @@ import { VbroutingReqparamComponent } from './voorbeelden/vbrouting/vbrouting-re
 import { PageNotFoundComponent } from './voorbeelden/vbrouting/page-not-found.component';
 import { Vbrouting0Component } from './voorbeelden/vbrouting/vbrouting0.component';
 import { VbroutingComponent } from './voorbeelden/vbrouting/vbrouting.component';
+import { VbRoutingModule } from './voorbeelden/vbrouting/vbrouting.module';
 // TODO: alle componenten die in deze module gedefinieerd zijn importere
   // zie vbrouting.module.ts
-const appRoutes: Routes = [
-  {
-    path: 'vb01',
-    component: VbDatabindingComponent
-  },
-  {
-    path: 'vb02',
-    component: VbIfComponent
-  },
-  {
-    path: 'routing/:id',
-    component: VbroutingReqparamComponent
-  },
-  { 
-    path: '',   // start path
-    redirectTo: '/vb01',  // REDIRECT
-    //  A redirect route requires a pathMatch property to tell the router 
-    //   how to match a URL to the path of a route. The router throws an error 
-    //   if you don't. 
-    pathMatch: 'full'  // whole URL must match
-  },
-  { 
-    path: '**', 
-    component: PageNotFoundComponent 
-  } 
-];
+// const appRoutes: Routes = [
+//   {
+//     path: 'vb01',
+//     component: VbDatabindingComponent
+//   },
+//   {
+//     path: 'vb02',
+//     component: VbIfComponent
+//   },
+//   { 
+//     path: 'oefcurrencyconvertor', 
+//     component: OefCurrencyconvertorComponent 
+//   },
+//   {
+//     path: 'routing/:id',
+//     component: VbroutingReqparamComponent
+//   },
+//   { 
+//     path: '',   // start path
+//     redirectTo: '/vb01',  // REDIRECT
+//     //  A redirect route requires a pathMatch property to tell the router 
+//     //   how to match a URL to the path of a route. The router throws an error 
+//     //   if you don't. 
+//     pathMatch: 'full'  // whole URL must match
+//   },
+//   { 
+//     path: '**', 
+//     component: PageNotFoundComponent 
+//   }  
+// ];
+
 
 @NgModule({
   declarations: [
@@ -62,11 +68,13 @@ const appRoutes: Routes = [
     BrowserModule,
     FormsModule,  //  nodig om 2 way binding te kunnen doen
     HttpClientModule,
-    RouterModule.forRoot( appRoutes ),
+    VbRoutingModule
+    //RouterModule.forRoot( appRoutes ),
+
   ],
   providers: [CurrencyService],
   // TODO: in bootstrap array (enkel) alle componenten opsommen
   // die horen bij user defined tags die in index.html gebruikt worden
-  bootstrap: [Vbrouting0Component]
+  bootstrap: [VbroutingComponent]
 })
 export class AppModule { }

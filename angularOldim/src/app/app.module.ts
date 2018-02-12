@@ -14,6 +14,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { OefhttpComponent } from './oefhttp/oefhttp.component';
 import { OefcurrentyconvertorComponent } from './oefcurrentyconvertor/oefcurrentyconvertor.component';
 import { CurrencyService03 } from './oefcurrentyconvertor/oefcurrentyconvertor_extra';
+import { HeroesComponent } from './heroes/heroes.component';
+import { HeroesDetailComponent } from './heroes-detail/heroes-detail.component';
 
 
 @NgModule({
@@ -26,7 +28,9 @@ import { CurrencyService03 } from './oefcurrentyconvertor/oefcurrentyconvertor_e
     OefbroodjesComponent,
     OefHogerComponent,
     OefhttpComponent,
-    OefcurrentyconvertorComponent
+    OefcurrentyconvertorComponent,
+    HeroesComponent,
+    HeroesDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +39,7 @@ import { CurrencyService03 } from './oefcurrentyconvertor/oefcurrentyconvertor_e
 
   ],
   providers: [CurrencyService03],
-  bootstrap: [OefcurrentyconvertorComponent]
+  bootstrap: [HeroesComponent]
 })
 export class AppModule { 
 

@@ -1,0 +1,10 @@
+<h1>{{hero.naam}} details</h1>
+<p>id: {{hero.id}} </p>
+<div>
+  <label for="heroNaam">Naam: </label>
+  <input type="text" name="txtNaam" [(ngModel)]="hero.naam">
+  <input type="checkbox" name="beschikbaar" value="beschikbaar" [(ngModel)]="hero.bl">beschikbaar
+</div>
+
+
+{{ hero.naam }} <br>{{hero.bl ? "beschikbaar": "NIET beschikbaar"}}

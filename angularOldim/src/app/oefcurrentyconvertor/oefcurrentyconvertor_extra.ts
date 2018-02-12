@@ -10,13 +10,12 @@ import { Rate } from './model';
 // Injectable => client moet object niet zelf maken
 @Injectable()
 export class CurrencyService03 {
-    
+    constructor(private http: HttpClient) { }
      getRate(myUrl):Observable<Rate[]> {
         return this.http.get<Rate[]>(myUrl);
         
      }
  
-     constructor(private http: HttpClient) {
-     }
+     
    
 }

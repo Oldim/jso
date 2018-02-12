@@ -14,7 +14,8 @@ export class OefcurrentyconvertorComponent implements OnInit {
   txtValue2: number;
   exchange: Rate[] = this.exchange;
   myUrl:string = 'https://api.fixer.io/latest';
-  constructor(private rateService: CurrencyService03) { }
+  rate:string;
+  constructor(public rateService: CurrencyService03) { }
 
   ngOnInit() {
 
@@ -36,7 +37,6 @@ export class OefcurrentyconvertorComponent implements OnInit {
 
     this.rateService.getRate(this.myUrl+'?base=EUR').subscribe(
       data => {
-        console.log(this.gekozenRate);
          this.txtValue2=this.txtValue1*data["rates"][this.gekozenRateTo]; 
         
       });
