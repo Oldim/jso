@@ -39,7 +39,7 @@ import { HeroesDetailComponent } from './heroes-detail/heroes-detail.component';
 
   ],
   providers: [CurrencyService03],
-  bootstrap: [HeroesComponent]
+  bootstrap: [OefcurrentyconvertorComponent]
 })
 export class AppModule { 
 

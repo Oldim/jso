@@ -69,22 +69,12 @@ const appRoutes: Routes = [
     BrowserModule,
     FormsModule,  //  nodig om 2 way binding te kunnen doen
     HttpClientModule,
-<<<<<<< HEAD
-    VbRoutingModule
-    //RouterModule.forRoot( appRoutes ),
-
-=======
     // RouterModule.forRoot( appRoutes ),
 //    VbRoutingModule
->>>>>>> cab7add44f6cc4c21da34d9b90d69adcacee3973
   ],
   providers: [HeroesService],
   // TODO: in bootstrap array (enkel) alle componenten opsommen
   // die horen bij user defined tags die in index.html gebruikt worden
-<<<<<<< HEAD
-  bootstrap: [VbroutingComponent]
-=======
   bootstrap: [HeroesAllComponent]
->>>>>>> cab7add44f6cc4c21da34d9b90d69adcacee3973
 })
 export class AppModule { }
