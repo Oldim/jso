@@ -1,0 +1,16 @@
+<h1>{{title}}</h1>
+
+<form #frmMunt="ngForm" >
+<input #txtBaseAantal="ngModel" required type="number" min="0"  name="aantal" [(ngModel)] = "aantalBase">
+
+<select [(ngModel)]="baseMunt" name="baseMunt">
+  <option *ngFor="let b of dropLijst" [ngValue]="b">{{b}}</option>
+</select>
+
+<select [(ngModel)]="resultMunt" name="resultMunt">
+    <option *ngFor="let b of dropLijst" [ngValue]="b">{{b}}</option>
+</select>
+<button (click)="convert()" [disabled]="baseMunt==resultMunt || aantalBase==0">Converteren</button> 
+<input #txtResult="ngModel" type="number" name="aantalResult" [(ngModel)] = "aantalResult" disabled>
+
+</form>

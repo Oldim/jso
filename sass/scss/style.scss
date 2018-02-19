@@ -1,4 +1,57 @@
-$voorgrondkleur: #999999;
-body{
+$voorgrondkleur: #999;
+$pagina-breedte: 80%;
+$main_breedte: 80%;
+$base:#910000;
+$light-base: lighten($base, 50%);
+$dark-base: darken($base, 50%);
+@import 'mixins';
+header {
+    background-color: hsl(180, 100%, 40%);
+    color: hsl(0, 80%, 50%);
+    margin: 5px auto;
+    width: $pagina-breedte;
+    .menu {
+        list-style: none;
+        margin: 0px;
+        overflow: hidden;
+        li {
+            float: left;
+            padding: 2px;
+        }
+    }
+}
+
+body {
     color: $voorgrondkleur;
+}
+
+.wrapper {
+    margin: 0 auto;
+    width: $pagina-breedte;
+    min-width: 768px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+a {
+    padding: 2px;
+    cursor: pointer;
+    &:hover {
+        color: hsl(180, 100%, 70%);
+        background-color: hsl(0, 90%, 70%);
+    }
+}
+
+main {
+    box-sizing: border-box;
+    padding: 10px 10px 20px;
+    width: $main_breedte;
+    background: $voorgrondkleur;
+    color: #000;
+}
+
+aside {
+    box-sizing: border-box;
+    padding: 10px;
+    width: 100% - $main_breedte;
 }

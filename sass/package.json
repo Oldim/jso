@@ -19,7 +19,9 @@
   "author": "Dmitryi",
   "license": "ISC",
   "devDependencies": {
+    "browser-sync": "^2.23.6",
     "gulp": "^3.9.1",
+    "gulp-clean-css": "^3.9.2",
     "gulp-sass": "^3.1.0",
     "node-sass": "^4.7.2"
   }

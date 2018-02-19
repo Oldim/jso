@@ -1,0 +1,7 @@
+@mixin gray-border($width: 1px, $type: solid, $color: $dark-base) {
+    border: $width $type $color;
+}
+
+@mixin sample {
+    font-size: 12px;
+}
