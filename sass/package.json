@@ -1,0 +1,24 @@
+{
+  "name": "sass",
+  "version": "0.0.1",
+  "description": "Some SASS examples",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:sass": "node-sass --output-style expanded --source-comments scss/ -o css/",
+    "comp:css": "node-sass --output-style compressed  scss/ -o css/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Oldim/jso/sass"
+  },
+  "keywords": [
+    "Sass",
+    "npm"
+  ],
+  "author": "Dmitryi",
+  "license": "ISC",
+  "devDependencies": {
+    "node-sass": "^4.7.2"
+  }
+}
